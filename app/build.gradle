@@ -27,6 +27,7 @@ android {
 }
 
 dependencies {
+    def thirtyinchVersion = '0.7.1'
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -36,5 +37,9 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-jackson:2.1.0'
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    compile "net.grandcentrix.thirtyinch:thirtyinch:$thirtyinchVersion"
+    compile "net.grandcentrix.thirtyinch:thirtyinch-rx:$thirtyinchVersion"
+    compile "net.grandcentrix.thirtyinch:thirtyinch-plugin:$thirtyinchVersion"
+
     testCompile 'junit:junit:4.12'
 }
