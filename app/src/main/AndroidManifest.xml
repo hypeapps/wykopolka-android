@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="pl.hypeapp.wykopolka.MainActivity"
+            android:name="pl.hypeapp.wykopolka.ui.activity.SignInActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
                 <intent-filter>
