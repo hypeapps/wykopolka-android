@@ -1,4 +1,4 @@
-package pl.hypeapp.wykopolka;
+package pl.hypeapp.wykopolka.network.api;
 
 import pl.hypeapp.wykopolka.model.User;
 import retrofit2.Call;
