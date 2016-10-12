@@ -1,8 +1,10 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    buildToolsVersion "24.0.3"
     defaultConfig {
         applicationId "pl.hypeapp.wykopolka"
         minSdkVersion 19
@@ -11,7 +13,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    packagingOptions{
+    packagingOptions {
         exclude 'META-INF/LICENSE'
     }
     buildTypes {
@@ -23,23 +25,45 @@ android {
     buildTypes.each {
         it.buildConfigField('String', 'WAPI_SECRET', WAPI_SECRET)
         it.buildConfigField('String', 'APP_KEY', APP_KEY)
+        it.buildConfigField('String', 'WYKOPOLKA_SECRET', WYKOPOLKA_SECRET)
     }
 }
 
 dependencies {
     def thirtyinchVersion = '0.7.1'
+    def supportLibraryVersion = '24.2.1'
+    def bumptechGlideVersion = '3.7.0'
+    def butterKnifeVersion = '8.3.0'
+    def daggerVersion = '2.6'
+    def smarttablayoutLibraryVersion = '1.6.1@aar'
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:24.2.0'
-    compile 'com.android.support:design:24.2.0'
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.squareup.retrofit2:converter-jackson:2.1.0'
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    // SUPPORT LIBRARIES
+    compile "com.android.support:appcompat-v7:$supportLibraryVersion"
+    compile "com.android.support:design:$supportLibraryVersion"
+    compile "com.android.support:support-v4:$supportLibraryVersion"
+    // REST
+    // MVP
     compile "net.grandcentrix.thirtyinch:thirtyinch:$thirtyinchVersion"
     compile "net.grandcentrix.thirtyinch:thirtyinch-rx:$thirtyinchVersion"
     compile "net.grandcentrix.thirtyinch:thirtyinch-plugin:$thirtyinchVersion"
+    // UTIL
+    compile "com.pascalwelsch.compositeandroid:activity:$supportLibraryVersion"
+    compile "com.ogaclejapan.smarttablayout:library:$smarttablayoutLibraryVersion"
+    // IMAGES & ANIMATIONS
+    compile "com.github.bumptech.glide:glide:$bumptechGlideVersion"
+    // DEPENDENCY INJECTION
+    compile "com.jakewharton:butterknife:$butterKnifeVersion"
+    apt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
+    compile "com.google.dagger:dagger:$daggerVersion"
+    apt "com.google.dagger:dagger-compiler:$daggerVersion"
 
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-jackson:2.1.0'
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    compile 'com.android.support:support-v4:24.2.1'
     testCompile 'junit:junit:4.12'
 }
