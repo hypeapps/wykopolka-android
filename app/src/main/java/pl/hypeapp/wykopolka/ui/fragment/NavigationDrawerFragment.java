@@ -5,18 +5,31 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 
 import net.grandcentrix.thirtyinch.TiFragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import pl.hypeapp.wykopolka.App;
 import pl.hypeapp.wykopolka.R;
+import pl.hypeapp.wykopolka.adapter.DrawerRecyclerAdapter;
+import pl.hypeapp.wykopolka.model.NavigationOption;
 import pl.hypeapp.wykopolka.presenter.NavigationDrawerPresenter;
 import pl.hypeapp.wykopolka.ui.activity.MainWallActivity;
+import pl.hypeapp.wykopolka.util.transformation.CropCircleTransformation;
 import pl.hypeapp.wykopolka.view.NavigationDrawerView;
 
 public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresenter, NavigationDrawerView>
@@ -28,6 +41,11 @@ public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresent
     private boolean mFromSavedInstanceState;
     private View mContainer;
     private boolean mDrawerOpened = false;
+    private DrawerRecyclerAdapter mRecyclerAdapter;
+
+    RecyclerView mRecyclerView;
+    @BindView(R.id.iv_avatar)
+    ImageView avatar;
 
     public NavigationDrawerFragment() {
     }
@@ -36,6 +54,22 @@ public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresent
     @Override
     public NavigationDrawerPresenter providePresenter() {
         return new NavigationDrawerPresenter();
+    }
+
+    public static List<NavigationOption> getData(){
+        List<NavigationOption> data = new ArrayList<>();
+        int[] icons = {R.drawable.ic_exit_to_app_white_36dp, R.drawable.ic_exit_to_app_white_36dp, R.drawable.ic_exit_to_app_white_36dp, R.drawable.ic_exit_to_app_white_36dp
+        , R.drawable.ic_exit_to_app_white_36dp, R.drawable.ic_exit_to_app_white_36dp, R.drawable.ic_exit_to_app_white_36dp, R.drawable.ic_exit_to_app_white_36dp, R.drawable.ic_exit_to_app_white_36dp
+        ,R.drawable.ic_exit_to_app_white_36dp};
+        String[] titles = {"Dashboard","Szukaj książki","Losuj książkę", "Moje książki", "Moja historia", "Oddane książki"
+        ,"Lista życzeń", "Ranking i statystyki"};
+        for(int i = 0; i < titles.length && i < icons.length; i++){
+            NavigationOption current = new NavigationOption();
+            current.title = titles[i];
+            current.iconId = icons[i];
+            data.add(current);
+        }
+        return data;
     }
 
     @Override
@@ -48,12 +82,19 @@ public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresent
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+        View view = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+        ButterKnife.bind(this, view);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.drawer_list);
+        mRecyclerAdapter = new DrawerRecyclerAdapter(getActivity(), getData());
+        mRecyclerView.setAdapter(mRecyclerAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Glide.with(getContext()).load(R.drawable.avatar).bitmapTransform(new CropCircleTransformation(getContext())).into(avatar);
     }
 
     public void create(DrawerLayout drawerLayout, final Toolbar toolbar, int fragmentId) {
