@@ -5,7 +5,8 @@
     <color name="colorPrimaryDark">#f3ab2c</color>
     <color name="colorAccent">#4bc5c3</color>
     <color name="materialBackground">#fcfcfc</color>
-    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="textColorPrimary">#ffffff</color>
     <color name="textColorSecondary">#0079ea</color>
     <color name="navBackgroundColor">#303030</color>
+    <color name="drawerArrowColor">#fcfcfc</color>
 </resources>

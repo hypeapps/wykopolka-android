@@ -4,10 +4,12 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
-    <dimen name="status_bar_padding">24dp</dimen>
-    <dimen name="layout_paddding">16dp</dimen>
-    <dimen name="toolbar_title_padding">72dp</dimen>
+    <dimen name="status_bar_padding">0dp</dimen>
+    <dimen name="layout_padding">16dp</dimen>
+    <dimen name="toolbar_title_padding">48dp</dimen>
+
     <dimen name="iv_next_padding_right">24dp</dimen>
     <dimen name="nav_drawer_width">280dp</dimen>
-
+    <dimen name="nav_header_height">160dp</dimen>
+    <dimen name="nav_drawer_margin_top">24dp</dimen>
 </resources>
