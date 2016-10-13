@@ -7,6 +7,7 @@
     android:background="@color/colorPrimary"
     android:elevation="4dp"
     android:minHeight="?attr/actionBarSize"
-    android:paddingLeft="@dimen/toolbar_title_padding"
     app:theme="@style/AppTheme.Toolbar"
+    app:contentInsetStart="@dimen/toolbar_title_padding"
+    app:contentInsetStartWithNavigation="@dimen/layout_padding"
     android:paddingTop="@dimen/status_bar_padding" />
