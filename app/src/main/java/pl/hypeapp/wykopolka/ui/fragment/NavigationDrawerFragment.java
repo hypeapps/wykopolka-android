@@ -56,14 +56,27 @@ public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresent
         return new NavigationDrawerPresenter();
     }
 
-    public static List<NavigationOption> getData(){
+    public static List<NavigationOption> getData() {
         List<NavigationOption> data = new ArrayList<>();
-        int[] icons = {R.drawable.ic_exit_to_app_white_36dp, R.drawable.ic_exit_to_app_white_36dp, R.drawable.ic_exit_to_app_white_36dp, R.drawable.ic_exit_to_app_white_36dp
-        , R.drawable.ic_exit_to_app_white_36dp, R.drawable.ic_exit_to_app_white_36dp, R.drawable.ic_exit_to_app_white_36dp, R.drawable.ic_exit_to_app_white_36dp, R.drawable.ic_exit_to_app_white_36dp
-        ,R.drawable.ic_exit_to_app_white_36dp};
-        String[] titles = {"Dashboard","Szukaj książki","Losuj książkę", "Moje książki", "Moja historia", "Oddane książki"
-        ,"Lista życzeń", "Ranking i statystyki"};
-        for(int i = 0; i < titles.length && i < icons.length; i++){
+        int[] icons = {R.drawable.ic_dashboard_white_36dp,
+                R.drawable.ic_search_white_36dp,
+                R.drawable.ic_shuffle,
+                R.drawable.ic_book_white_36dp,
+                R.drawable.ic_date_range_white_36dp,
+                R.drawable.ic_shuffle,
+                R.drawable.ic_favorite_white_36dp,
+                R.drawable.ic_equalizer_white_36dp};
+
+        String[] titles = {"Dashboard",
+                "Szukaj książki",
+                "Losuj książkę",
+                "Moje książki",
+                "Oddane książki",
+                "Moja historia",
+                "Lista życzeń",
+                "Ranking i statystyki"};
+
+        for (int i = 0; i < titles.length && i < icons.length; i++) {
             NavigationOption current = new NavigationOption();
             current.title = titles[i];
             current.iconId = icons[i];
