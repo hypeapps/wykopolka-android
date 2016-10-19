@@ -22,7 +22,6 @@
         android:background="@color/colorPrimaryDark"
         android:id="@+id/header">
 
-
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="56dp"
@@ -61,7 +60,7 @@
                 android:layout_width="82dp">
 
                 <TextView
-                    android:text="23"
+                    android:text="#23"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/statistic_position"
@@ -78,14 +77,24 @@
                     android:textSize="12sp"
                     style="@style/defTextStyl" />
             </LinearLayout>
+
+            <View
+                android:layout_height="match_parent"
+                android:background="#50FFFFFF"
+                android:layout_toLeftOf="@+id/readed_books"
+                android:layout_width="0.25dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:id="@+id/divider" />
+
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_height="match_parent"
                 android:id="@+id/readed_books"
                 android:layout_centerHorizontal="true"
                 android:layout_width="82dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:gravity="center_vertical">
 
                 <TextView
@@ -106,6 +115,16 @@
                     android:textSize="12sp"
                     style="@style/defTextStyl" />
             </LinearLayout>
+
+            <View
+                android:layout_height="match_parent"
+                android:background="#50FFFFFF"
+                android:layout_toRightOf="@+id/readed_books"
+                android:layout_width="0.25dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:id="@+id/divider" />
+
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="82dp"
