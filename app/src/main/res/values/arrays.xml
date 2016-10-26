@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="navigation_drawer_items">
+        <item>Dashboard</item>
+        <item>Szukaj książki</item>
+        <item>Losuj książkę</item>
+        <item>Moje książki</item>
+        <item>Oddane książki</item>
+        <item>Lista życzeń</item>
+        <item>Moja historia</item>
+        <item>Ranking i statystyki</item>
+        <item>Ustawienia</item>
+        <item>Wyloguj</item>
+    </string-array>
+</resources>
