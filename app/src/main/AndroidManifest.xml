@@ -13,11 +13,20 @@
         android:theme="@style/AppTheme">
         <activity
             android:name="pl.hypeapp.wykopolka.ui.activity.SignInActivity"
-            android:label="@string/title_activity_main">
+            android:label="@string/title_activity_sign_in">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="pl.hypeapp.wykopolka.ui.activity.DashboardActivity"
+            android:label="@string/title_activity_dashboard">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
