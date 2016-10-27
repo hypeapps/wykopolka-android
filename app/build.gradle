@@ -43,13 +43,17 @@ dependencies {
     })
     // SUPPORT LIBRARIES
     compile "com.android.support:appcompat-v7:$supportLibraryVersion"
+    compile "com.android.support:support-v4:$supportLibraryVersion"
     compile "com.android.support:design:$supportLibraryVersion"
     compile "com.android.support:support-v4:$supportLibraryVersion"
     compile "com.android.support:cardview-v7:$supportLibraryVersion"
     // REST
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    compile 'com.squareup.retrofit2:converter-jackson:2.1.0'
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
     // MVP
     compile "net.grandcentrix.thirtyinch:thirtyinch:$thirtyinchVersion"
-    compile "net.grandcentrix.thirtyinch:thirtyinch-rx:$thirtyinchVersion"
     compile "net.grandcentrix.thirtyinch:thirtyinch-plugin:$thirtyinchVersion"
     // UTIL
     compile "com.pascalwelsch.compositeandroid:activity:$supportLibraryVersion"
@@ -63,10 +67,10 @@ dependencies {
     apt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
     compile "com.google.dagger:dagger:$daggerVersion"
     apt "com.google.dagger:dagger-compiler:$daggerVersion"
+    //RX JAVA
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxjava:1.1.6'
+    compile "net.grandcentrix.thirtyinch:thirtyinch-rx:$thirtyinchVersion"
 
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.squareup.retrofit2:converter-jackson:2.1.0'
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'
-    compile 'com.android.support:support-v4:24.2.1'
     testCompile 'junit:junit:4.12'
 }
