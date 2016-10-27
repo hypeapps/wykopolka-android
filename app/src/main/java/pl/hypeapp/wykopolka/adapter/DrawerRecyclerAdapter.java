@@ -13,6 +13,8 @@ import com.andexert.library.RippleView;
 import java.util.Collections;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.model.NavigationItem;
 import pl.hypeapp.wykopolka.ui.fragment.NavigationDrawerFragment;
@@ -31,8 +33,7 @@ public class DrawerRecyclerAdapter extends RecyclerView.Adapter<DrawerRecyclerAd
     @Override
     public DrawerRecyclerHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mLayoutInflater.inflate(R.layout.navigation_drawer_row, parent, false);
-        DrawerRecyclerHolder viewHolder = new DrawerRecyclerHolder(view);
-        return viewHolder;
+        return new DrawerRecyclerHolder(view);
     }
 
     @Override
@@ -48,14 +49,13 @@ public class DrawerRecyclerAdapter extends RecyclerView.Adapter<DrawerRecyclerAd
     }
 
     class DrawerRecyclerHolder extends RecyclerView.ViewHolder implements RippleView.OnRippleCompleteListener {
-        private TextView navigationItemText;
-        private ImageView navigationItemIcon;
+        @BindView(R.id.nav_list_text) TextView navigationItemText;
+        @BindView(R.id.nav_list_icon) ImageView navigationItemIcon;
+        @BindView(R.id.nav_ripple) RippleView rippleView;
 
         public DrawerRecyclerHolder(View itemView) {
             super(itemView);
-            navigationItemText = (TextView) itemView.findViewById(R.id.nav_list_text);
-            navigationItemIcon = (ImageView) itemView.findViewById(R.id.nav_list_icon);
-            RippleView rippleView = (RippleView) itemView.findViewById(R.id.nav_ripple);
+            ButterKnife.bind(this, itemView);
             rippleView.setOnRippleCompleteListener(this);
         }
 
