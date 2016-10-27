@@ -5,16 +5,17 @@ import android.util.Log;
 import net.grandcentrix.thirtyinch.TiPresenter;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import pl.hypeapp.wykopolka.network.retrofit.DaggerRetrofitComponent;
 import pl.hypeapp.wykopolka.network.retrofit.RetrofitComponent;
-import pl.hypeapp.wykopolka.network.retrofit.WykopolkaRetrofitModule;
 import pl.hypeapp.wykopolka.view.AddedBooksView;
 import retrofit2.Retrofit;
 
 public class AddedBooksPresenter extends TiPresenter<AddedBooksView> {
 
     @Inject
+    @Named("wykopolkaApi")
     Retrofit mRetrofit;
     RetrofitComponent mRetrofitComponent;
 
@@ -30,8 +31,5 @@ public class AddedBooksPresenter extends TiPresenter<AddedBooksView> {
     protected void onWakeUp() {
         super.onWakeUp();
         Log.e("presenter", " onWakeUp");
-
-
-
     }
 }
