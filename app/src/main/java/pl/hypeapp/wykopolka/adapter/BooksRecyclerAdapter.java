@@ -11,6 +11,8 @@ import android.widget.TextView;
 import java.util.Collections;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.model.BookView;
 
@@ -42,16 +44,14 @@ public class BooksRecyclerAdapter extends RecyclerView.Adapter<BooksRecyclerAdap
     @Override
     public int getItemCount() { return mDataSet.size(); }
 
-    public static class BooksRecyclerHolder extends RecyclerView.ViewHolder {
-        private TextView bookTitle;
-        private TextView bookAuthor;
-        private ImageView bookThumbnail;
+    public class BooksRecyclerHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.tv_book_title) TextView bookTitle;
+        @BindView(R.id.tv_book_author) TextView bookAuthor;
+        @BindView(R.id.iv_book_thumbnail) ImageView bookThumbnail;
 
         public BooksRecyclerHolder(View itemView) {
             super(itemView);
-            bookTitle = (TextView) itemView.findViewById(R.id.tv_book_title);
-            bookAuthor = (TextView) itemView.findViewById(R.id.tv_book_author);
-            bookThumbnail = (ImageView) itemView.findViewById(R.id.iv_book_thumbnail);
+            ButterKnife.bind(this, itemView);
         }
     }
 }
