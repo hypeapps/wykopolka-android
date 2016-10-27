@@ -12,4 +12,17 @@
         <item>Ustawienia</item>
         <item>Wyloguj</item>
     </string-array>
+
+    <integer-array name="navigation_drawer_icons">
+        <item>@drawable/ic_dashboard_white_36dp</item>
+        <item>@drawable/ic_search_white_36dp</item>
+        <item>@drawable/ic_shuffle</item>
+        <item>@drawable/ic_book_white_36dp</item>
+        <item>@drawable/ic_added_book_white_36dp</item>
+        <item>@drawable/ic_favorite_white_36dp</item>
+        <item>@drawable/ic_date_range_white_36dp</item>
+        <item>@drawable/ic_equalizer_white_36dp</item>
+        <item>@drawable/ic_settings_white_36dp</item>
+        <item>@drawable/ic_exit_to_app_white_36dp</item>
+    </integer-array>
 </resources>
