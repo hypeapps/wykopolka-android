@@ -1,5 +1,9 @@
 package pl.hypeapp.wykopolka.network.api;
 
+
+
+import java.util.List;
+
 import okhttp3.ResponseBody;
 import pl.hypeapp.wykopolka.model.Book;
 import retrofit2.Call;
@@ -7,6 +11,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import rx.Observable;
 
 public interface WykopolkaApi {
 
@@ -25,7 +30,11 @@ public interface WykopolkaApi {
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/user/books/added")
-    Call<ResponseBody> getUserAddedBooks(@Field("accountkey")String accountKey, @Header("apisign")String apisign);
+    Observable<List<Book>> getUserAddedBooks(@Field("accountkey")String accountKey, @Header("apisign")String apisign);
+
+//    @FormUrlEncoded
+//    @POST("wykopolka/public/api/request/user/books/added")
+//    Call<ResponseBody> getUserAddedBooks(@Field("accountkey")String accountKey, @Header("apisign")String apisign);
 
 //    @FormUrlEncoded
 //    @POST("wykopolka/public/api/request/book")
