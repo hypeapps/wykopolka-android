@@ -49,11 +49,14 @@ public class DrawerRecyclerAdapter extends RecyclerView.Adapter<DrawerRecyclerAd
     }
 
     class DrawerRecyclerHolder extends RecyclerView.ViewHolder implements RippleView.OnRippleCompleteListener {
-        @BindView(R.id.nav_list_text) TextView navigationItemText;
-        @BindView(R.id.nav_list_icon) ImageView navigationItemIcon;
-        @BindView(R.id.nav_ripple) RippleView rippleView;
+        @BindView(R.id.nav_list_text)
+        TextView navigationItemText;
+        @BindView(R.id.nav_list_icon)
+        ImageView navigationItemIcon;
+        @BindView(R.id.nav_ripple)
+        RippleView rippleView;
 
-        public DrawerRecyclerHolder(View itemView) {
+        DrawerRecyclerHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             rippleView.setOnRippleCompleteListener(this);
