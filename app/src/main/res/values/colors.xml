@@ -9,4 +9,5 @@
     <color name="textColorSecondary">#0079ea</color>
     <color name="navBackgroundColor">#303030</color>
     <color name="drawerArrowColor">#fcfcfc</color>
+    <color name="cardview_background">#F5F5F5</color>
 </resources>
