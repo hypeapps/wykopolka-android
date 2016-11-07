@@ -16,4 +16,9 @@
     <dimen name="book_thumbnail_height">120dp</dimen>
     <dimen name="def_margin">8dp</dimen>
     <dimen name="corner_margin">16dp</dimen>
+
+    <dimen name="spacing_xsmall">2dp</dimen>
+    <dimen name="spacing_medium">8dp</dimen>
+    <dimen name="spacing_large">16dp</dimen>
+    <dimen name="spacing_xlarge">32dp</dimen>
 </resources>
