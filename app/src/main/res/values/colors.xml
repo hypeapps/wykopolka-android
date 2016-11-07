@@ -3,7 +3,7 @@
     <!--ui pallete-->
     <color name="colorPrimary">#ffb033</color>
     <color name="colorPrimaryDark">#f3ab2c</color>
-    <color name="colorAccent">#4bc5c3</color>
+    <color name="colorAccent">#ffc107</color>
     <color name="materialBackground">#fcfcfc</color>
     <color name="textColorPrimary">#ffffff</color>
     <color name="textColorSecondary">#0079ea</color>
