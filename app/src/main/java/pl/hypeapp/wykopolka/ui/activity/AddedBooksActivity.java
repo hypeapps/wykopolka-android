@@ -3,6 +3,7 @@ package pl.hypeapp.wykopolka.ui.activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -29,6 +30,8 @@ public class AddedBooksActivity extends CompositeActivity implements AddedBooksV
     BooksRecyclerAdapter mRecyclerAdapter;
     @BindView(R.id.book_list)
     RecyclerView mRecyclerView;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     static String[] mTitles;
     private AddedBooksPresenter addedBooksPresenter;
 
@@ -55,15 +58,17 @@ public class AddedBooksActivity extends CompositeActivity implements AddedBooksV
         setContentView(R.layout.activity_added_books);
         ButterKnife.bind(this);
 
-        Toolbar toolbar = initToolbar();
+        toolbar = initToolbar();
         mNavigationDrawerPlugin.setNavigationDrawer(toolbar);
         initRecyclerAdapter();
     }
 
     private Toolbar initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
         return toolbar;
     }
 
