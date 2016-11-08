@@ -1,10 +1,16 @@
 <resources>
-    <string name="app_name">Wykopolka</string>
+    <string name="app_name">Wykopółka</string>
     <string name="title_activity_sign_in">SignIn</string>
     <string name="title_activity_added_books">Oddane książki</string>
     <string name="title_activity_dashboard">Dashboard</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
+    <string name="btn_edit_desc_text">edytuj opis książki</string>
+    <string name="btn_load_pfd_text">pobierz pdf karty książki</string>
+    <string name="added_by">Dodane przez:</string>
+    <string name="owned_by">Aktualnie w rękach:</string>
+    <string name="genre">Gatunek</string>
+    <string name="description">Opis</string>
+    <string name="author">Autor</string>
 </resources>
