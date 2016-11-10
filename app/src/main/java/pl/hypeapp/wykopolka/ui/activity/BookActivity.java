@@ -4,11 +4,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.pascalwelsch.compositeandroid.activity.CompositeActivity;
@@ -19,11 +22,14 @@ import net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.model.Book;
 import pl.hypeapp.wykopolka.presenter.BookPresenter;
 import pl.hypeapp.wykopolka.ui.listener.AppBarStateChangeListener;
 import pl.hypeapp.wykopolka.view.BookView;
+import xyz.hanks.library.SmallBang;
+import xyz.hanks.library.SmallBangListener;
 
 public class BookActivity extends CompositeActivity implements BookView {
 
@@ -49,9 +55,12 @@ public class BookActivity extends CompositeActivity implements BookView {
     AppBarLayout mAppBarLayout;
     @BindView(R.id.search_view)
     MaterialSearchView mSearchView;
+    @BindView(R.id.fab_add_to_wishlist)
+    FloatingActionButton mFabButton;
     private String mBookTitle;
     private boolean isSearchViewShown = false;
     private AppBarStateChangeListener.State mState;
+    private SmallBang mSmallBang;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,10 +68,12 @@ public class BookActivity extends CompositeActivity implements BookView {
         setContentView(R.layout.activity_book);
         ButterKnife.bind(this);
         mToolbar = initToolbar();
+        mSmallBang = SmallBang.attach2Window(this);
 
         mBookTitle = "Awantury na tle powszechnego ciążenia";
         mCollapsingToolbarLayout.setTitle(mBookTitle);
 //        toolbarTextAppernce();
+
     }
 
     @Override
@@ -70,6 +81,7 @@ public class BookActivity extends CompositeActivity implements BookView {
         getMenuInflater().inflate(R.menu.menu_single_book, menu);
 
         MenuItem item = menu.findItem(R.id.action_search);
+
         mSearchView.setMenuItem(item);
         mSearchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
@@ -115,6 +127,15 @@ public class BookActivity extends CompositeActivity implements BookView {
     }
 
     @Override
+    public void onBackPressed() {
+        if (mSearchView.isSearchOpen()) {
+            mSearchView.closeSearch();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
     public void setBookInfo(Book book) {
 
     }
@@ -125,7 +146,7 @@ public class BookActivity extends CompositeActivity implements BookView {
     }
 
     @Override
-    public void loadPdfBookCard() {
+    public void setWishlistStatus(boolean status) {
 
     }
 
@@ -135,8 +156,36 @@ public class BookActivity extends CompositeActivity implements BookView {
     }
 
     @Override
-    public void addBookToWishlist() {
+    public void loadPdfBookCard() {
 
+    }
+
+    @Override
+    @OnClick(R.id.fab_add_to_wishlist)
+    public void addBookToWishlist() {
+        mSmallBang.bang(mFabButton, new SmallBangListener() {
+            @Override
+            public void onAnimationStart() {
+                mFabButton.setImageResource(R.drawable.ic_favorite_white_36dp);
+            }
+
+            @Override
+            public void onAnimationEnd() {
+
+            }
+        });
+        showSnackbarBookWishlistedSuccesful();
+    }
+
+    @Override
+    public void showSnackbarBookWishlistedSuccesful() {
+        Snackbar snackbar = Snackbar.make(mFabButton, R.string.message_added_to_wishlist, Snackbar.LENGTH_LONG);
+        snackbar.setAction(R.string.action_go_to_wishlist, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent to wish list
+            }
+        }).show();
     }
 
     private Toolbar initToolbar() {
