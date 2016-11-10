@@ -10,9 +10,13 @@ public interface BookView extends TiView {
 
     void setBookOwner(String addedBy, String ownedBy);
 
+    void setWishlistStatus(boolean status);
+
     void loadPdfBookCard();
 
     void editBookDescription();
 
     void addBookToWishlist();
+
+    void showSnackbarBookWishlistedSuccesful();
 }
