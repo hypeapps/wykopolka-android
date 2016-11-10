@@ -54,9 +54,9 @@
 
             <com.miguelcatalan.materialsearchview.MaterialSearchView
                 android:id="@+id/search_view"
+                style="@style/MaterialSearchViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
                 app:layout_collapseMode="pin" />
 
         </net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout>
@@ -95,14 +95,14 @@
 
                     <TextView
                         android:id="@+id/tv_author_header"
-                        style="@style/cardViewHeaderText"
+                        style="@style/CardViewHeaderText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/author" />
 
                     <TextView
                         android:id="@+id/tv_author"
-                        style="@style/cardViewContentText"
+                        style="@style/CardViewContentText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Tomasz Lem" />
@@ -116,14 +116,14 @@
 
                     <TextView
                         android:id="@+id/tv_description_header"
-                        style="@style/cardViewHeaderText"
+                        style="@style/CardViewHeaderText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/description" />
 
                     <TextView
                         android:id="@+id/tv_description"
-                        style="@style/cardViewContentText"
+                        style="@style/CardViewContentText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Tomasz Lem w Awanturach na tle powszechnego ciążenia wspomina swego ojca. Dzięki licznym anegdotom i barwnie odmalowanym scenom z życia codziennego możemy na wybitnego pisarza spojrzeć w zupełnie nowy sposób. Stanisław Lem jawi się w tej książce nie tylko jako autor światowych bestsellerów, ale także jako zapalony narciarz, domorosły mechanik i konstruktor elektrycznych silników, niesforny łasuch, chowający za meblami papierki po cukierkach, a przede wszystkim jako ojciec." />
@@ -137,14 +137,14 @@
 
                     <TextView
                         android:id="@+id/tv_genre_header"
-                        style="@style/cardViewHeaderText"
+                        style="@style/CardViewHeaderText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/genre" />
 
                     <TextView
                         android:id="@+id/tv_genre"
-                        style="@style/cardViewContentText"
+                        style="@style/CardViewContentText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Fikcja/sc-fi" />
@@ -177,13 +177,13 @@
                         android:paddingTop="8dp">
 
                         <TextView
-                            style="@style/cardViewContentText"
+                            style="@style/CardViewContentText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/added_by" />
 
                         <TextView
-                            style="@style/nicknameOwnStyle"
+                            style="@style/NicknameOwnStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="\@szyna55" />
@@ -200,13 +200,13 @@
                         android:paddingTop="8dp">
 
                         <TextView
-                            style="@style/cardViewContentText"
+                            style="@style/CardViewContentText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/owned_by" />
 
                         <TextView
-                            style="@style/nicknameOwnStyle"
+                            style="@style/NicknameOwnStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="\@kWeb24" />
@@ -234,18 +234,18 @@
 
                     <Button
                         android:id="@+id/btn_edit_book"
-                        style="@style/single_book_btn_style2"
+                        style="@style/LoadPdfButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_settings_white_36dp"
+                        android:drawableStart="@drawable/ic_mode_edit_white_24dp"
                         android:text="@string/btn_edit_desc_text" />
 
                     <Button
                         android:id="@+id/btn_load_pdf"
-                        style="@style/single_book_btn_style"
+                        style="@style/EditBookButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_added_book_white_36dp"
+                        android:drawableStart="@drawable/ic_picture_as_pdf_white_24dp"
                         android:text="@string/btn_load_pfd_text" />
 
                 </LinearLayout>
