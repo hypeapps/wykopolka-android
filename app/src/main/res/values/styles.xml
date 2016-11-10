@@ -24,7 +24,7 @@
         <item name="color">@color/drawerArrowColor</item>
     </style>
 
-    <style name="statisticTextStyleBold">
+    <style name="StatisticTextStyleBold">
         <item name="android:fontFamily">sans-serif-black</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>
@@ -35,18 +35,18 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
-    <style name="cardViewHeaderText">
+    <style name="CardViewHeaderText">
         <item name="android:fontFamily">sans-serif-black</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
         <!--<item name="android:inputType">textCapWords</item>-->
     </style>
 
-    <style name="cardViewContentText">
+    <style name="CardViewContentText">
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="nicknameOwnStyle">
+    <style name="NicknameOwnStyle">
         <item name="android:layout_marginLeft">6dp</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
@@ -68,26 +68,32 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">@dimen/spacing_large</item>
-        <item name="android:src">@drawable/ic_favorite_white_36dp</item>
+        <item name="android:src">@drawable/ic_favorite_border_white_36dp</item>
         <item name="borderWidth">0dp</item>
-        <item name="elevation">6dp</item>
+        <item name="elevation">8dp</item>
         <item name="pressedTranslationZ">12dp</item>
         <item name="rippleColor">@android:color/white</item>
     </style>
 
-    <style name="single_book_btn_style">
+    <style name="EditBookButtonStyle">
         <item name="android:layout_marginBottom">8dp</item>
         <item name="android:layout_marginLeft">12dp</item>
         <item name="android:layout_marginRight">12dp</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
-    <style name="single_book_btn_style2">
+    <style name="LoadPdfButtonStyle">
         <item name="android:layout_marginBottom">8dp</item>
         <item name="android:layout_marginLeft">12dp</item>
         <item name="android:layout_marginRight">12dp</item>
         <item name="android:layout_marginTop">8dp</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
+    <style name="MaterialSearchViewStyle">
+        <item name="android:textColorHint">@android:color/tertiary_text_dark</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
     <!--<style name="episodieTextStyle">-->
     <!--<item name="android:textColor">@color/textColorPrimary</item>-->
     <!--</style>-->
