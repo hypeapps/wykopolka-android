@@ -52,6 +52,13 @@
                 app:contentInsetStartWithNavigation="@dimen/layout_padding"
                 app:layout_collapseMode="pin" />
 
+            <com.miguelcatalan.materialsearchview.MaterialSearchView
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                app:layout_collapseMode="pin" />
+
         </net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
@@ -145,7 +152,6 @@
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
-
 
             <android.support.v7.widget.CardView
                 android:id="@+id/cv_owned_by"
