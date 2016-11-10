@@ -13,4 +13,10 @@
     <string name="genre">Gatunek</string>
     <string name="description">Opis</string>
     <string name="author">Autor</string>
+    <string name="search_hint">Szukaj książki…</string>
+    <string name="message_added_to_wishlist">Dodano książkę na listę życzeń!</string>
+    <string name="action_go_to_wishlist">Przejdź do listy życzeń</string>
+    <string name="message_stat_readed_books">Przeczytanych książek</string>
+    <string name="message_stat_ranking_position">Pozycja w rankingu</string>
+    <string name="message_stat_added_books">Oddanych książek</string>
 </resources>
