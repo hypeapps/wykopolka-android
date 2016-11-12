@@ -31,9 +31,9 @@
                     android:id="@+id/iv_book_cover"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/books"
+                    android:background="@drawable/elon1"
                     android:fitsSystemWindows="true"
-                    android:scaleType="fitCenter"
+                    android:scaleType="centerCrop"
                     app:layout_collapseMode="parallax" />
 
                 <View
@@ -62,6 +62,13 @@
         </net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
+
+    <View
+        android:id="@+id/search_status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:visibility="gone" />
 
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/scroll"
@@ -105,7 +112,7 @@
                         style="@style/CardViewContentText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Tomasz Lem" />
+                        android:text="Ashlee Vance" />
 
                     <View
                         android:layout_width="match_parent"
@@ -126,7 +133,13 @@
                         style="@style/CardViewContentText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Tomasz Lem w Awanturach na tle powszechnego ciążenia wspomina swego ojca. Dzięki licznym anegdotom i barwnie odmalowanym scenom z życia codziennego możemy na wybitnego pisarza spojrzeć w zupełnie nowy sposób. Stanisław Lem jawi się w tej książce nie tylko jako autor światowych bestsellerów, ale także jako zapalony narciarz, domorosły mechanik i konstruktor elektrycznych silników, niesforny łasuch, chowający za meblami papierki po cukierkach, a przede wszystkim jako ojciec." />
+                        android:text="Steve Jobs chciał waszych pieniędzy. Mark Zuckerberg pragnie wam pomóc udostępnić zdjęcia bobasów. Elon Musk zamierza uratować świat przed zagładą.
+
+Wizjoner, geniusz, nieznośny szef, najbardziej zuchwały przedsiębiorca Doliny Krzemowej, jeden z najbogatszych ludzi na ziemi. Człowiek stawiany w jednym szeregu z Thomasem Edisonem, Henrym Fordem i Stevem Jobsem. Każdy start-up w jego rękach zmienia się w złoto.
+
+Stworzył PayPala, koncern samochodowy Tesla Motors, a także SpaceX – firmę wysyłającą prywatne rakiety w kosmos. Muskowi udało się, mimo że jego życie jest niedorzeczne. A może właśnie dlatego.
+Żeby przekonać rząd, że pojawił się nowy gracz w wyścigu kosmicznym, zaparkował rakietę na trawniku przed siedzibą Federalnej Administracji Lotnictwa w Waszyngtonie.
+Gdy po auta Tesli ustawiały się kolejki chętnych, Leonardo DiCaprio błagał Elona o egzemplarz elektrycznego Roadstera. Musk oczywiście odmówił." />
 
                     <View
                         android:layout_width="match_parent"
@@ -147,7 +160,7 @@
                         style="@style/CardViewContentText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Fikcja/sc-fi" />
+                        android:text="Biografia" />
 
                 </LinearLayout>
 

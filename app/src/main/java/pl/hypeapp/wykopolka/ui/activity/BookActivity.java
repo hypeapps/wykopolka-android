@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.pascalwelsch.compositeandroid.activity.CompositeActivity;
@@ -57,6 +59,8 @@ public class BookActivity extends CompositeActivity implements BookView {
     MaterialSearchView mSearchView;
     @BindView(R.id.fab_add_to_wishlist)
     FloatingActionButton mFabButton;
+    @BindView(R.id.search_status_bar)
+    View searchStatusBar;
     private String mBookTitle;
     private boolean isSearchViewShown = false;
     private AppBarStateChangeListener.State mState;
@@ -70,8 +74,10 @@ public class BookActivity extends CompositeActivity implements BookView {
         mToolbar = initToolbar();
         mSmallBang = SmallBang.attach2Window(this);
 
-        mBookTitle = "Awantury na tle powszechnego ciążenia";
+        mBookTitle = "Elon Musk. Biografia";
         mCollapsingToolbarLayout.setTitle(mBookTitle);
+
+
 //        toolbarTextAppernce();
 
     }
@@ -80,12 +86,14 @@ public class BookActivity extends CompositeActivity implements BookView {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_single_book, menu);
 
+        searchStatusBar.setLayoutParams(new CoordinatorLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getStatusBarHeight()));
         MenuItem item = menu.findItem(R.id.action_search);
 
         mSearchView.setMenuItem(item);
         mSearchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
+                searchStatusBar.setVisibility(View.VISIBLE);
                 if (mState == AppBarStateChangeListener.State.IDLE || mState == AppBarStateChangeListener.State.EXPANDED) {
                     mCollapsingToolbarLayout.setTitle(mBookTitle);
                 } else if (mState == AppBarStateChangeListener.State.COLLAPSED) {
@@ -96,6 +104,7 @@ public class BookActivity extends CompositeActivity implements BookView {
 
             @Override
             public void onSearchViewClosed() {
+                searchStatusBar.setVisibility(View.GONE);
                 mCollapsingToolbarLayout.setTitle(mBookTitle);
                 isSearchViewShown = false;
             }
@@ -186,6 +195,15 @@ public class BookActivity extends CompositeActivity implements BookView {
                 //Intent to wish list
             }
         }).show();
+    }
+
+    public int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
     }
 
     private Toolbar initToolbar() {
