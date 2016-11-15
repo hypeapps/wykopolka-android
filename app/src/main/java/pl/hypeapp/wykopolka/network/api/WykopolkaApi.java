@@ -18,9 +18,13 @@ public interface WykopolkaApi {
      * @param apisign
      * @return Book
      */
+//    @FormUrlEncoded
+//    @POST("wykopolka/public/api/request/book")
+//    Call<Book[]> getBook(@Field("id")String id, @Header("apisign")String apisign);
+
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/book")
-    Call<Book[]> getBook(@Field("id")String id, @Header("apisign")String apisign);
+    Observable<List<Book>> getBook(@Field("id") String id, @Header("apisign") String apisign);
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/book/find/by/author")
