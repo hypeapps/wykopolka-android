@@ -1,5 +1,6 @@
 package pl.hypeapp.wykopolka.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -7,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import com.pascalwelsch.compositeandroid.activity.CompositeActivity;
 
@@ -32,8 +34,8 @@ public class AddedBooksActivity extends CompositeActivity implements AddedBooksV
     RecyclerView mRecyclerView;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    static String[] mTitles;
     private AddedBooksPresenter addedBooksPresenter;
+    private List<Book> books;
 
     private final NavigationDrawerActivityPlugin mNavigationDrawerPlugin = new NavigationDrawerActivityPlugin();
     private final TiActivityPlugin<AddedBooksPresenter, AddedBooksView> mPresenterPlugin =
@@ -63,6 +65,12 @@ public class AddedBooksActivity extends CompositeActivity implements AddedBooksV
         initRecyclerAdapter();
     }
 
+    @Override
+    public void setBookData(List<Book> books) {
+        this.books = books;
+        mRecyclerAdapter.setData(this.books);
+    }
+
     private Toolbar initToolbar() {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -73,17 +81,23 @@ public class AddedBooksActivity extends CompositeActivity implements AddedBooksV
     }
 
     private void initRecyclerAdapter() {
-        mTitles = getResources().getStringArray(R.array.navigation_drawer_items);
-        mRecyclerAdapter = new BooksRecyclerAdapter(this);
+        mRecyclerAdapter = new BooksRecyclerAdapter(this, new onBookClickListener());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         ScaleInAnimationAdapter scaleInAnimationAdapter = new ScaleInAnimationAdapter(mRecyclerAdapter);
         scaleInAnimationAdapter.setFirstOnly(false);
         mRecyclerView.setAdapter(scaleInAnimationAdapter);
     }
 
-    @Override
-    public void setDataToAdapter(List<Book> books) {
-        mRecyclerAdapter.setData(books);
-    }
+    public class onBookClickListener {
 
+        public void showBookActivity(int position) {
+            String bookId = books.get(position).getBookId();
+            String bookTitle = books.get(position).getTitle();
+            Log.e("BOOK_ID", " " + bookId);
+            Intent intentBookActivity = new Intent(AddedBooksActivity.this, BookActivity.class);
+            intentBookActivity.putExtra("BOOK_ID", bookId);
+            intentBookActivity.putExtra("BOOK_TITLE", bookTitle);
+            startActivity(intentBookActivity);
+        }
+    }
 }
