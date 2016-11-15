@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.andexert.library.RippleView;
+import com.balysv.materialripple.MaterialRippleLayout;
 import com.bumptech.glide.Glide;
 
 import java.util.Collections;
@@ -31,7 +31,8 @@ public class DrawerRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     private Map<String, String> userData = Collections.emptyMap();
     private NavigationDrawerFragment.ClickItemHandler clickItemHandler;
 
-    public DrawerRecyclerAdapter(Context context, List<NavigationItem> navigationItems, Map<String, String> userData, NavigationDrawerFragment.ClickItemHandler clickItemHandler) {
+    public DrawerRecyclerAdapter(Context context, List<NavigationItem> navigationItems,
+                                 Map<String, String> userData, NavigationDrawerFragment.ClickItemHandler clickItemHandler) {
         mLayoutInflater = LayoutInflater.from(context);
         this.mContext = context;
         this.userData = userData;
@@ -81,19 +82,22 @@ public class DrawerRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         }
     }
 
-    class ItemHolder extends RecyclerView.ViewHolder implements RippleView.OnRippleCompleteListener {
-        @BindView(R.id.nav_list_text) TextView navigationItemText;
-        @BindView(R.id.nav_list_icon) ImageView navigationItemIcon;
-        @BindView(R.id.nav_ripple) RippleView rippleView;
+    class ItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        @BindView(R.id.nav_list_text)
+        TextView navigationItemText;
+        @BindView(R.id.nav_list_icon)
+        ImageView navigationItemIcon;
+        @BindView(R.id.ripple)
+        MaterialRippleLayout materialRippleLayout;
 
         ItemHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            rippleView.setOnRippleCompleteListener(this);
+            materialRippleLayout.setOnClickListener(this);
         }
 
         @Override
-        public void onComplete(RippleView rippleView) {
+        public void onClick(View view) {
             clickItemHandler.handleIntent(getLayoutPosition() - 1);
         }
     }
