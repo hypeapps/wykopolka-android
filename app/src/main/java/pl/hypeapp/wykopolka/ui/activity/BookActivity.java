@@ -1,5 +1,6 @@
 package pl.hypeapp.wykopolka.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,7 +15,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.pascalwelsch.compositeandroid.activity.CompositeActivity;
 
@@ -22,9 +26,14 @@ import net.grandcentrix.thirtyinch.internal.TiPresenterProvider;
 import net.grandcentrix.thirtyinch.plugin.TiActivityPlugin;
 import net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
+import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import pl.hypeapp.wykopolka.App;
 import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.model.Book;
 import pl.hypeapp.wykopolka.presenter.BookPresenter;
@@ -34,21 +43,14 @@ import xyz.hanks.library.SmallBang;
 import xyz.hanks.library.SmallBangListener;
 
 public class BookActivity extends CompositeActivity implements BookView {
-
-    private final TiActivityPlugin<BookPresenter, BookView> mPresenterPlugin =
-            new TiActivityPlugin<>(new TiPresenterProvider<BookPresenter>() {
-                @NonNull
-                @Override
-                public BookPresenter providePresenter() {
-                    return new BookPresenter();
-                }
-            });
-
-    public BookActivity() {
-        addPlugin(mPresenterPlugin);
-    }
-
     private static final String EMPTY_STRING = "";
+    private static final String WYKOPOLKA_IMG_HOST = App.WYKOPOLKA_IMG_HOST;
+    public static final int BOOK_ID_INDEX = 0;
+    public static final int BOOK_TITLE_INDEX = 1;
+    private String mBookTitle;
+    private boolean isSearchViewShown = false;
+    private AppBarStateChangeListener.State mState;
+    private SmallBang mSmallBang;
     @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout mCollapsingToolbarLayout;
     @BindView(R.id.toolbar)
@@ -61,10 +63,25 @@ public class BookActivity extends CompositeActivity implements BookView {
     FloatingActionButton mFabButton;
     @BindView(R.id.search_status_bar)
     View searchStatusBar;
-    private String mBookTitle;
-    private boolean isSearchViewShown = false;
-    private AppBarStateChangeListener.State mState;
-    private SmallBang mSmallBang;
+    @BindViews({R.id.tv_author, R.id.tv_description, R.id.tv_genre})
+    List<TextView> mBookInfoTextViews;
+    @BindView(R.id.iv_book_cover)
+    ImageView mBookCover;
+
+    private final TiActivityPlugin<BookPresenter, BookView> mPresenterPlugin =
+            new TiActivityPlugin<>(new TiPresenterProvider<BookPresenter>() {
+                @NonNull
+                @Override
+                public BookPresenter providePresenter() {
+                    String accountKey = App.readFromPreferences(BookActivity.this, "user_account_key", null);
+                    String bookId = intentExtra().get(BOOK_ID_INDEX);
+                    return new BookPresenter(accountKey, bookId);
+                }
+            });
+
+    public BookActivity() {
+        addPlugin(mPresenterPlugin);
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,10 +90,8 @@ public class BookActivity extends CompositeActivity implements BookView {
         ButterKnife.bind(this);
         mToolbar = initToolbar();
         mSmallBang = SmallBang.attach2Window(this);
-
-        mBookTitle = "Elon Musk. Biografia";
+        mBookTitle = intentExtra().get(BOOK_TITLE_INDEX);
         mCollapsingToolbarLayout.setTitle(mBookTitle);
-
 
 //        toolbarTextAppernce();
 
@@ -146,7 +161,16 @@ public class BookActivity extends CompositeActivity implements BookView {
 
     @Override
     public void setBookInfo(Book book) {
+        mBookInfoTextViews.get(0).setText(book.getAuthor());
+        mBookInfoTextViews.get(1).setText(book.getDesc());
+        mBookInfoTextViews.get(2).setText(book.getGenre());
+    }
 
+    @Override
+    public void setBookCover(String coverUrl) {
+        Glide.with(this)
+                .load(WYKOPOLKA_IMG_HOST + coverUrl)
+                .into(mBookCover);
     }
 
     @Override
@@ -219,6 +243,14 @@ public class BookActivity extends CompositeActivity implements BookView {
     private void toolbarTextAppernce() {
         mCollapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
         mCollapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
+    }
+
+    private List<String> intentExtra() {
+        Intent intent = getIntent();
+        List<String> extra = new ArrayList<>();
+        extra.add(intent.getStringExtra("BOOK_ID"));
+        extra.add(intent.getStringExtra("BOOK_TITLE"));
+        return extra;
     }
 }
 
