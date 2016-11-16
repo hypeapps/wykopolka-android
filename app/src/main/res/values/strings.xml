@@ -7,7 +7,7 @@
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
     <string name="btn_edit_desc_text">edytuj opis książki</string>
-    <string name="btn_load_pfd_text">pobierz pdf karty książki</string>
+    <string name="btn_load_pfd_text">wyświetl pdf karty książki</string>
     <string name="added_by">Dodane przez:</string>
     <string name="owned_by">Aktualnie w rękach:</string>
     <string name="genre">Gatunek</string>
@@ -19,4 +19,5 @@
     <string name="message_stat_readed_books">Przeczytanych książek</string>
     <string name="message_stat_ranking_position">Pozycja w rankingu</string>
     <string name="message_stat_added_books">Oddanych książek</string>
+    <string name="transition_book_cover">book_cover</string>
 </resources>
