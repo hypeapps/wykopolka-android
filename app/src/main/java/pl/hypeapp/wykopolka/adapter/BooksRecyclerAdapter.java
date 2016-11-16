@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.balysv.materialripple.MaterialRippleLayout;
 import com.bumptech.glide.Glide;
 
 import java.util.Collections;
@@ -70,16 +71,19 @@ public class BooksRecyclerAdapter extends RecyclerView.Adapter<BooksRecyclerAdap
         ImageView bookThumbnail;
         @BindView(R.id.card_view_added_book)
         CardView cardView;
+        @BindView(R.id.ripple)
+        MaterialRippleLayout materialRippleLayout;
 
         BooksRecyclerHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            cardView.setOnClickListener(this);
+            materialRippleLayout.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            onBookClickListener.showBookActivity(getLayoutPosition());
+            View sharedCover = view.findViewById(R.id.iv_book_thumbnail);
+            onBookClickListener.showBookActivity(getLayoutPosition(), sharedCover);
         }
     }
 }
