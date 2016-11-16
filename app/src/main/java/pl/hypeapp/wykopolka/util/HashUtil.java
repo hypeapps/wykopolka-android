@@ -1,7 +1,5 @@
 package pl.hypeapp.wykopolka.util;
 
-import android.util.Log;
-
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigInteger;
@@ -31,7 +29,6 @@ public class HashUtil {
 
     public static String generateApiSign(String... parameters) {
         String parametersImploded = StringUtils.join(parameters, ",");
-        Log.e("STRING UTILS ", parametersImploded);
         String apiSign = md5(WYKOPOLKA_SECRET + parametersImploded);
         return apiSign;
     }
