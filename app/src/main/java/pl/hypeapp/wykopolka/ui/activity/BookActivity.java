@@ -45,8 +45,12 @@ import xyz.hanks.library.SmallBangListener;
 public class BookActivity extends CompositeActivity implements BookView {
     private static final String EMPTY_STRING = "";
     private static final String WYKOPOLKA_IMG_HOST = App.WYKOPOLKA_IMG_HOST;
+    private static final int BOOK_UNWISHLISTED = 0;
+    private static final int BOOK_WISHLISTED = 1;
+    private static final int BOOK_WISHLISTING_DISABLED = 2;
     public static final int BOOK_ID_INDEX = 0;
     public static final int BOOK_TITLE_INDEX = 1;
+    public static final int BOOK_COVER_INDEX = 2;
     private String mBookTitle;
     private boolean isSearchViewShown = false;
     private AppBarStateChangeListener.State mState;
@@ -90,11 +94,10 @@ public class BookActivity extends CompositeActivity implements BookView {
         ButterKnife.bind(this);
         mToolbar = initToolbar();
         mSmallBang = SmallBang.attach2Window(this);
+
         mBookTitle = intentExtra().get(BOOK_TITLE_INDEX);
         mCollapsingToolbarLayout.setTitle(mBookTitle);
-
-//        toolbarTextAppernce();
-
+        Glide.with(this).load(WYKOPOLKA_IMG_HOST + intentExtra().get(BOOK_COVER_INDEX)).into(mBookCover);
     }
 
     @Override
@@ -168,9 +171,11 @@ public class BookActivity extends CompositeActivity implements BookView {
 
     @Override
     public void setBookCover(String coverUrl) {
-        Glide.with(this)
-                .load(WYKOPOLKA_IMG_HOST + coverUrl)
-                .into(mBookCover);
+        if (mBookCover.getDrawable() == null) {
+            Glide.with(this)
+                    .load(WYKOPOLKA_IMG_HOST + coverUrl)
+                    .into(mBookCover);
+        }
     }
 
     @Override
@@ -240,16 +245,12 @@ public class BookActivity extends CompositeActivity implements BookView {
         return mToolbar;
     }
 
-    private void toolbarTextAppernce() {
-        mCollapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
-        mCollapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
-    }
-
     private List<String> intentExtra() {
         Intent intent = getIntent();
         List<String> extra = new ArrayList<>();
         extra.add(intent.getStringExtra("BOOK_ID"));
         extra.add(intent.getStringExtra("BOOK_TITLE"));
+        extra.add(intent.getStringExtra("BOOK_COVER"));
         return extra;
     }
 }
