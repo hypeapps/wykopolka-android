@@ -48,7 +48,10 @@ public class BooksRecyclerAdapter extends RecyclerView.Adapter<BooksRecyclerAdap
         holder.bookAuthor.setText(current.getAuthor());
         Glide.with(mContext)
                 .load(WYKOPOLKA_IMG_HOST + current.getCover())
-                .thumbnail(0.3f)
+                .placeholder(R.drawable.default_book_cover)
+                .error(R.drawable.default_book_cover)
+                .override(300, 400)
+                .thumbnail(0.9f)
                 .into(holder.bookThumbnail);
     }
 
@@ -83,7 +86,8 @@ public class BooksRecyclerAdapter extends RecyclerView.Adapter<BooksRecyclerAdap
         @Override
         public void onClick(View view) {
             View sharedCover = view.findViewById(R.id.iv_book_thumbnail);
-            onBookClickListener.showBookActivity(getLayoutPosition(), sharedCover);
+            View sharedGradient = view.findViewById(R.id.gradient);
+            onBookClickListener.showBookActivity(getLayoutPosition(), sharedCover, sharedGradient);
         }
     }
 }
