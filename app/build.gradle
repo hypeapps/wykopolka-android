@@ -68,6 +68,9 @@ dependencies {
     compile "com.github.bumptech.glide:glide:$bumptechGlideVersion"
     compile 'hanks.xyz:smallbang-library:0.1.2'
     compile 'com.balysv:material-ripple:1.0.2'
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.daimajia.easing:library:1.0.1@aar'
+    compile 'com.daimajia.androidanimations:library:1.1.3@aar'
     // DEPENDENCY INJECTION
     compile "com.jakewharton:butterknife:$butterKnifeVersion"
     apt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
