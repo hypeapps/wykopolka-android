@@ -20,4 +20,5 @@
     <string name="message_stat_ranking_position">Pozycja w rankingu</string>
     <string name="message_stat_added_books">Oddanych książek</string>
     <string name="transition_book_cover">book_cover</string>
+    <string name="transition_gradient">gradient</string>
 </resources>

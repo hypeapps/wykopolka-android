@@ -94,8 +94,5 @@
         <item name="android:textColorHint">@android:color/tertiary_text_dark</item>
         <item name="android:textColor">@android:color/black</item>
     </style>
-    <!--<style name="episodieTextStyle">-->
-    <!--<item name="android:textColor">@color/textColorPrimary</item>-->
-    <!--</style>-->
 
 </resources>
