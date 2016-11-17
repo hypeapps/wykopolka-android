@@ -36,6 +36,15 @@
                     android:scaleType="fitXY"
                     android:transitionName="@string/transition_book_cover" />
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:id="@+id/gradient"
+                    android:transitionName="@string/transition_gradient"
+                    android:layout_alignRight="@+id/iv_book_thumbnail"
+                    android:layout_alignBottom="@+id/iv_book_thumbnail"
+                    android:layout_alignLeft="@+id/iv_book_thumbnail"
+                    android:layout_height="20dp" />
+
                 <TextView
                     android:id="@+id/tv_book_title"
                     android:layout_width="wrap_content"
