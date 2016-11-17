@@ -9,6 +9,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -19,6 +20,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.pascalwelsch.compositeandroid.activity.CompositeActivity;
 
@@ -71,6 +74,8 @@ public class BookActivity extends CompositeActivity implements BookView {
     List<TextView> mBookInfoTextViews;
     @BindView(R.id.iv_book_cover)
     ImageView mBookCover;
+    @BindView(R.id.cv_overview)
+    CardView mOverviewCard;
 
     private final TiActivityPlugin<BookPresenter, BookView> mPresenterPlugin =
             new TiActivityPlugin<>(new TiPresenterProvider<BookPresenter>() {
@@ -93,11 +98,29 @@ public class BookActivity extends CompositeActivity implements BookView {
         setContentView(R.layout.activity_book);
         ButterKnife.bind(this);
         mToolbar = initToolbar();
+        setBookCover(intentExtra().get(BOOK_COVER_INDEX));
         mSmallBang = SmallBang.attach2Window(this);
-
         mBookTitle = intentExtra().get(BOOK_TITLE_INDEX);
         mCollapsingToolbarLayout.setTitle(mBookTitle);
-        Glide.with(this).load(WYKOPOLKA_IMG_HOST + intentExtra().get(BOOK_COVER_INDEX)).into(mBookCover);
+    }
+
+    //dokonczyc
+    public void animateFabButtonEnter() {
+        if (mFabButton != null) {
+            mFabButton.setVisibility(View.VISIBLE);
+            YoYo.with(Techniques.ZoomIn)
+                    .duration(1000)
+                    .playOn(mFabButton);
+        }
+    }
+
+    @Override
+    public void animateCardEnter() {
+        if (mOverviewCard != null) {
+            YoYo.with(Techniques.SlideInLeft)
+                    .duration(800)
+                    .playOn(mOverviewCard);
+        }
     }
 
     @Override
@@ -158,6 +181,7 @@ public class BookActivity extends CompositeActivity implements BookView {
         if (mSearchView.isSearchOpen()) {
             mSearchView.closeSearch();
         } else {
+            removeGradient();
             super.onBackPressed();
         }
     }
@@ -174,6 +198,8 @@ public class BookActivity extends CompositeActivity implements BookView {
         if (mBookCover.getDrawable() == null) {
             Glide.with(this)
                     .load(WYKOPOLKA_IMG_HOST + coverUrl)
+                    .override(300, 400)
+                    .skipMemoryCache(true)
                     .into(mBookCover);
         }
     }
@@ -190,7 +216,7 @@ public class BookActivity extends CompositeActivity implements BookView {
 
     @Override
     public void editBookDescription() {
-
+        animateFabButtonEnter();
     }
 
     @Override
@@ -252,6 +278,11 @@ public class BookActivity extends CompositeActivity implements BookView {
         extra.add(intent.getStringExtra("BOOK_TITLE"));
         extra.add(intent.getStringExtra("BOOK_COVER"));
         return extra;
+    }
+
+    private void removeGradient() {
+        View gradient = findViewById(R.id.gradient);
+        if (gradient != null) gradient.setVisibility(View.GONE);
     }
 }
 
