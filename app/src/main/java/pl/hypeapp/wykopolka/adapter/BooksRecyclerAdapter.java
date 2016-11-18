@@ -20,16 +20,16 @@ import butterknife.ButterKnife;
 import pl.hypeapp.wykopolka.App;
 import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.model.Book;
-import pl.hypeapp.wykopolka.ui.activity.AddedBooksActivity;
+import pl.hypeapp.wykopolka.ui.fragment.AddedBooksFragment;
 
 public class BooksRecyclerAdapter extends RecyclerView.Adapter<BooksRecyclerAdapter.BooksRecyclerHolder> {
     private static final String WYKOPOLKA_IMG_HOST = App.WYKOPOLKA_IMG_HOST;
     private LayoutInflater mLayoutInflater;
     private List<Book> mDataSet = Collections.emptyList();
     private Context mContext;
-    private AddedBooksActivity.onBookClickListener onBookClickListener;
+    private AddedBooksFragment.onBookClickListener onBookClickListener;
 
-    public BooksRecyclerAdapter(Context context, AddedBooksActivity.onBookClickListener onBookClickListener) {
+    public BooksRecyclerAdapter(Context context, AddedBooksFragment.onBookClickListener onBookClickListener) {
         mLayoutInflater = LayoutInflater.from(context);
         this.mContext = context;
         this.onBookClickListener = onBookClickListener;
