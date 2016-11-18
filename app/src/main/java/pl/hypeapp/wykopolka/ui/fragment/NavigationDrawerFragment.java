@@ -27,7 +27,6 @@ import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.adapter.DrawerRecyclerAdapter;
 import pl.hypeapp.wykopolka.model.NavigationItem;
 import pl.hypeapp.wykopolka.presenter.NavigationDrawerPresenter;
-import pl.hypeapp.wykopolka.ui.activity.AddedBooksActivity;
 import pl.hypeapp.wykopolka.ui.activity.DashboardActivity;
 import pl.hypeapp.wykopolka.view.NavigationDrawerView;
 
@@ -123,7 +122,7 @@ public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresent
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 super.onDrawerSlide(drawerView, slideOffset);
 //                ((AddedBooksActivity) getActivity()).onDrawerSlide(slideOffset);
-                toolbar.setAlpha(1 - slideOffset / 2);
+//                toolbar.setAlpha(1 - slideOffset / 2);
             }
         };
         mDrawerLayout.addDrawerListener(mDrawerToggle);
@@ -172,7 +171,7 @@ public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresent
                     startActivity(new Intent(getActivity(), DashboardActivity.class));
                     break;
                 case 4:
-                    startActivity(new Intent(getActivity(), AddedBooksActivity.class));
+//                    startActivity(new Intent(getActivity(), AddedBooksActivity.class));
                     break;
             }
         }
