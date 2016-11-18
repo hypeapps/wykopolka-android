@@ -30,17 +30,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="pl.hypeapp.wykopolka.ui.activity.AddedBooksActivity"
-            android:label="@string/title_activity_added_books">
+            android:name="pl.hypeapp.wykopolka.ui.activity.BookPanelActivity"
+            android:label="@string/title_activity_book_panel">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="pl.hypeapp.wykopolka.ui.activity.BookActivity"
-            android:label="Book">
+        <activity android:name="pl.hypeapp.wykopolka.ui.activity.BookActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
