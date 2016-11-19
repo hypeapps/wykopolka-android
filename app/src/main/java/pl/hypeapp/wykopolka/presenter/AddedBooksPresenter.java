@@ -77,10 +77,15 @@ public class AddedBooksPresenter extends TiPresenter<AddedBooksView> {
                         }));
     }
 
+    public void initRefreshData() {
+        loadData(accountKey);
+    }
+
     @Override
     protected void onWakeUp() {
         super.onWakeUp();
         loadData(accountKey);
         Log.e("presenter", " onWakeUp");
     }
+
 }

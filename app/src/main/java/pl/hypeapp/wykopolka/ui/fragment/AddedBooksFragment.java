@@ -1,6 +1,5 @@
 package pl.hypeapp.wykopolka.ui.fragment;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,6 +8,7 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +23,7 @@ import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import pl.hypeapp.wykopolka.App;
 import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.adapter.BooksRecyclerAdapter;
+import pl.hypeapp.wykopolka.extra.circlerefreshlayout.CircleRefreshLayout;
 import pl.hypeapp.wykopolka.model.Book;
 import pl.hypeapp.wykopolka.presenter.AddedBooksPresenter;
 import pl.hypeapp.wykopolka.ui.activity.BookActivity;
@@ -30,12 +31,14 @@ import pl.hypeapp.wykopolka.util.BuildUtil;
 import pl.hypeapp.wykopolka.view.AddedBooksView;
 
 public class AddedBooksFragment extends TiFragment<AddedBooksPresenter, AddedBooksView> implements AddedBooksView {
-    BooksRecyclerAdapter mRecyclerAdapter;
+    private BooksRecyclerAdapter mRecyclerAdapter;
     private AddedBooksPresenter mAddedBooksPresenter;
+    private List<Book> books;
+    private boolean isRefreshing = false;
+    @BindView(R.id.refresh_layout)
+    CircleRefreshLayout mCircleRefreshLayout;
     @BindView(R.id.book_list)
     RecyclerView mRecyclerView;
-    private List<Book> books;
-
 
     public AddedBooksFragment() {
     }
@@ -48,19 +51,48 @@ public class AddedBooksFragment extends TiFragment<AddedBooksPresenter, AddedBoo
         return mAddedBooksPresenter;
     }
 
-    @Override
-    public void setBookData(List<Book> books) {
-        this.books = books;
-        mRecyclerAdapter.setData(this.books);
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_added_books, container, false);
         ButterKnife.bind(this, view);
         initRecyclerAdapter();
+        mCircleRefreshLayout.setOnRefreshListener(new CircleRefreshLayout.OnCircleRefreshListener() {
+            @Override
+            public void completeRefresh() {
+                Log.e("complete", "ref");
+                isRefreshing = false;
+            }
+
+            @Override
+            public void refreshing() {
+                Log.e("refreshing", "ref");
+                isRefreshing = true;
+                mAddedBooksPresenter.initRefreshData();
+            }
+        });
         return view;
+    }
+
+    @Override
+    public void setBookData(List<Book> books) {
+        this.books = books;
+        mRecyclerAdapter.setData(this.books);
+        if (isRefreshing) {
+            mCircleRefreshLayout.postDelayed(finishRefreshing, 1000);
+        }
+    }
+
+    private Runnable finishRefreshing = new Runnable() {
+        @Override
+        public void run() {
+            mCircleRefreshLayout.finishRefreshing();
+        }
+    };
+
+    @Override
+    public void onRefreshCompleted() {
+
     }
 
     private void initRecyclerAdapter() {
