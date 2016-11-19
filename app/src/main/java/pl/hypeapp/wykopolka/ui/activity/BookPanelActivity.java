@@ -83,15 +83,16 @@ public class BookPanelActivity extends CompositeActivity implements BookPanelVie
             public View createTabView(ViewGroup container, int position, PagerAdapter adapter) {
                 View itemView = layoutInflater.inflate(R.layout.tab_icon_text, container, false);
                 TextView text = (TextView) itemView.findViewById(R.id.custom_tab_text);
-                text.setText(adapter.getPageTitle(position));
                 text.setAllCaps(true);
                 ImageView icon = (ImageView) itemView.findViewById(R.id.custom_tab_icon);
                 switch (position) {
                     case 0:
-                        icon.setImageDrawable(resources.getDrawable(R.drawable.ic_added_book_white_36dp));
+                        icon.setImageDrawable(resources.getDrawable(R.drawable.ic_book_white_36dp));
+                        text.setText(getString(R.string.tab_title_my_books));
                         break;
                     case 1:
-                        icon.setImageDrawable(resources.getDrawable(R.drawable.ic_book_white_36dp));
+                        icon.setImageDrawable(resources.getDrawable(R.drawable.ic_added_book_white_36dp));
+                        text.setText(getString(R.string.tab_title_added_books));
                         break;
                     default:
                         throw new IllegalStateException("Invalid position: " + position);
@@ -99,7 +100,6 @@ public class BookPanelActivity extends CompositeActivity implements BookPanelVie
                 return itemView;
             }
         });
-
         smartTabLayout.setViewPager(viewPager);
     }
 
