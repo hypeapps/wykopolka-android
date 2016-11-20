@@ -21,6 +21,24 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="pl.hypeapp.wykopolka.ui.activity.WelcomeActivity"
+            android:label="@string/title_activity_welcome">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="pl.hypeapp.wykopolka.ui.activity.FaqActivity"
+            android:label="@string/title_activity_faq">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name="pl.hypeapp.wykopolka.ui.activity.DashboardActivity"
             android:label="@string/title_activity_dashboard">
             <intent-filter>
