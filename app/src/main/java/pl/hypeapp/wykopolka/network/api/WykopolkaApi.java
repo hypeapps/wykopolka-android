@@ -42,9 +42,8 @@ public interface WykopolkaApi {
     @POST("wykopolka/public/api/request/book/iswishlisted")
     Call<ResponseBody> isWishlisted(@Field("accountkey") String accountKey, @Field("id") String bookId, @Header("apisign") String apisign);
 
-    @FormUrlEncoded
-
     //Rzuca status false kiedy zielonka/ban lub książka jest moja lub kiedy transfer jest zarejestrowany ale nieukończony
+    @FormUrlEncoded
     @POST("wykopolka/public/api/request/book/iswishlistingallowed")
     Call<ResponseBody> isWishlistingAllowed(@Field("accountkey") String accountKey, @Field("id") String bookId, @Header("apisign") String apisign);
 

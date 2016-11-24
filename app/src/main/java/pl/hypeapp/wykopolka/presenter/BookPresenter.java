@@ -29,6 +29,7 @@ public class BookPresenter extends TiPresenter<BookView> {
     private String mAccountKey;
     private String mBookId;
     private WykopolkaApi mWykopolkaApi;
+    private List<Book> book;
     @Inject
     @Named("wykopolkaApi")
     Retrofit mRetrofit;
@@ -53,14 +54,15 @@ public class BookPresenter extends TiPresenter<BookView> {
     protected void onWakeUp() {
         super.onWakeUp();
 
-        callBookInfo();
+        getView().animateCardEnter();
 
+        callBookInfo();
     }
 
     private void callBookInfo() {
         String apiSign = HashUtil.generateApiSign(mBookId);
 
-        rxHelper.manageSubscription(
+        rxHelper.manageViewSubscription(
                 mWykopolkaApi.getBook(mBookId, apiSign)
                         .compose(RxTiPresenterUtils.<List<Book>>deliverLatestToView(this))
                         .subscribeOn(Schedulers.newThread())
@@ -80,8 +82,38 @@ public class BookPresenter extends TiPresenter<BookView> {
                             public void onNext(List<Book> books) {
                                 getView().setBookCover(books.get(BOOK_INDEX).getCover());
                                 getView().setBookInfo(books.get(BOOK_INDEX));
+                                setBookOwnedBy(books);
                             }
                         }));
+    }
+
+    private void setBookOwnedBy(List<Book> book) {
+        Log.e("here", "here");
+        String apiSignAddedBy = HashUtil.generateApiSign(book.get(BOOK_INDEX).getAddedBy());
+        String apiSignOwnedBy = HashUtil.generateApiSign(book.get(BOOK_INDEX).getOwnedBy());
+
+//        rxHelper.manageViewSubscription();
+
+//        mWykopolkaApi.getLoginById(book.get(BOOK_INDEX).getOwnedBy(), apiSignOwnedBy).enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                Log.e("response", response.message() + " " + response.code());
+//                try {
+//                    Log.e("response", response.body().string());
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//
+//            }
+//        });
+//        rxHelper.manageViewSubscription(
+//                mWykopolkaApi.getLoginById(book.get(BOOK_INDEX).getAddedBy(), apiSignAddedBy).enqueue();
+//        );
+
 
     }
 }

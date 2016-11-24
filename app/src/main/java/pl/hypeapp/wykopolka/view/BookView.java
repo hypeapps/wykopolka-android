@@ -12,6 +12,10 @@ public interface BookView extends TiView {
 
     void setWishlistStatus(boolean status);
 
+    void setBookCover(String coverUrl);
+
+    void animateCardEnter();
+
     void loadPdfBookCard();
 
     void editBookDescription();
