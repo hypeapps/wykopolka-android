@@ -45,8 +45,7 @@ public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresent
     private DrawerRecyclerAdapter mRecyclerAdapter;
     private String mAvatarUrl;
     private String mUserLogin;
-    @BindView(R.id.drawer_list)
-    RecyclerView mRecyclerView;
+    @BindView(R.id.drawer_list) RecyclerView mRecyclerView;
 
     public NavigationDrawerFragment() {
     }

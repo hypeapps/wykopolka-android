@@ -66,16 +66,11 @@ public class BooksRecyclerAdapter extends RecyclerView.Adapter<BooksRecyclerAdap
     }
 
     class BooksRecyclerHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @BindView(R.id.tv_book_title)
-        TextView bookTitle;
-        @BindView(R.id.tv_book_author)
-        TextView bookAuthor;
-        @BindView(R.id.iv_book_thumbnail)
-        ImageView bookThumbnail;
-        @BindView(R.id.card_view_added_book)
-        CardView cardView;
-        @BindView(R.id.ripple)
-        MaterialRippleLayout materialRippleLayout;
+        @BindView(R.id.tv_book_title) TextView bookTitle;
+        @BindView(R.id.tv_book_author) TextView bookAuthor;
+        @BindView(R.id.iv_book_thumbnail) ImageView bookThumbnail;
+        @BindView(R.id.card_view_added_book) CardView cardView;
+        @BindView(R.id.ripple) MaterialRippleLayout materialRippleLayout;
 
         BooksRecyclerHolder(View itemView) {
             super(itemView);

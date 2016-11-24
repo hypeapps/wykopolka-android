@@ -11,8 +11,7 @@ import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.adapter.WelcomePagerAdapter;
 
 public class WelcomeActivity extends AppCompatActivity {
-    @BindView(R.id.viewpager)
-    ViewPager mViewPager;
+    @BindView(R.id.viewpager) ViewPager mViewPager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

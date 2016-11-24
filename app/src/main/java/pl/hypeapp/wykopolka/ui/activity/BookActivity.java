@@ -58,24 +58,15 @@ public class BookActivity extends CompositeActivity implements BookView {
     private boolean isSearchViewShown = false;
     private AppBarStateChangeListener.State mState;
     private SmallBang mSmallBang;
-    @BindView(R.id.collapsing_toolbar)
-    CollapsingToolbarLayout mCollapsingToolbarLayout;
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
-    @BindView(R.id.app_bar_layout)
-    AppBarLayout mAppBarLayout;
-    @BindView(R.id.search_view)
-    MaterialSearchView mSearchView;
-    @BindView(R.id.fab_add_to_wishlist)
-    FloatingActionButton mFabButton;
-    @BindView(R.id.search_status_bar)
-    View searchStatusBar;
-    @BindViews({R.id.tv_author, R.id.tv_description, R.id.tv_genre})
-    List<TextView> mBookInfoTextViews;
-    @BindView(R.id.iv_book_cover)
-    ImageView mBookCover;
-    @BindView(R.id.cv_overview)
-    CardView mOverviewCard;
+    @BindView(R.id.collapsing_toolbar) CollapsingToolbarLayout mCollapsingToolbarLayout;
+    @BindView(R.id.toolbar) Toolbar mToolbar;
+    @BindView(R.id.app_bar_layout) AppBarLayout mAppBarLayout;
+    @BindView(R.id.search_view) MaterialSearchView mSearchView;
+    @BindView(R.id.fab_add_to_wishlist) FloatingActionButton mFabButton;
+    @BindView(R.id.search_status_bar) View searchStatusBar;
+    @BindViews({R.id.tv_author, R.id.tv_description, R.id.tv_genre}) List<TextView> mBookInfoTextViews;
+    @BindView(R.id.iv_book_cover) ImageView mBookCover;
+    @BindView(R.id.cv_overview) CardView mOverviewCard;
 
     private final TiActivityPlugin<BookPresenter, BookView> mPresenterPlugin =
             new TiActivityPlugin<>(new TiPresenterProvider<BookPresenter>() {

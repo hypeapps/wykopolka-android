@@ -83,12 +83,9 @@ public class DrawerRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     class ItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @BindView(R.id.nav_list_text)
-        TextView navigationItemText;
-        @BindView(R.id.nav_list_icon)
-        ImageView navigationItemIcon;
-        @BindView(R.id.ripple)
-        MaterialRippleLayout materialRippleLayout;
+        @BindView(R.id.nav_list_text) TextView navigationItemText;
+        @BindView(R.id.nav_list_icon) ImageView navigationItemIcon;
+        @BindView(R.id.ripple) MaterialRippleLayout materialRippleLayout;
 
         ItemHolder(View itemView) {
             super(itemView);

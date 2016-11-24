@@ -35,10 +35,8 @@ public class AddedBooksFragment extends TiFragment<AddedBooksPresenter, AddedBoo
     private AddedBooksPresenter mAddedBooksPresenter;
     private List<Book> books;
     private boolean isRefreshing = false;
-    @BindView(R.id.refresh_layout)
-    CircleRefreshLayout mCircleRefreshLayout;
-    @BindView(R.id.book_list)
-    RecyclerView mRecyclerView;
+    @BindView(R.id.refresh_layout) CircleRefreshLayout mCircleRefreshLayout;
+    @BindView(R.id.book_list) RecyclerView mRecyclerView;
 
     public AddedBooksFragment() {
     }

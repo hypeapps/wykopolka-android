@@ -29,7 +29,12 @@ import pl.hypeapp.wykopolka.presenter.BookPanelPresenter;
 import pl.hypeapp.wykopolka.view.BookPanelView;
 
 public class BookPanelActivity extends CompositeActivity implements BookPanelView {
+    @BindView(R.id.toolbar) Toolbar mToolbar;
+    @BindView(R.id.viewpager) ViewPager mViewPager;
+    @BindView(R.id.viewpager_tab) SmartTabLayout mSmartTabLayout;
+
     private final NavigationDrawerActivityPlugin mNavigationDrawerPlugin = new NavigationDrawerActivityPlugin();
+
     private final TiActivityPlugin<BookPanelPresenter, BookPanelView> mPresenterPlugin =
             new TiActivityPlugin<>(new TiPresenterProvider<BookPanelPresenter>() {
                 @NonNull
@@ -38,13 +43,6 @@ public class BookPanelActivity extends CompositeActivity implements BookPanelVie
                     return new BookPanelPresenter();
                 }
             });
-
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
-    @BindView(R.id.viewpager)
-    ViewPager mViewPager;
-    @BindView(R.id.viewpager_tab)
-    SmartTabLayout mSmartTabLayout;
 
     public BookPanelActivity() {
         addPlugin(mPresenterPlugin);

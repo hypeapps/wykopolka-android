@@ -31,10 +31,8 @@ public class SignInActivity extends CompositeActivity implements SignInView {
     private static final String CONNECT_WYKOP_API_URL = "http://a.wykop.pl/user/connect/appkey/";
     private static final String WYKOP_API_URL = "a.wykop.pl";
     private SignInPresenter mSignInPresenter;
-    @BindView(R.id.webview)
-    WebView loginWebView;
-    @BindView(R.id.tv_connect_success)
-    TextView successLoginTextView;
+    @BindView(R.id.webview) WebView loginWebView;
+    @BindView(R.id.tv_connect_success) TextView successLoginTextView;
 
     private final TiActivityPlugin<SignInPresenter, SignInView> mPresenterPlugin =
             new TiActivityPlugin<>(new TiPresenterProvider<SignInPresenter>() {
