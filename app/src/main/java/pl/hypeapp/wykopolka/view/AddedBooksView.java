@@ -14,4 +14,5 @@ public interface AddedBooksView extends TiView {
     @CallOnMainThread
     void setBookData(List<Book> books);
 
+    void onRefreshCompleted();
 }

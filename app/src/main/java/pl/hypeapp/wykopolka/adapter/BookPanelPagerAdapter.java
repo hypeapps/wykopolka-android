@@ -9,6 +9,8 @@ import pl.hypeapp.wykopolka.ui.fragment.MyBooksFragment;
 
 public class BookPanelPagerAdapter extends FragmentPagerAdapter {
 
+    private static final int NUM_PAGES = 2;
+
     public BookPanelPagerAdapter(FragmentManager fm) {
         super(fm);
     }
@@ -27,7 +29,7 @@ public class BookPanelPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return NUM_PAGES;
     }
 
 }
