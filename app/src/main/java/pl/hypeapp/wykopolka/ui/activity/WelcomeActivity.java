@@ -5,13 +5,17 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.merhold.extensiblepageindicator.ExtensiblePageIndicator;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.adapter.WelcomePagerAdapter;
+import pl.hypeapp.wykopolka.extra.pagetransformer.StackTransformer;
 
 public class WelcomeActivity extends AppCompatActivity {
     @BindView(R.id.viewpager) ViewPager mViewPager;
+    @BindView(R.id.flexibleIndicator) ExtensiblePageIndicator mFlexibleIndicator;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,9 +27,8 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private void initViewPager(ViewPager viewPager) {
         WelcomePagerAdapter welcomePagerAdapter = new WelcomePagerAdapter(getSupportFragmentManager());
-//        viewPager.setPageTransformer(true, new ParallaxPageTransformer());
+        viewPager.setPageTransformer(true, new StackTransformer());
         viewPager.setAdapter(welcomePagerAdapter);
-//        ExtensiblePageIndicator extensiblePageIndicator = (ExtensiblePageIndicator) findViewById(R.id.page_indicator);
-//        extensiblePageIndicator.initViewPager(mViewPager);
+        mFlexibleIndicator.initViewPager(mViewPager);
     }
 }
