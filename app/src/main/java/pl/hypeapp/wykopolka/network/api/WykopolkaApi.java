@@ -1,7 +1,5 @@
 package pl.hypeapp.wykopolka.network.api;
 
-
-
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -20,9 +18,13 @@ public interface WykopolkaApi {
      * @param apisign
      * @return Book
      */
+//    @FormUrlEncoded
+//    @POST("wykopolka/public/api/request/book")
+//    Call<Book[]> getBook(@Field("id")String id, @Header("apisign")String apisign);
+
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/book")
-    Call<Book[]> getBook(@Field("id")String id, @Header("apisign")String apisign);
+    Observable<List<Book>> getBook(@Field("id") String id, @Header("apisign") String apisign);
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/book/find/by/author")
@@ -31,6 +33,24 @@ public interface WykopolkaApi {
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/user/books/added")
     Observable<List<Book>> getUserAddedBooks(@Field("accountkey")String accountKey, @Header("apisign")String apisign);
+
+    @FormUrlEncoded
+    @POST("wykopolka/public/api/request/user/getloginbyid")
+    Call<ResponseBody> getLoginById(@Field("id") String userId, @Header("apisign") String apisign);
+
+    @FormUrlEncoded
+    @POST("wykopolka/public/api/request/book/iswishlisted")
+    Call<ResponseBody> isWishlisted(@Field("accountkey") String accountKey, @Field("id") String bookId, @Header("apisign") String apisign);
+
+    @FormUrlEncoded
+
+    //Rzuca status false kiedy zielonka/ban lub książka jest moja lub kiedy transfer jest zarejestrowany ale nieukończony
+    @POST("wykopolka/public/api/request/book/iswishlistingallowed")
+    Call<ResponseBody> isWishlistingAllowed(@Field("accountkey") String accountKey, @Field("id") String bookId, @Header("apisign") String apisign);
+
+//    @FormUrlEncoded
+//    @POST("wykopolka/public/api/request/book/iswishlisted")
+//    Call<Response<ResponseBody>> isWishlisted1(@Field("accountkey")String accountKey, @Field("book_id")String bookId, @Header("apisign")String apisign);
 
 //    @FormUrlEncoded
 //    @POST("wykopolka/public/api/request/user/books/added")

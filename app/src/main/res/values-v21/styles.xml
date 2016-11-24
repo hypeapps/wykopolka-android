@@ -6,11 +6,18 @@
         <item name="android:colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/materialBackground</item>
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="android:buttonStyle">@style/BrandButtonStyle</item>
         <!--SharedElement Transitions-->
+        <item name="android:windowContentTransitions">true</item>
         <!--<item name="android:windowContentTransitions">true</item>-->
         <!--<item name="android:windowEnterTransition">@transition/slide_from_bottom</item>-->
         <!--<item name="android:windowExitTransition">@transition/explode</item>-->
         <!--<item name="android:windowSharedElementEnterTransition">@transition/changebounds_with_arcmotion</item>-->
         <!--<item name="android:windowSharedElementExitTransition">@transition/changebounds_with_arcmotion</item>-->
+    </style>
+
+    <style name="BrandButtonStyle" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:colorButtonNormal">@color/colorPrimary</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 </resources>

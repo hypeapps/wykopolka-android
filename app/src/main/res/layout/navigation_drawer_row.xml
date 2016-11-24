@@ -4,15 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-
-    <com.andexert.library.RippleView
-        android:id="@+id/nav_ripple"
+    <com.balysv.materialripple.MaterialRippleLayout
+        android:id="@+id/ripple"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:focusableInTouchMode="false"
-        app:rv_color="@color/colorPrimary"
-        app:rv_rippleDuration="150">
-
+        app:mrl_rippleColor="@color/colorPrimary"
+        app:mrl_rippleDelayClick="true">
 
         <LinearLayout
             android:id="@+id/row"
@@ -46,11 +43,13 @@
 
         </LinearLayout>
 
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="0.20dp"
-            android:layout_below="@+id/row"
-            android:background="#50000000" />
-    </com.andexert.library.RippleView>
+    </com.balysv.materialripple.MaterialRippleLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="0.20dp"
+        android:layout_below="@+id/ripple"
+        android:background="#50000000" />
+
 </RelativeLayout>

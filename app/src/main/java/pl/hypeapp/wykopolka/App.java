@@ -11,6 +11,8 @@ import pl.hypeapp.wykopolka.network.retrofit.WykopolkaRetrofitModule;
 public class App extends Application {
     private AppComponent appComponent;
 
+    public static final String WYKOPOLKA_IMG_HOST = "http://81.219.204.130/wykopolka/public/";
+
     @Override
     public void onCreate() {
         super.onCreate();

@@ -12,5 +12,6 @@ public interface AddedBooksView extends TiView {
 
     @DistinctUntilChanged
     @CallOnMainThread
-    void setDataToAdapter(List<Book> books);
+    void setBookData(List<Book> books);
+
 }

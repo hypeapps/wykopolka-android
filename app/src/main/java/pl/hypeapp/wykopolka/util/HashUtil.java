@@ -1,11 +1,17 @@
 package pl.hypeapp.wykopolka.util;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import pl.hypeapp.wykopolka.BuildConfig;
+
 public class HashUtil {
+    private static final String WYKOPOLKA_SECRET = BuildConfig.WYKOPOLKA_SECRET;
+
     public static String md5(String s) {
         MessageDigest digest;
         try {
@@ -19,5 +25,11 @@ public class HashUtil {
             e.printStackTrace();
         }
         return "";
+    }
+
+    public static String generateApiSign(String... parameters) {
+        String parametersImploded = StringUtils.join(parameters, ",");
+        String apiSign = md5(WYKOPOLKA_SECRET + parametersImploded);
+        return apiSign;
     }
 }

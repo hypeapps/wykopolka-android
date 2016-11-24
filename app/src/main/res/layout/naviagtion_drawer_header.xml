@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/header"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimaryDark" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/nav_header_height"
+        android:layout_marginTop="@dimen/nav_drawer_margin_top"
+        android:background="@color/colorPrimaryDark"
+        android:paddingBottom="8dp"
+        android:id="@+id/header_content">
+
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:layout_above="@+id/tv_username"
+            android:layout_centerHorizontal="true"
+            android:elevation="4dp" />
+
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_above="@+id/rl_statistic"
+            android:layout_alignParentBottom="false"
+            android:gravity="center_vertical|center_horizontal"
+            android:textColor="@color/textColorPrimary"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:id="@+id/rl_statistic"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/activity_vertical_margin"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+            android:layout_marginTop="8dp">
+
+            <LinearLayout
+                android:id="@+id/ranking"
+                android:layout_width="82dp"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/readed_books"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/statistic_position"
+                    style="@style/StatisticTextStyleBold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="#23"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_ranking"
+                    style="@style/defTextStyl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="@string/message_stat_ranking_position"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="0.25dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_toLeftOf="@+id/readed_books"
+                android:background="#50FFFFFF" />
+
+            <LinearLayout
+                android:id="@+id/readed_books"
+                android:layout_width="82dp"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/statistic_readed_books"
+                    style="@style/StatisticTextStyleBold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="5"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_readed_books"
+                    style="@style/defTextStyl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="@string/message_stat_readed_books"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="0.25dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@+id/readed_books"
+                android:background="#50FFFFFF" />
+
+            <LinearLayout
+                android:id="@+id/added_books"
+                android:layout_width="82dp"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@+id/readed_books"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/statistic_added_books"
+                    style="@style/StatisticTextStyleBold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="3"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_added_books"
+                    style="@style/defTextStyl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="@string/message_stat_added_books"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

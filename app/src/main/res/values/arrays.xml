@@ -4,8 +4,7 @@
         <item>Dashboard</item>
         <item>Szukaj książki</item>
         <item>Losuj książkę</item>
-        <item>Moje książki</item>
-        <item>Oddane książki</item>
+        <item>Panel książek</item>
         <item>Lista życzeń</item>
         <item>Moja historia</item>
         <item>Ranking i statystyki</item>
@@ -18,7 +17,6 @@
         <item>@drawable/ic_search_white_36dp</item>
         <item>@drawable/ic_shuffle</item>
         <item>@drawable/ic_book_white_36dp</item>
-        <item>@drawable/ic_added_book_white_36dp</item>
         <item>@drawable/ic_favorite_white_36dp</item>
         <item>@drawable/ic_date_range_white_36dp</item>
         <item>@drawable/ic_equalizer_white_36dp</item>

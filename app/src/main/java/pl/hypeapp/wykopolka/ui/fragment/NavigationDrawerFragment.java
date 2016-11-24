@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,15 +12,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 
 import net.grandcentrix.thirtyinch.TiFragment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,9 +27,8 @@ import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.adapter.DrawerRecyclerAdapter;
 import pl.hypeapp.wykopolka.model.NavigationItem;
 import pl.hypeapp.wykopolka.presenter.NavigationDrawerPresenter;
-import pl.hypeapp.wykopolka.ui.activity.AddedBooksActivity;
+import pl.hypeapp.wykopolka.ui.activity.BookPanelActivity;
 import pl.hypeapp.wykopolka.ui.activity.DashboardActivity;
-import pl.hypeapp.wykopolka.util.transformation.CropCircleTransformation;
 import pl.hypeapp.wykopolka.view.NavigationDrawerView;
 
 public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresenter, NavigationDrawerView>
@@ -51,10 +47,6 @@ public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresent
     private String mUserLogin;
     @BindView(R.id.drawer_list)
     RecyclerView mRecyclerView;
-    @BindView(R.id.iv_avatar)
-    ImageView avatar;
-    @BindView(R.id.tv_username)
-    TextView username;
 
     public NavigationDrawerFragment() {
     }
@@ -65,7 +57,7 @@ public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresent
         return new NavigationDrawerPresenter();
     }
 
-    public static List<NavigationItem> getData() {
+    public static List<NavigationItem> getNavigationItems() {
         List<NavigationItem> data = new ArrayList<>();
         TypedArray icons = navigationDrawerIcons;
         String[] titles = navigationDrawerTitles;
@@ -77,6 +69,13 @@ public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresent
             data.add(current);
         }
         return data;
+    }
+
+    public Map<String, String> getUserData() {
+        Map<String, String> userData = new HashMap<>();
+        userData.put("user_login", mUserLogin);
+        userData.put("user_avatar", mAvatarUrl);
+        return userData;
     }
 
     @Override
@@ -94,17 +93,10 @@ public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresent
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         ButterKnife.bind(this, view);
-        mRecyclerAdapter = new DrawerRecyclerAdapter(getActivity(), getData(), new ClickItemHandler());
+        mRecyclerAdapter = new DrawerRecyclerAdapter(getActivity(), getNavigationItems(), getUserData(), new ClickItemHandler());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(mRecyclerAdapter);
         return view;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        Glide.with(getContext()).load(mAvatarUrl).bitmapTransform(new CropCircleTransformation(getContext())).into(avatar);
-        username.setText("@" + mUserLogin);
     }
 
     public void create(DrawerLayout drawerLayout, final Toolbar toolbar, int fragmentId) {
@@ -131,7 +123,7 @@ public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresent
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 super.onDrawerSlide(drawerView, slideOffset);
 //                ((AddedBooksActivity) getActivity()).onDrawerSlide(slideOffset);
-                toolbar.setAlpha(1 - slideOffset / 2);
+//                toolbar.setAlpha(1 - slideOffset / 2);
             }
         };
         mDrawerLayout.addDrawerListener(mDrawerToggle);
@@ -179,8 +171,8 @@ public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresent
                 case 0:
                     startActivity(new Intent(getActivity(), DashboardActivity.class));
                     break;
-                case 4:
-                    startActivity(new Intent(getActivity(), AddedBooksActivity.class));
+                case 3:
+                    startActivity(new Intent(getActivity(), BookPanelActivity.class));
                     break;
             }
         }

@@ -3,11 +3,14 @@
     <!--ui pallete-->
     <color name="colorPrimary">#ffb033</color>
     <color name="colorPrimaryDark">#f3ab2c</color>
-    <color name="colorAccent">#4bc5c3</color>
+    <color name="colorAccent">#ffc107</color>
     <color name="materialBackground">#fcfcfc</color>
     <color name="textColorPrimary">#ffffff</color>
     <color name="textColorSecondary">#0079ea</color>
     <color name="navBackgroundColor">#303030</color>
     <color name="drawerArrowColor">#fcfcfc</color>
-    <color name="cardview_background">#F5F5F5</color>
+    <color name="cardview_background">#ffe5e5e5</color>
+
+    <color name="faq_background_1">#96bbb3</color>
+    <color name="faq_background_2">#feb430</color>
 </resources>

@@ -23,6 +23,7 @@
             android:layout_marginStart="116dp"
             android:layout_marginTop="190dp"
             android:text="TextView" />
+
     </RelativeLayout>
 
     <fragment

@@ -17,8 +17,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/tv_connect_success"
-        android:textSize="20sp"
-        android:textColor="#FFFFFF"
         android:gravity="center_vertical|center_horizontal"
         android:background="@color/colorPrimary"
         android:visibility="gone" />
