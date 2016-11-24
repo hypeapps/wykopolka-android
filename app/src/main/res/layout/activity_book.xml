@@ -41,7 +41,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/gradient_cover_height"
                     android:layout_gravity="bottom"
+                    android:transitionName="@string/transition_gradient"
                     android:background="@drawable/gradient_shape" />
+
             </FrameLayout>
 
             <android.support.v7.widget.Toolbar
@@ -264,6 +266,7 @@
         android:id="@+id/fab_add_to_wishlist"
         style="@style/FabStyle"
         app:layout_anchor="@id/app_bar_layout"
-        app:layout_anchorGravity="bottom|right|end" />
+        app:layout_anchorGravity="bottom|right|end"
+        android:visibility="gone" />
 
 </android.support.design.widget.CoordinatorLayout>

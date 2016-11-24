@@ -2,7 +2,7 @@
 <com.ogaclejapan.smarttablayout.SmartTabLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/viewpagertab"
+    android:id="@+id/viewpager_tab"
     android:layout_width="match_parent"
     android:layout_height="48dp"
     app:stl_indicatorAlwaysInCenter="false"
