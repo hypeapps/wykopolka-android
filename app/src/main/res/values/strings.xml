@@ -3,7 +3,6 @@
     <string name="title_activity_sign_in">SignIn</string>
     <string name="title_activity_added_books">Oddane książki</string>
     <string name="title_activity_dashboard">Dashboard</string>
-
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
     <string name="btn_edit_desc_text">edytuj opis książki</string>
@@ -26,6 +25,19 @@
     <string name="tab_title_added_books">oddane książki</string>
     <string name="title_activity_faq">Najczęściej zadawane pytania</string>
     <string name="title_activity_welcome">Witaj</string>
+    <string name="faq">FAQ</string>
+    <string name="faq_most_asked_questions">Najcześciej zadawane pytania</string>
+    <string name="faq_back">powrót</string>
+    <string name="welcome_about_header">#wykopółka</string>
+    <string name="welcome_about_header2">Czytaj ciekawe tytuły za darmo!</string>
+    <string name="welcome_about_content_text2">Dzięki Wykopółce masz dostęp do setek książek udostępnionych przez społeczność Wykop.pl. Jednak aby skorzystać z naszej biblioteczki musisz być częścią tej społeczności.</string>
+    <string name="welcome_about_content_text">Dzięki Wykopółce masz dostęp do setek książek udostępnionych przez społeczność Wykop.pl. \n\n \"Kto czyta książki, żyje podwójnie\"\n ~Umberto Eco</string>
+    <string name="welcome_how_button_text">zobacz faq</string>
+    <string name="welcome_how_content">Użytkownicy Wykopu oddają książki na Wykopółkę. Kolejny wykopowicz dodaje upatrzoną książkę na listę życzeń. Jeśli książka jest wolna, aktualny posiadacz przesyła ją chętnemu na swój koszt. Po przeczytaniu, czytelnik przesyła książkę kolejnemu chętnemu.</string>
+    <string name="welcome_how_header">Jak to działa?</string>
+    <string name="welcome_login_via_header">Logowanie</string>
+    <string name="welcome_login_via_content">Aby skorzystać z naszej biblioteczki musisz być częścią społeczności Wykopu. Zaloguj się używając swojego wykopowego konta.</string>
+    <string name="welcome_login_via_button_text">zaloguj przez wykop</string>
 
     <string name="faq_content">
         <big><b>1. Czym jest Wykopółka?\n\n</b></big>Wykopółka to serwis book-crossingowy dla użytkowników Wykop.pl. Dzięki niej możesz wymieniać się książkami z innymi użytkownikami serwisu.\n\n
@@ -39,8 +51,4 @@
 <big><b>9. Czy mogę odzyskać oddaną książkę?\n\n</b></big>Tak - Opcja wypożyczenia czasowego daje możliwość szybkiego odzyskania swojej książki. Ma to zastosowanie szczególnie w przypadku książek technicznych, do których często wracamy. Jeśli opcja ta jest zaznaczona, osoba dodająca książkę na Wykopółkę po dodaniu swojej pozycji na wishlistę pojawi się jako pierwsza w kolejce do otrzymania książki. Nadal będzie musiała poczekać aż aktualny posiadacz ukończy czytanie, ale otrzyma możliwość zwrotu książki poza kolejką.\n\n
 <big><b>10. Skąd pewność, że oddam pożyczoną książkę?\n\n</b></big>Znikąd. System stara się jak najdokładniej odsiewać osoby, które niszczą lub zalegają z książkami, jednak wszystko ciągle opiera się na zaufaniu. Wykopółka powstała w odpowiedzi na książki, które po trafieniu w #rozdajo już nigdy nie wracały w mirkowy obieg. Jeśli uda się puścić dalej choć część z tych książek to obwieścimy sukces. ;)
     </string>
-    <string name="faq">FAQ</string>
-    <string name="faq_most_asked_questions">Najcześciej zadawane pytania</string>
-    <string name="faq_back">powrót</string>
-
 </resources>
