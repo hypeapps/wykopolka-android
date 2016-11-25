@@ -1,7 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/faq_background_1">
+    android:background="@color/welcome_background_about"
+    android:gravity="center_vertical|center_horizontal"
+    android:orientation="vertical">
 
-</RelativeLayout>
+    <TextView
+        style="@style/welcomePagerHeaderStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/welcome_about_header" />
+
+    <TextView
+        style="@style/welcomePagerContentStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/welcome_about_header2" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/kv_img" />
+
+    <TextView
+        style="@style/welcomePagerContentStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/welcome_about_content_text" />
+
+</LinearLayout>
