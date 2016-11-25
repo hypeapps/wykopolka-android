@@ -3,21 +3,21 @@
     <string-array name="navigation_drawer_items">
         <item>Dashboard</item>
         <item>Szukaj książki</item>
-        <item>Losuj książkę</item>
         <item>Panel książek</item>
         <item>Lista życzeń</item>
+        <item>Losuj książkę</item>
         <item>Moja historia</item>
         <item>Ranking i statystyki</item>
-        <item>Ustawienia</item>
+        <item>Ustawienia profilu</item>
         <item>Wyloguj</item>
     </string-array>
 
     <integer-array name="navigation_drawer_icons">
         <item>@drawable/ic_dashboard_white_36dp</item>
         <item>@drawable/ic_search_white_36dp</item>
-        <item>@drawable/ic_shuffle</item>
         <item>@drawable/ic_book_white_36dp</item>
         <item>@drawable/ic_favorite_white_36dp</item>
+        <item>@drawable/ic_shuffle</item>
         <item>@drawable/ic_date_range_white_36dp</item>
         <item>@drawable/ic_equalizer_white_36dp</item>
         <item>@drawable/ic_settings_white_36dp</item>
