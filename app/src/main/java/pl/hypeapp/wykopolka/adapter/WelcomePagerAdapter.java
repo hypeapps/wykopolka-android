@@ -4,13 +4,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import pl.hypeapp.wykopolka.ui.fragment.LoginViaWykopFragment;
-import pl.hypeapp.wykopolka.ui.fragment.factory.WelcomeFragmentFactory;
+import pl.hypeapp.wykopolka.ui.fragment.welcome.AboutFragment;
+import pl.hypeapp.wykopolka.ui.fragment.welcome.HowItWorksFragment;
+import pl.hypeapp.wykopolka.ui.fragment.welcome.LoginViaWykopFragment;
 
 public class WelcomePagerAdapter extends FragmentPagerAdapter {
 
     private static final int NUM_PAGES = 3;
-    private static final int NUM_LOGIN_VIA_WYKOP_PAGE = 2;
 
     public WelcomePagerAdapter(FragmentManager fm) {
         super(fm);
@@ -18,10 +18,16 @@ public class WelcomePagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        if (isLoginViaWykopPosition(position)) {
-            return new LoginViaWykopFragment();
+        switch (position) {
+            case 0:
+                return new AboutFragment();
+            case 1:
+                return new HowItWorksFragment();
+            case 2:
+                return new LoginViaWykopFragment();
+            default:
+                return null;
         }
-        return WelcomeFragmentFactory.newInstance(position);
     }
 
     @Override
@@ -29,7 +35,4 @@ public class WelcomePagerAdapter extends FragmentPagerAdapter {
         return NUM_PAGES;
     }
 
-    private boolean isLoginViaWykopPosition(int position) {
-        return position == NUM_LOGIN_VIA_WYKOP_PAGE;
-    }
 }
