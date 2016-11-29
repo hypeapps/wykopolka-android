@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.ProgressBar;
 
 import com.jpardogo.android.googleprogressbar.library.GoogleMusicDicesDrawable;
@@ -20,7 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.model.Book;
-import pl.hypeapp.wykopolka.plugin.NavigationDrawerActivityPlugin;
+import pl.hypeapp.wykopolka.plugin.ToolbarActivityPlugin;
 import pl.hypeapp.wykopolka.presenter.RandomBookPresenter;
 import pl.hypeapp.wykopolka.view.RandomBookView;
 
@@ -28,7 +27,7 @@ public class RandomBookActivity extends CompositeActivity implements RandomBookV
     @BindView(R.id.toolbar) Toolbar mToolbar;
     @BindView(R.id.google_progress) ProgressBar mRandomizeProgress;
 
-    private final NavigationDrawerActivityPlugin mNavigationDrawerPlugin = new NavigationDrawerActivityPlugin();
+    private final ToolbarActivityPlugin mToolbarPlugin = new ToolbarActivityPlugin();
 
     private final TiActivityPlugin<RandomBookPresenter, RandomBookView> mPresenterPlugin =
             new TiActivityPlugin<>(new TiPresenterProvider<RandomBookPresenter>() {
@@ -40,7 +39,7 @@ public class RandomBookActivity extends CompositeActivity implements RandomBookV
             });
 
     public RandomBookActivity() {
-        addPlugin(mNavigationDrawerPlugin);
+        addPlugin(mToolbarPlugin);
         addPlugin(mPresenterPlugin);
     }
 
@@ -50,10 +49,10 @@ public class RandomBookActivity extends CompositeActivity implements RandomBookV
         setContentView(R.layout.activity_random_book);
         ButterKnife.bind(this);
 
-        mToolbar = initToolbar();
-        mNavigationDrawerPlugin.setNavigationDrawer(mToolbar);
+        mToolbar = mToolbarPlugin.initToolbar(mToolbar);
+        mToolbarPlugin.setNavigationDrawer(mToolbar);
         mRandomizeProgress.setIndeterminateDrawable(new GoogleMusicDicesDrawable.Builder().build());
-        mRandomizeProgress.setVisibility(View.GONE);
+//        mRandomizeProgress.setVisibility(View.GONE);
     }
 
     @Override
@@ -65,14 +64,4 @@ public class RandomBookActivity extends CompositeActivity implements RandomBookV
     public void nextRandomBook() {
 
     }
-
-    private Toolbar initToolbar() {
-        setSupportActionBar(mToolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-        return mToolbar;
-    }
-
 }

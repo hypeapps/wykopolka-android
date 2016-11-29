@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.adapter.BookPanelPagerAdapter;
-import pl.hypeapp.wykopolka.plugin.NavigationDrawerActivityPlugin;
+import pl.hypeapp.wykopolka.plugin.ToolbarActivityPlugin;
 import pl.hypeapp.wykopolka.presenter.BookPanelPresenter;
 import pl.hypeapp.wykopolka.view.BookPanelView;
 
@@ -33,7 +32,7 @@ public class BookPanelActivity extends CompositeActivity implements BookPanelVie
     @BindView(R.id.viewpager) ViewPager mViewPager;
     @BindView(R.id.viewpager_tab) SmartTabLayout mSmartTabLayout;
 
-    private final NavigationDrawerActivityPlugin mNavigationDrawerPlugin = new NavigationDrawerActivityPlugin();
+    private final ToolbarActivityPlugin mToolbarPlugin = new ToolbarActivityPlugin();
 
     private final TiActivityPlugin<BookPanelPresenter, BookPanelView> mPresenterPlugin =
             new TiActivityPlugin<>(new TiPresenterProvider<BookPanelPresenter>() {
@@ -46,7 +45,7 @@ public class BookPanelActivity extends CompositeActivity implements BookPanelVie
 
     public BookPanelActivity() {
         addPlugin(mPresenterPlugin);
-        addPlugin(mNavigationDrawerPlugin);
+        addPlugin(mToolbarPlugin);
     }
 
     @Override
@@ -54,20 +53,9 @@ public class BookPanelActivity extends CompositeActivity implements BookPanelVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_panel);
         ButterKnife.bind(this);
-        mToolbar = initToolbar();
-        mNavigationDrawerPlugin.setNavigationDrawer(mToolbar);
-
+        mToolbar = mToolbarPlugin.initToolbar(mToolbar);
+        mToolbarPlugin.setNavigationDrawer(mToolbar);
         initViewPager(mViewPager, mSmartTabLayout);
-
-    }
-
-    private Toolbar initToolbar() {
-        setSupportActionBar(mToolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-        return mToolbar;
     }
 
     private void initViewPager(ViewPager viewPager, SmartTabLayout smartTabLayout) {

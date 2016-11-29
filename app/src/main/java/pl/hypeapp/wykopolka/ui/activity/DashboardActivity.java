@@ -10,13 +10,15 @@ import com.pascalwelsch.compositeandroid.activity.CompositeActivity;
 import net.grandcentrix.thirtyinch.internal.TiPresenterProvider;
 import net.grandcentrix.thirtyinch.plugin.TiActivityPlugin;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import pl.hypeapp.wykopolka.R;
-import pl.hypeapp.wykopolka.plugin.NavigationDrawerActivityPlugin;
+import pl.hypeapp.wykopolka.plugin.ToolbarActivityPlugin;
 import pl.hypeapp.wykopolka.presenter.DashboardPresenter;
 import pl.hypeapp.wykopolka.view.DashboardView;
 
 public class DashboardActivity extends CompositeActivity implements DashboardView {
-    private final NavigationDrawerActivityPlugin mNavigationDrawerPlugin = new NavigationDrawerActivityPlugin();
+    private final ToolbarActivityPlugin mToolbarPlugin = new ToolbarActivityPlugin();
     private final TiActivityPlugin<DashboardPresenter, DashboardView> mPresenterPlugin =
             new TiActivityPlugin<>(new TiPresenterProvider<DashboardPresenter>() {
                 @NonNull
@@ -25,26 +27,21 @@ public class DashboardActivity extends CompositeActivity implements DashboardVie
                     return new DashboardPresenter();
                 }
             });
+    @BindView(R.id.toolbar) Toolbar mToolbar;
 
     public DashboardActivity() {
         addPlugin(mPresenterPlugin);
-        addPlugin(mNavigationDrawerPlugin);
+        addPlugin(mToolbarPlugin);
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+        ButterKnife.bind(this);
 
-        Toolbar toolbar = initToolbar();
-        mNavigationDrawerPlugin.setNavigationDrawer(toolbar);
-    }
-
-    private Toolbar initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        return toolbar;
+        Toolbar toolbar = mToolbarPlugin.initToolbar(mToolbar);
+        mToolbarPlugin.setNavigationDrawer(toolbar);
     }
 
 }
