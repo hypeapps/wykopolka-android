@@ -54,4 +54,5 @@
     <string name="title_activity_random_book">Losuj książkę</string>
     <string name="random_book_action">Losuję książkę...</string>
     <string name="random_book_action_button">losuj dalej</string>
+    <string name="title_activity_profile_settings">Ustawienia profilu</string>
 </resources>
