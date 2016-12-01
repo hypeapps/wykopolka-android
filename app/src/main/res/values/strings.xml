@@ -55,4 +55,19 @@
     <string name="random_book_action">Losuję książkę...</string>
     <string name="random_book_action_button">losuj dalej</string>
     <string name="title_activity_profile_settings">Ustawienia profilu</string>
+    <string name="settings_header_address">Adres wysyłki</string>
+    <string name="settings_header_notifications">Powiadomienia</string>
+    <string name="settings_header_account">Konto</string>
+    <string name="settings_btn_action_logout">wyloguj</string>
+    <string name="settings_option_notification_pw_wykop">Powiadomienia na PW Wykopu</string>
+    <string name="settings_option_notification_email">Powiadomienia e-mail</string>
+    <string name="settings_btn_action_save">zapisz</string>
+    <string name="settings_address_about">Nie musisz uzupełniać swoich danych jeśli tego nie chcesz. W takim przypadku, użytkownik chcący wysłać Ci książkę zostanie przekierowany do prywatnej rozmowy z Tobą na Wykopie.</string>
+    <string name="settings_et_hint_fullname">Imię i nazwisko</string>
+    <string name="settings_et_hint_address">Ulica, nr domu</string>
+    <string name="settings_et_hint_postal_code">Kod pocztowy</string>
+    <string name="settings_et_hint_city">Miejscowość</string>
+    <string name="tab_title_statistic">Statystyki</string>
+    <string name="tab_title_ranking">Ranking</string>
+    <string name="title_activity_stats_and_top_users">Statystyki i ranking</string>
 </resources>
