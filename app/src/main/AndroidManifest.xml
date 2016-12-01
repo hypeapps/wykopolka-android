@@ -81,6 +81,15 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name="pl.hypeapp.wykopolka.ui.activity.StatsAndTopUsersActivity"
+            android:label="@string/title_activity_stats_and_top_users">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
