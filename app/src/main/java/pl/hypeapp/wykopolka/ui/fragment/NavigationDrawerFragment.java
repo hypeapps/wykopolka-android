@@ -32,6 +32,7 @@ import pl.hypeapp.wykopolka.ui.activity.DashboardActivity;
 import pl.hypeapp.wykopolka.ui.activity.FaqActivity;
 import pl.hypeapp.wykopolka.ui.activity.ProfileSettingsActivity;
 import pl.hypeapp.wykopolka.ui.activity.RandomBookActivity;
+import pl.hypeapp.wykopolka.ui.activity.StatsAndTopUsersActivity;
 import pl.hypeapp.wykopolka.view.NavigationDrawerView;
 
 public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresenter, NavigationDrawerView>
@@ -181,6 +182,9 @@ public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresent
                     break;
                 case 6:
                     startActivity(new Intent(getActivity(), FaqActivity.class));
+                    break;
+                case 7:
+                    startActivity(new Intent(getActivity(), StatsAndTopUsersActivity.class));
                     break;
                 case 8:
                     startActivity(new Intent(getActivity(), ProfileSettingsActivity.class));
