@@ -70,4 +70,11 @@
     <string name="tab_title_statistic">Statystyki</string>
     <string name="tab_title_ranking">Ranking</string>
     <string name="title_activity_stats_and_top_users">Statystyki i ranking</string>
+    <string name="button_name">aaa</string>
+    <string name="stats_books_count">Tyle mamy książek na Wykopółce!</string>
+    <string name="stats_active_users">Tylu mamy aktywnych czytelników</string>
+    <string name="stats_changed_own">Tyle razy książka zmieniła właściciela</string>
+    <string name="stats_wish_list">Tyle tytułów użytkownicy mają na liście życzeń</string>
+    <string name="stats_average_readed_books">Średnia ilość przeczytanych książek</string>
+    <string name="number_null">0</string>
 </resources>
