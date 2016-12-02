@@ -1,21 +1,31 @@
 package pl.hypeapp.wykopolka;
 
-
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
+
+import com.squareup.leakcanary.LeakCanary;
 
 import pl.hypeapp.wykopolka.network.retrofit.WykopolkaRetrofitModule;
 
 public class App extends Application {
     private AppComponent appComponent;
 
-    public static final String WYKOPOLKA_IMG_HOST = "http://77.253.145.248/wykopolka/public/";
+    public static final String WYKOPOLKA_IMG_HOST = "http://192.168.1.10/wykopolka/public/";
 
     @Override
     public void onCreate() {
         super.onCreate();
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(this);
+        Log.d("leakd", "onCreate: leakCanary");
+
         appComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .wykopolkaRetrofitModule(new WykopolkaRetrofitModule())
