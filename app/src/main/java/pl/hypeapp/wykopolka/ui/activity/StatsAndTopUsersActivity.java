@@ -73,11 +73,11 @@ public class StatsAndTopUsersActivity extends CompositeActivity implements Stats
                 ImageView icon = (ImageView) itemView.findViewById(R.id.custom_tab_icon);
                 switch (position) {
                     case 0:
-                        icon.setImageDrawable(resources.getDrawable(R.drawable.ic_book_white_36dp));
+                        icon.setImageDrawable(resources.getDrawable(R.drawable.ic_assessment_white_36dp));
                         text.setText(getString(R.string.tab_title_statistic));
                         break;
                     case 1:
-                        icon.setImageDrawable(resources.getDrawable(R.drawable.ic_added_book_white_36dp));
+                        icon.setImageDrawable(resources.getDrawable(R.drawable.ic_star_white_36dp));
                         text.setText(getString(R.string.tab_title_ranking));
                         break;
                     default:
