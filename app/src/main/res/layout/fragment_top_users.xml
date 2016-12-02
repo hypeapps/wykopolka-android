@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardview_background">
+
+    <pl.hypeapp.wykopolka.extra.circlerefreshlayout.CircleRefreshLayout
+        android:id="@+id/refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:AniBackColor="@color/colorPrimary"
+        app:AniForeColor="@color/cardview_background"
+        app:CircleSmaller="6">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rank"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </pl.hypeapp.wykopolka.extra.circlerefreshlayout.CircleRefreshLayout>
 
 </RelativeLayout>
