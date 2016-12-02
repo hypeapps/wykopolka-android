@@ -3,32 +3,30 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center_vertical"
     android:background="@color/cardview_background"
-    android:gravity="center_vertical"
-    android:orientation="vertical">
+    android:orientation="horizontal"
+    android:padding="@dimen/activity_vertical_margin">
 
     <android.support.v7.widget.CardView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="@dimen/activity_vertical_margin"
+        android:layout_height="match_parent"
         android:elevation="2dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:background="@color/colorPrimary"
+            android:gravity="center_vertical"
             android:orientation="vertical"
             android:padding="@dimen/layout_padding">
 
             <TextView
+                android:id="@+id/tv_stats_books_count"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center_horizontal"
                 android:text="@string/number_null"
-                android:id="@+id/tv_stats_books_count"
                 android:textSize="30sp"
                 android:textStyle="bold"/>
 
@@ -45,73 +43,75 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/def_margin"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <android.support.v7.widget.CardView
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/activity_vertical_margin"
             android:layout_weight="1"
             android:elevation="2dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:orientation="vertical"
-                android:padding="@dimen/layout_padding">
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/tv_stats_active_users"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-black"
-                    android:gravity="center_horizontal"
                     android:text="@string/number_null"
-                    android:id="@+id/tv_stats_active_users"
-                    android:textSize="30sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/def_margin"
                     android:gravity="center_horizontal"
-                    android:text="@string/stats_active_users"/>
+                    android:padding="2dp"
+                    android:text="@string/stats_active_users"
+                    android:textSize="12sp"/>
 
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_vertical_margin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/def_margin"
             android:layout_weight="1"
             android:elevation="2dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/layout_padding">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/tv_stats_wish_list"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-black"
-                    android:gravity="center_horizontal"
-                    android:id="@+id/tv_stats_changed_own"
                     android:text="@string/number_null"
-                    android:textSize="30sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/def_margin"
                     android:gravity="center_horizontal"
-                    android:text="@string/stats_changed_own"/>
+                    android:padding="2dp"
+                    android:text="@string/stats_wish_list"
+                    android:textSize="12sp"/>
 
             </LinearLayout>
 
@@ -121,78 +121,81 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/def_margin"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <android.support.v7.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_vertical_margin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:elevation="2dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/layout_padding">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/tv_stats_changed_own"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tv_stats_wish_list"
                     android:fontFamily="sans-serif-black"
-                    android:gravity="center_horizontal"
                     android:text="@string/number_null"
-                    android:textSize="30sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/def_margin"
                     android:gravity="center_horizontal"
-                    android:text="@string/stats_wish_list"/>
+                    android:padding="2dp"
+                    android:text="@string/stats_changed_own"
+                    android:textSize="12sp"/>
 
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/def_margin"
             android:layout_weight="1"
             android:elevation="2dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:orientation="vertical"
-                android:padding="@dimen/layout_padding">
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:id="@+id/tv_stats_average_readed_books"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-black"
-                    android:gravity="center_horizontal"
                     android:text="@string/number_null"
-                    android:textSize="30sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/def_margin"
                     android:gravity="center_horizontal"
-                    android:text="@string/stats_average_readed_books"/>
+                    android:padding="2dp"
+                    android:text="@string/stats_average_readed_books"
+                    android:textSize="12sp"/>
 
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
 
     </LinearLayout>
+
 
 </LinearLayout>
