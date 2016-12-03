@@ -4,6 +4,7 @@ import java.util.List;
 
 import okhttp3.ResponseBody;
 import pl.hypeapp.wykopolka.model.Book;
+import pl.hypeapp.wykopolka.model.Statistics;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -34,9 +35,33 @@ public interface WykopolkaApi {
     @POST("wykopolka/public/api/request/user/books/added")
     Observable<List<Book>> getUserAddedBooks(@Field("accountkey")String accountKey, @Header("apisign")String apisign);
 
+//    @FormUrlEncoded
+//    @POST("wykopolka/public/api/request/user/books/added")
+//    Call<Book[]> getUserAddedBooks(@Field("accountkey")String accountKey, @Header("apisign")String apisign);
+
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/user/getloginbyid")
     Call<ResponseBody> getLoginById(@Field("id") String userId, @Header("apisign") String apisign);
+
+    @FormUrlEncoded
+    @POST("wykopolka/public/api/request/stats/global")
+    Call<Statistics> getGlobalStats(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
+
+    @FormUrlEncoded
+    @POST("wykopolka/public/api/request/book/selected")
+    Call<ResponseBody> getSelectedBooks(@Field("accountkey") String accountKey, @Field("amount") String amount, @Header("apisign") String apisign);
+
+    @FormUrlEncoded
+    @POST("wykopolka/public/api/request/book/random")
+    Call<ResponseBody> getRandomBook(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
+
+//    @FormUrlEncoded
+//    @POST("wykopolka/public/api/request/user/books/owned")
+//    Call<ResponseBody> getMyBooks(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
+
+    @FormUrlEncoded
+    @POST("wykopolka/public/api/request/user/books/owned")
+    Observable<List<Book>> getMyBooks(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/book/iswishlisted")
