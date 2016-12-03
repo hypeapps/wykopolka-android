@@ -77,4 +77,7 @@
     <string name="stats_wish_list">Tyle tytułów użytkownicy mają na liście życzeń</string>
     <string name="stats_average_readed_books">Średnia ilość przeczytanych książek</string>
     <string name="number_null">0</string>
+    <string name="loading_message">Wczytywanie...</string>
+    <string name="btn_action_retry">Ponów próbę</string>
+    <string name="error_message">Oops, coś poszło nie tak.</string>
 </resources>
