@@ -20,19 +20,19 @@ import butterknife.ButterKnife;
 import pl.hypeapp.wykopolka.App;
 import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.model.Book;
-import pl.hypeapp.wykopolka.ui.fragment.AddedBooksFragment;
+import rx.Observable;
+import rx.subjects.PublishSubject;
 
 public class BooksRecyclerAdapter extends RecyclerView.Adapter<BooksRecyclerAdapter.BooksRecyclerHolder> {
     private static final String WYKOPOLKA_IMG_HOST = App.WYKOPOLKA_IMG_HOST;
+    private final PublishSubject<BooksRecyclerHolder> onClickSubject = PublishSubject.create();
     private LayoutInflater mLayoutInflater;
     private List<Book> mDataSet = Collections.emptyList();
     private Context mContext;
-    private AddedBooksFragment.onBookClickListener onBookClickListener;
 
-    public BooksRecyclerAdapter(Context context, AddedBooksFragment.onBookClickListener onBookClickListener) {
+    public BooksRecyclerAdapter(Context context) {
         mLayoutInflater = LayoutInflater.from(context);
         this.mContext = context;
-        this.onBookClickListener = onBookClickListener;
     }
 
     @Override
@@ -42,8 +42,9 @@ public class BooksRecyclerAdapter extends RecyclerView.Adapter<BooksRecyclerAdap
     }
 
     @Override
-    public void onBindViewHolder(BooksRecyclerHolder holder, int position) {
+    public void onBindViewHolder(BooksRecyclerHolder booksRecyclerHolder, int position) {
         Book current = mDataSet.get(position);
+        final BooksRecyclerHolder holder = booksRecyclerHolder;
         holder.bookTitle.setText(current.getTitle());
         holder.bookAuthor.setText(current.getAuthor());
         Glide.with(mContext)
@@ -53,6 +54,16 @@ public class BooksRecyclerAdapter extends RecyclerView.Adapter<BooksRecyclerAdap
                 .override(300, 400)
                 .thumbnail(0.9f)
                 .into(holder.bookThumbnail);
+        holder.materialRippleLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickSubject.onNext(holder);
+            }
+        });
+    }
+
+    public Observable<BooksRecyclerHolder> getOnBookClicks() {
+        return onClickSubject.asObservable();
     }
 
     @Override
@@ -65,24 +76,17 @@ public class BooksRecyclerAdapter extends RecyclerView.Adapter<BooksRecyclerAdap
         notifyDataSetChanged();
     }
 
-    class BooksRecyclerHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class BooksRecyclerHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.iv_book_thumbnail) public ImageView bookThumbnail;
+        @BindView(R.id.gradient) public ImageView gradient;
         @BindView(R.id.tv_book_title) TextView bookTitle;
         @BindView(R.id.tv_book_author) TextView bookAuthor;
-        @BindView(R.id.iv_book_thumbnail) ImageView bookThumbnail;
         @BindView(R.id.card_view_added_book) CardView cardView;
         @BindView(R.id.ripple) MaterialRippleLayout materialRippleLayout;
 
         BooksRecyclerHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            materialRippleLayout.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-            View sharedCover = view.findViewById(R.id.iv_book_thumbnail);
-            View sharedGradient = view.findViewById(R.id.gradient);
-            onBookClickListener.showBookActivity(getLayoutPosition(), sharedCover, sharedGradient);
         }
     }
 }
