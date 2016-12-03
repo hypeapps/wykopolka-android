@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardview_background">
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/spin_loading"
+        style="@style/SpinKitView.Wave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        app:SpinKit_Color="@color/colorAccent"/>
+
+    <TextView
+        android:id="@+id/tv_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spin_loading"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/def_margin"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/loading_message"
+        android:textStyle="bold"/>
+
+    <pl.hypeapp.wykopolka.extra.circlerefreshlayout.CircleRefreshLayout
+        android:id="@+id/refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:AniBackColor="@color/colorPrimary"
+        app:AniForeColor="@color/cardview_background"
+        app:CircleSmaller="6">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/book_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </pl.hypeapp.wykopolka.extra.circlerefreshlayout.CircleRefreshLayout>
+
+    <include
+        android:id="@+id/error_view"
+        layout="@layout/error_layout"
+        android:visibility="gone"/>
+
+</RelativeLayout>
