@@ -1,24 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/cardview_background">
+    android:layout_height="match_parent">
 
-    <pl.hypeapp.wykopolka.extra.circlerefreshlayout.CircleRefreshLayout
-        android:id="@+id/refresh_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:AniBackColor="@color/colorPrimary"
-        app:AniForeColor="@color/cardview_background"
-        app:CircleSmaller="6">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/book_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-    </pl.hypeapp.wykopolka.extra.circlerefreshlayout.CircleRefreshLayout>
+    <include
+        android:id="@+id/added_books_layout"
+        layout="@layout/base_book_list_layout"/>
 
 </RelativeLayout>
