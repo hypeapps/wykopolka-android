@@ -7,13 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import net.grandcentrix.thirtyinch.TiFragment;
-
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import pl.hypeapp.wykopolka.App;
 import pl.hypeapp.wykopolka.R;
+import pl.hypeapp.wykopolka.base.BaseBookListFragment;
 import pl.hypeapp.wykopolka.presenter.MyBooksPresenter;
-import pl.hypeapp.wykopolka.view.MyBooksView;
+import pl.hypeapp.wykopolka.view.BookListView;
 
-public class MyBooksFragment extends TiFragment<MyBooksPresenter, MyBooksView> implements MyBooksView {
+public class MyBooksFragment extends BaseBookListFragment<MyBooksPresenter, BookListView> {
+    private MyBooksPresenter mMyBooksPresenter;
 
     public MyBooksFragment() {
     }
@@ -21,13 +24,32 @@ public class MyBooksFragment extends TiFragment<MyBooksPresenter, MyBooksView> i
     @NonNull
     @Override
     public MyBooksPresenter providePresenter() {
-        return new MyBooksPresenter();
+        String accountKey = App.readFromPreferences(getContext(), "user_account_key", null);
+        mMyBooksPresenter = new MyBooksPresenter(accountKey);
+        return mMyBooksPresenter;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_my_books, container, false);
+        ButterKnife.bind(this, view);
+        initBookListViews(view);
+        initRecyclerAdapter();
         return view;
     }
+
+    @Override
+    @OnClick(R.id.btn_error_retry)
+    public void retry() {
+        super.retry();
+        mMyBooksPresenter.initRefreshData();
+    }
+
+    @Override
+    public void refreshing() {
+        super.refreshing();
+        mMyBooksPresenter.initRefreshData();
+    }
+
 }
