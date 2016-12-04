@@ -24,6 +24,14 @@
             android:layout_marginTop="190dp"
             android:text="TextView" />
 
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_add_book"
+            android:src="@drawable/ic_add_book"
+            style="@style/FabStyle"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="24dp"/>
+
     </RelativeLayout>
 
     <fragment

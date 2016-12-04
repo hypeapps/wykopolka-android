@@ -9,8 +9,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <include
             android:id="@+id/toolbar"
@@ -43,6 +42,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/viewpager_tab"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_add_book"
+            android:src="@drawable/ic_add_book"
+            style="@style/FabStyle"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="24dp"/>
 
     </RelativeLayout>
 
