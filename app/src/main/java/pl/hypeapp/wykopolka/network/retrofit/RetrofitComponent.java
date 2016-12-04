@@ -6,6 +6,8 @@ import dagger.Component;
 import pl.hypeapp.wykopolka.presenter.AddedBooksPresenter;
 import pl.hypeapp.wykopolka.presenter.BookPanelPresenter;
 import pl.hypeapp.wykopolka.presenter.BookPresenter;
+import pl.hypeapp.wykopolka.presenter.MyBooksPresenter;
+import pl.hypeapp.wykopolka.presenter.RandomBookPresenter;
 import pl.hypeapp.wykopolka.presenter.SignInPresenter;
 
 @Singleton
@@ -19,4 +21,9 @@ public interface RetrofitComponent {
     void inject(BookPresenter tiPresenter);
 
     void inject(AddedBooksPresenter tiPresenter);
+
+    void inject(MyBooksPresenter tiPresenter);
+
+    void inject(RandomBookPresenter tiPresenter);
+
 }
