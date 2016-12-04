@@ -2,6 +2,7 @@ package pl.hypeapp.wykopolka.base;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,6 +39,7 @@ public class BaseBookListFragment<P extends TiPresenter<V>, V extends TiView> ex
     private boolean isFirstRun;
     public BooksRecyclerAdapter mRecyclerAdapter;
     public CircleRefreshLayout mCircleRefreshLayout;
+    public FloatingActionButton mFab;
     private List<Book> mBooks;
 
     @NonNull
@@ -54,6 +56,7 @@ public class BaseBookListFragment<P extends TiPresenter<V>, V extends TiView> ex
         errorView = (View) view.findViewById(R.id.error_view);
         mCircleRefreshLayout = (CircleRefreshLayout) view.findViewById(R.id.refresh_layout);
         mCircleRefreshLayout.setOnRefreshListener(this);
+        mFab = (FloatingActionButton) getActivity().findViewById(R.id.fab_add_book);
     }
 
     public void initRecyclerAdapter() {
@@ -64,11 +67,30 @@ public class BaseBookListFragment<P extends TiPresenter<V>, V extends TiView> ex
         mRecyclerAdapter.getOnBookClicks().subscribe(new Action1<BooksRecyclerAdapter.BooksRecyclerHolder>() {
             @Override
             public void call(BooksRecyclerAdapter.BooksRecyclerHolder booksRecyclerHolder) {
-                showBookActivity(mBooks, booksRecyclerHolder);
+                startBookActivity(mBooks, booksRecyclerHolder);
             }
         });
+        mRecyclerView.addOnScrollListener(onScrollListener);
         mRecyclerView.setAdapter(scaleInAnimationAdapter);
     }
+
+    private final RecyclerView.OnScrollListener onScrollListener = new RecyclerView.OnScrollListener() {
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+            if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                showFab();
+            }
+        }
+
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            if (dy > 0)
+                hideFab();
+            else if (dy < 0)
+                showFab();
+        }
+    };
 
     @Override
     public void setBookData(List<Book> books) {
@@ -140,6 +162,18 @@ public class BaseBookListFragment<P extends TiPresenter<V>, V extends TiView> ex
         }
     }
 
+    private void showFab() {
+        if (!mFab.isShown()) {
+            mFab.show();
+        }
+    }
+
+    private void hideFab() {
+        if (mFab.isShown()) {
+            mFab.hide();
+        }
+    }
+
     private Runnable finishRefreshingRun = new Runnable() {
         @Override
         public void run() {
@@ -147,7 +181,7 @@ public class BaseBookListFragment<P extends TiPresenter<V>, V extends TiView> ex
         }
     };
 
-    protected void showBookActivity(List<Book> mBooks, BooksRecyclerAdapter.BooksRecyclerHolder holder) {
+    protected void startBookActivity(List<Book> mBooks, BooksRecyclerAdapter.BooksRecyclerHolder holder) {
         int position = holder.getLayoutPosition();
         String bookId = mBooks.get(position).getBookId();
         String bookTitle = mBooks.get(position).getTitle();
