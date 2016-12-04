@@ -6,37 +6,34 @@ import net.grandcentrix.thirtyinch.TiPresenter;
 import net.grandcentrix.thirtyinch.rx.RxTiPresenterSubscriptionHandler;
 import net.grandcentrix.thirtyinch.rx.RxTiPresenterUtils;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import pl.hypeapp.wykopolka.BuildConfig;
 import pl.hypeapp.wykopolka.model.Book;
 import pl.hypeapp.wykopolka.network.api.WykopolkaApi;
 import pl.hypeapp.wykopolka.network.retrofit.DaggerRetrofitComponent;
 import pl.hypeapp.wykopolka.network.retrofit.RetrofitComponent;
 import pl.hypeapp.wykopolka.util.HashUtil;
-import pl.hypeapp.wykopolka.view.AddedBooksView;
+import pl.hypeapp.wykopolka.view.BookListView;
 import retrofit2.Retrofit;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class AddedBooksPresenter extends TiPresenter<AddedBooksView> {
+public class AddedBooksPresenter extends TiPresenter<BookListView> {
 
     @Inject
     @Named("wykopolkaApi")
     Retrofit mRetrofit;
-    RetrofitComponent mRetrofitComponent;
-
-    private static final String WYKOPOLKA_SECRET = BuildConfig.WYKOPOLKA_SECRET;
-    private String accountKey;
+    private RetrofitComponent mRetrofitComponent;
+    private String mAccountKey;
     private RxTiPresenterSubscriptionHandler rxHelper = new RxTiPresenterSubscriptionHandler(this);
 
     public AddedBooksPresenter(String accountKey) {
-        this.accountKey = accountKey;
-        Log.e("AddedBooksPresenter", this.accountKey);
+        this.mAccountKey = accountKey;
     }
 
     @Override
@@ -45,12 +42,85 @@ public class AddedBooksPresenter extends TiPresenter<AddedBooksView> {
         mRetrofitComponent = DaggerRetrofitComponent.builder().build();
         mRetrofitComponent.inject(this);
         Log.e("base_URL", mRetrofit.baseUrl().toString());
-
+        testApi();
     }
 
-    private void loadData(String accountKey) {
+    @Override
+    protected void onWakeUp() {
+        super.onWakeUp();
+        loadAddedBooks(mAccountKey);
+    }
+
+
+    private void testApi() {
+//        String apiSign = HashUtil.generateApiSign(mAccountKey);
+//        WykopolkaApi wykopolkaApi = mRetrofit.create(WykopolkaApi.class);
+//        Call<ResponseBody> call = wykopolkaApi.getMyBooks(mAccountKey, apiSign);
+//        call.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                try {
+//                    Log.d("response", "onResponse: " + response.body().string());
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//
+//            }
+//        });
+//        Call<ResponseBody> call = wykopolkaApi.getRandomBook(mAccountKey, apiSign);
+//        call.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                try {
+//                    Log.e("asd", "onResponse: " +  response.body().string());
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//
+//            }
+//        });
+//        Call<ResponseBody> call = wykopolkaApi.getSelectedBooks(mAccountKey, "2", apiSign);
+//        call.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+////                Log.e("message",  " " + String.valueOf(response.code()));
+//                try {
+//                    Log.e("selected ", response.body().string());
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//
+//            }
+//        });
+//        Call<Statistics> call = wykopolkaApi.getGlobalStats(mAccountKey, apiSign);
+//        call.enqueue(new Callback<Statistics>() {
+//            @Override
+//            public void onResponse(Call<Statistics> call, Response<Statistics> response) {
+//                Log.e("stats", " " + response.body().getStatsGetMostWantedBook());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Statistics> call, Throwable t) {
+//
+//            }
+//        });
+    }
+
+    private void loadAddedBooks(String accountKey) {
         Log.e("acc_load_data", accountKey);
-        String sign = HashUtil.md5(WYKOPOLKA_SECRET + accountKey);
+        String sign = HashUtil.generateApiSign(accountKey);
         WykopolkaApi wykopolkaApi = mRetrofit.create(WykopolkaApi.class);
 
         rxHelper.manageSubscription(
@@ -61,31 +131,25 @@ public class AddedBooksPresenter extends TiPresenter<AddedBooksView> {
                         .subscribe(new Subscriber<List<Book>>() {
                             @Override
                             public void onCompleted() {
-                                Log.e("RxJava", " OnComplete");
+                                getView().stopLoadingAnimation();
                             }
 
                             @Override
                             public void onError(Throwable e) {
-                                Log.e("onError", e.getMessage());
+                                getView().showError();
+                                getView().setBookData(Collections.<Book>emptyList());
                             }
 
                             @Override
                             public void onNext(List<Book> books) {
-                                Log.e("RxJava", "onNext: " + books.get(0).getCover());
                                 getView().setBookData(books);
+                                getView().hideError();
                             }
                         }));
     }
 
     public void initRefreshData() {
-        loadData(accountKey);
-    }
-
-    @Override
-    protected void onWakeUp() {
-        super.onWakeUp();
-        loadData(accountKey);
-        Log.e("presenter", " onWakeUp");
+        loadAddedBooks(mAccountKey);
     }
 
 }

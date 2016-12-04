@@ -64,8 +64,8 @@
 
                     <ImageView
                         android:id="@+id/iv_book_cover"
-                        android:layout_width="200dp"
-                        android:layout_height="250dp"
+                        android:layout_width="100dp"
+                        android:layout_height="120dp"
                         android:layout_centerHorizontal="true"
                         android:scaleType="fitXY"
                         android:transitionName="@string/transition_book_cover"
@@ -88,8 +88,6 @@
                         android:layout_alignStart="@+id/iv_book_cover"
                         android:layout_alignEnd="@+id/iv_book_cover"
                         android:layout_below="@id/tv_book_title"
-                        android:layout_centerHorizontal="false"
-                        android:layout_centerInParent="false"
                         android:layout_marginBottom="4dp"
                         android:layout_marginTop="4dp"/>
 
@@ -99,10 +97,10 @@
 
             <Button
                 android:id="@+id/btn_random_next_book"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/card_view_random_book"
-                android:layout_alignStart="@+id/card_view_random_book"
                 android:layout_below="@id/card_view_random_book"
                 android:drawableStart="@drawable/ic_shuffle"
                 android:text="@string/random_book_action_button"/>
