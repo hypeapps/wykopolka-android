@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -50,6 +51,7 @@ public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresent
     private String mAvatarUrl;
     private String mUserLogin;
     @BindView(R.id.drawer_list) RecyclerView mRecyclerView;
+    FloatingActionButton mFab;
 
     public NavigationDrawerFragment() {
     }
@@ -90,6 +92,7 @@ public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresent
         mFromSavedInstanceState = savedInstanceState != null;
         navigationDrawerIcons = getResources().obtainTypedArray(R.array.navigation_drawer_icons);
         navigationDrawerTitles = getResources().getStringArray(R.array.navigation_drawer_items);
+
     }
 
     @Override
@@ -104,6 +107,7 @@ public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresent
 
     public void create(DrawerLayout drawerLayout, final Toolbar toolbar, int fragmentId) {
         mContainer = getActivity().findViewById(fragmentId);
+        mFab = (FloatingActionButton) getActivity().findViewById(R.id.fab_add_book);
         mDrawerLayout = drawerLayout;
         mDrawerToggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
             @Override
@@ -125,8 +129,13 @@ public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresent
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 super.onDrawerSlide(drawerView, slideOffset);
-//                ((AddedBooksActivity) getActivity()).onDrawerSlide(slideOffset);
-//                toolbar.setAlpha(1 - slideOffset / 2);
+                toggleTranslateFAB(mFab, slideOffset);
+            }
+
+            private void toggleTranslateFAB(FloatingActionButton fab, float slideOffset) {
+                if (fab != null) {
+                    fab.setTranslationX(slideOffset * 200);
+                }
             }
         };
         mDrawerLayout.addDrawerListener(mDrawerToggle);
