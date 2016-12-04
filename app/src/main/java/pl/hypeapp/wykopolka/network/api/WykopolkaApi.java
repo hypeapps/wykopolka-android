@@ -14,34 +14,21 @@ import rx.Observable;
 
 public interface WykopolkaApi {
 
-    /**
-     * @param id
-     * @param apisign
-     * @return Book
-     */
-//    @FormUrlEncoded
-//    @POST("wykopolka/public/api/request/book")
-//    Call<Book[]> getBook(@Field("id")String id, @Header("apisign")String apisign);
-
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/book")
     Observable<List<Book>> getBook(@Field("id") String id, @Header("apisign") String apisign);
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/book/find/by/author")
-    Call<ResponseBody> findBookByAuthor(@Field("booksearch")String author, @Header("apisign")String apisign);
+    Call<ResponseBody> findBookByAuthor(@Field("booksearch") String author, @Header("apisign") String apisign);
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/user/books/added")
-    Observable<List<Book>> getUserAddedBooks(@Field("accountkey")String accountKey, @Header("apisign")String apisign);
-
-//    @FormUrlEncoded
-//    @POST("wykopolka/public/api/request/user/books/added")
-//    Call<Book[]> getUserAddedBooks(@Field("accountkey")String accountKey, @Header("apisign")String apisign);
+    Observable<List<Book>> getUserAddedBooks(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
 
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/user/getloginbyid")
-    Call<ResponseBody> getLoginById(@Field("id") String userId, @Header("apisign") String apisign);
+    @POST("wykopolka/public/api/request/user/books/owned")
+    Observable<List<Book>> getMyBooks(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/stats/global")
@@ -53,15 +40,11 @@ public interface WykopolkaApi {
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/book/random")
-    Call<ResponseBody> getRandomBook(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
-
-//    @FormUrlEncoded
-//    @POST("wykopolka/public/api/request/user/books/owned")
-//    Call<ResponseBody> getMyBooks(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
+    Observable<Book> getRandomBook(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
 
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/user/books/owned")
-    Observable<List<Book>> getMyBooks(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
+    @POST("wykopolka/public/api/request/user/getloginbyid")
+    Call<ResponseBody> getLoginById(@Field("id") String userId, @Header("apisign") String apisign);
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/book/iswishlisted")
@@ -71,17 +54,5 @@ public interface WykopolkaApi {
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/book/iswishlistingallowed")
     Call<ResponseBody> isWishlistingAllowed(@Field("accountkey") String accountKey, @Field("id") String bookId, @Header("apisign") String apisign);
-
-//    @FormUrlEncoded
-//    @POST("wykopolka/public/api/request/book/iswishlisted")
-//    Call<Response<ResponseBody>> isWishlisted1(@Field("accountkey")String accountKey, @Field("book_id")String bookId, @Header("apisign")String apisign);
-
-//    @FormUrlEncoded
-//    @POST("wykopolka/public/api/request/user/books/added")
-//    Call<ResponseBody> getUserAddedBooks(@Field("accountkey")String accountKey, @Header("apisign")String apisign);
-
-//    @FormUrlEncoded
-//    @POST("wykopolka/public/api/request/book")
-//    Call<ResponseBody> getBooks(@Header("apisign")String apisign , @Field("cos") String cos);
 
 }
