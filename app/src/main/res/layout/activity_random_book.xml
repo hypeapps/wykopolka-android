@@ -16,84 +16,103 @@
             android:id="@+id/toolbar"
             layout="@layout/toolbar"/>
 
-        <ProgressBar
-            android:id="@+id/google_progress"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"/>
-
-        <android.support.v7.widget.CardView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/card_view_random_book"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:elevation="2dp">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:paddingLeft="4dp"
-                android:paddingRight="4dp"
-                android:paddingTop="4dp">
-
-                <ImageView
-                    android:id="@+id/iv_book_cover"
-                    android:layout_width="200dp"
-                    android:layout_height="250dp"
-                    android:layout_centerHorizontal="true"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/books"/>
-
-                <TextView
-                    android:id="@+id/tv_book_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/iv_book_cover"
-                    android:layout_alignRight="@+id/iv_book_cover"
-                    android:layout_below="@id/iv_book_cover"
-                    android:layout_marginTop="4dp"
-                    android:text="Awantury na tle powszechnego ciążenia"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:id="@+id/tv_book_author"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/iv_book_cover"
-                    android:layout_alignRight="@+id/iv_book_cover"
-                    android:layout_below="@id/tv_book_title"
-                    android:layout_centerHorizontal="false"
-                    android:layout_centerInParent="false"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginTop="4dp"
-                    android:text="Tomasz Lem"/>
-
-            </RelativeLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <Button
+        <RelativeLayout
+            android:id="@+id/layout_random_animation"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/card_view_random_book"
-            android:layout_alignRight="@+id/card_view_random_book"
-            android:layout_below="@id/card_view_random_book"
-            android:text="@string/random_book_action_button"/>
+            android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/google_progress"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="16dp"
-            android:fontFamily="sans-serif-black"
-            android:text="@string/random_book_action"
-            android:textStyle="bold"/>
+            <ProgressBar
+                android:id="@+id/google_progress"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/google_progress"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/random_book_action"
+                android:textStyle="bold"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_random_book"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card_view_random_book"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:elevation="2dp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="4dp">
+
+                    <ImageView
+                        android:id="@+id/iv_book_cover"
+                        android:layout_width="200dp"
+                        android:layout_height="250dp"
+                        android:layout_centerHorizontal="true"
+                        android:scaleType="fitXY"
+                        android:transitionName="@string/transition_book_cover"
+                        app:srcCompat="@drawable/books"/>
+
+                    <TextView
+                        android:id="@+id/tv_book_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/iv_book_cover"
+                        android:layout_alignEnd="@+id/iv_book_cover"
+                        android:layout_below="@id/iv_book_cover"
+                        android:layout_marginTop="4dp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tv_book_author"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/iv_book_cover"
+                        android:layout_alignEnd="@+id/iv_book_cover"
+                        android:layout_below="@id/tv_book_title"
+                        android:layout_centerHorizontal="false"
+                        android:layout_centerInParent="false"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"/>
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <Button
+                android:id="@+id/btn_random_next_book"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/card_view_random_book"
+                android:layout_alignStart="@+id/card_view_random_book"
+                android:layout_below="@id/card_view_random_book"
+                android:drawableStart="@drawable/ic_shuffle"
+                android:text="@string/random_book_action_button"/>
+
+        </RelativeLayout>
+
+        <include
+            android:id="@+id/error_view"
+            layout="@layout/error_layout"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 
