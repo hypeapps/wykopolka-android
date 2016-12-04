@@ -53,6 +53,7 @@ public class BookPanelActivity extends CompositeActivity implements BookPanelVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_panel);
         ButterKnife.bind(this);
+
         mToolbar = mToolbarPlugin.initToolbar(mToolbar);
         mToolbarPlugin.setNavigationDrawer(mToolbar);
         initViewPager(mViewPager, mSmartTabLayout);
