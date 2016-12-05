@@ -87,11 +87,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/def_margin"
                         android:gravity="center_horizontal"
                         android:padding="2dp"
                         android:text="@string/stats_active_users"
-                        android:textSize="12sp"/>
+                        android:textSize="10sp"/>
 
                 </LinearLayout>
 
@@ -122,11 +121,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/def_margin"
                         android:gravity="center_horizontal"
                         android:padding="2dp"
                         android:text="@string/stats_wish_list"
-                        android:textSize="12sp"/>
+                        android:textSize="10sp"/>
 
                 </LinearLayout>
 
@@ -165,11 +163,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/def_margin"
                         android:gravity="center_horizontal"
                         android:padding="2dp"
                         android:text="@string/stats_changed_own"
-                        android:textSize="12sp"/>
+                        android:textSize="10sp"/>
 
                 </LinearLayout>
 
@@ -200,11 +197,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/def_margin"
                         android:gravity="center_horizontal"
                         android:padding="2dp"
                         android:text="@string/stats_average_readed_books"
-                        android:textSize="12sp"/>
+                        android:textSize="10sp"/>
 
                 </LinearLayout>
 
