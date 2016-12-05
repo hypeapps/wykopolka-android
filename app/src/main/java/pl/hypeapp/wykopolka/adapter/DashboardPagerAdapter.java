@@ -21,11 +21,11 @@ public class DashboardPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new MyBooksFragment();
+                return new SelectedBooksFragment();
             case 1:
                 return new AddedBooksFragment();
             case 2:
-                return new SelectedBooksFragment();
+                return new MyBooksFragment();
             default:
                 return null;
         }
