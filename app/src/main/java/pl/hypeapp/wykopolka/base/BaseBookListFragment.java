@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.github.ybq.android.spinkit.style.Wave;
 
@@ -34,6 +35,7 @@ public class BaseBookListFragment<P extends TiPresenter<V>, V extends TiView> ex
     private View mLoadingView;
     private View errorView;
     private RecyclerView mRecyclerView;
+    private TextView mEmptyBookListMessage;
     private boolean isRefreshing = false;
     private boolean isFirstRun;
     public BooksRecyclerAdapter mRecyclerAdapter;
@@ -51,6 +53,7 @@ public class BaseBookListFragment<P extends TiPresenter<V>, V extends TiView> ex
         isFirstRun = true;
         mRecyclerView = (RecyclerView) view.findViewById(R.id.book_list);
         mSpinLoading = (ProgressBar) view.findViewById(R.id.spin_loading);
+        mEmptyBookListMessage = (TextView) view.findViewById(R.id.tv_book_list_null);
         mLoadingView = (View) view.findViewById(R.id.loading_view);
         errorView = (View) view.findViewById(R.id.error_view);
         mCircleRefreshLayout = (CircleRefreshLayout) view.findViewById(R.id.refresh_layout);
@@ -93,8 +96,13 @@ public class BaseBookListFragment<P extends TiPresenter<V>, V extends TiView> ex
 
     @Override
     public void setBookData(List<Book> books) {
-        this.mBooks = books;
-        mRecyclerAdapter.setData(this.mBooks);
+        if (books != null) {
+            this.mBooks = books;
+            mRecyclerAdapter.setData(this.mBooks);
+            mEmptyBookListMessage.setVisibility(View.GONE);
+        } else {
+            mEmptyBookListMessage.setVisibility(View.VISIBLE);
+        }
         stopRefreshing();
     }
 
