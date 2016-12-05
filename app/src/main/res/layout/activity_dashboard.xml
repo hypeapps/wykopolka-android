@@ -12,17 +12,35 @@
 
         <include
             android:id="@+id/toolbar"
-            layout="@layout/toolbar" />
+            layout="@layout/tab_toolbar"/>
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="116dp"
-            android:layout_marginTop="190dp"
-            android:text="TextView" />
+        <com.ogaclejapan.smarttablayout.SmartTabLayout
+            android:id="@+id/viewpager_tab"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@id/toolbar"
+            android:background="@color/colorPrimary"
+            android:clipToPadding="false"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            app:stl_defaultTabTextColor="@android:color/white"
+            app:stl_defaultTabTextHorizontalPadding="18dp"
+            app:stl_distributeEvenly="true"
+            app:stl_dividerColor="@color/transparent"
+            app:stl_dividerThickness="0dp"
+            app:stl_indicatorColor="#20000000"
+            app:stl_indicatorCornerRadius="18dp"
+            app:stl_indicatorGravity="center"
+            app:stl_indicatorInterpolation="smart"
+            app:stl_indicatorThickness="36dp"
+            app:stl_underlineColor="@color/transparent"
+            app:stl_underlineThickness="0dp"/>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/viewpager_tab"/>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_add_book"
