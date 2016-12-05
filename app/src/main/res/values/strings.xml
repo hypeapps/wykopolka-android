@@ -80,4 +80,10 @@
     <string name="loading_message">Wczytywanie...</string>
     <string name="btn_action_retry">Ponów próbę</string>
     <string name="error_message">Oops, coś poszło nie tak.</string>
+    <string name="selected_books_null">Brak dostępnych typów</string>
+    <string name="added_books_null">Nie dodałeś jeszcze żadnej książki</string>
+    <string name="my_books_null">Nie posiadasz żadnych książek</string>
+    <string name="tab_title_recommended">polecane</string>
+    <string name="tab_title_waiting">oczekujący</string>
+    <string name="tab_title_wishlist">lista życzeń</string>
 </resources>
