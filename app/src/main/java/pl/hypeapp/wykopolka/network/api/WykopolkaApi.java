@@ -36,7 +36,7 @@ public interface WykopolkaApi {
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/book/selected")
-    Call<ResponseBody> getSelectedBooks(@Field("accountkey") String accountKey, @Field("amount") String amount, @Header("apisign") String apisign);
+    Observable<List<Book>> getSelectedBooks(@Field("accountkey") String accountKey, @Field("amount") String amount, @Header("apisign") String apisign);
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/book/random")
