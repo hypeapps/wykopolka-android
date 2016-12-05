@@ -32,7 +32,7 @@ public interface WykopolkaApi {
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/stats/global")
-    Call<Statistics> getGlobalStats(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
+    Observable<Statistics> getGlobalStats(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/book/selected")
