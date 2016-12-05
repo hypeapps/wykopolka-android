@@ -17,9 +17,9 @@
         <item>@drawable/ic_search_white_36dp</item>
         <item>@drawable/ic_book_white_36dp</item>
         <item>@drawable/ic_favorite_white_36dp</item>
-        <item>@drawable/ic_shuffle</item>
+        <item>@drawable/ic_casino_white_36dp</item>
         <item>@drawable/ic_date_range_white_36dp</item>
-        <item>@drawable/ic_help_white_36dp</item>
+        <item>@drawable/ic_explore_white_36dp</item>
         <item>@drawable/ic_equalizer_white_36dp</item>
         <item>@drawable/ic_account_circle_white_36dp</item>
     </integer-array>
