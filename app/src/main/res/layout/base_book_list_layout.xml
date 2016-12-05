@@ -6,25 +6,9 @@
     android:layout_height="match_parent"
     android:background="@color/cardview_background">
 
-    <com.github.ybq.android.spinkit.SpinKitView
-        android:id="@+id/spin_loading"
-        style="@style/SpinKitView.Wave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        app:SpinKit_Color="@color/colorAccent"/>
-
-    <TextView
-        android:id="@+id/tv_loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/spin_loading"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/def_margin"
-        android:fontFamily="sans-serif-black"
-        android:text="@string/loading_message"
-        android:textStyle="bold"/>
+    <include
+        android:id="@+id/loading_view"
+        layout="@layout/loading_layout"/>
 
     <pl.hypeapp.wykopolka.extra.circlerefreshlayout.CircleRefreshLayout
         android:id="@+id/refresh_layout"

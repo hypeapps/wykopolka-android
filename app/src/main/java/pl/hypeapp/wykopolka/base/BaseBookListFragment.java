@@ -9,7 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.github.ybq.android.spinkit.style.Wave;
 
@@ -32,7 +31,7 @@ import rx.functions.Action1;
 public class BaseBookListFragment<P extends TiPresenter<V>, V extends TiView> extends TiFragment<P, V>
         implements BookListView, CircleRefreshLayout.OnCircleRefreshListener {
     private ProgressBar mSpinLoading;
-    private TextView loadingMessage;
+    private View mLoadingView;
     private View errorView;
     private RecyclerView mRecyclerView;
     private boolean isRefreshing = false;
@@ -52,7 +51,7 @@ public class BaseBookListFragment<P extends TiPresenter<V>, V extends TiView> ex
         isFirstRun = true;
         mRecyclerView = (RecyclerView) view.findViewById(R.id.book_list);
         mSpinLoading = (ProgressBar) view.findViewById(R.id.spin_loading);
-        loadingMessage = (TextView) view.findViewById(R.id.tv_loading);
+        mLoadingView = (View) view.findViewById(R.id.loading_view);
         errorView = (View) view.findViewById(R.id.error_view);
         mCircleRefreshLayout = (CircleRefreshLayout) view.findViewById(R.id.refresh_layout);
         mCircleRefreshLayout.setOnRefreshListener(this);
@@ -110,8 +109,7 @@ public class BaseBookListFragment<P extends TiPresenter<V>, V extends TiView> ex
     @Override
     public void stopLoadingAnimation() {
         if (isFirstRun) {
-            loadingMessage.setVisibility(View.GONE);
-            mSpinLoading.setVisibility(View.GONE);
+            mLoadingView.setVisibility(View.GONE);
             isFirstRun = false;
         }
     }
@@ -121,9 +119,8 @@ public class BaseBookListFragment<P extends TiPresenter<V>, V extends TiView> ex
         if (errorView != null) {
             errorView.setVisibility(View.VISIBLE);
         }
-        if (mSpinLoading.getVisibility() == View.VISIBLE) {
-            mSpinLoading.setVisibility(View.GONE);
-            loadingMessage.setVisibility(View.GONE);
+        if (mLoadingView.getVisibility() == View.VISIBLE) {
+            mLoadingView.setVisibility(View.GONE);
         }
     }
 
@@ -139,9 +136,8 @@ public class BaseBookListFragment<P extends TiPresenter<V>, V extends TiView> ex
         if (errorView != null) {
             errorView.setVisibility(View.GONE);
         }
-        if (mSpinLoading != null) {
-            mSpinLoading.setVisibility(View.VISIBLE);
-            loadingMessage.setVisibility(View.VISIBLE);
+        if (mLoadingView != null) {
+            mLoadingView.setVisibility(View.VISIBLE);
         }
     }
 
