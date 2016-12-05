@@ -1,201 +1,217 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_background"
-    android:orientation="horizontal"
-    android:padding="@dimen/activity_vertical_margin">
+    android:background="@color/cardview_background">
 
-    <android.support.v7.widget.CardView
-        android:layout_width="wrap_content"
+    <include
+        android:id="@+id/error_view"
+        layout="@layout/error_layout"
+        android:visibility="gone"/>
+
+    <include
+        android:id="@+id/loading_view"
+        layout="@layout/loading_layout"/>
+
+    <LinearLayout
+        android:id="@+id/stats_layout"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:elevation="2dp">
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:padding="@dimen/activity_vertical_margin">
 
-        <LinearLayout
+        <android.support.v7.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:padding="@dimen/layout_padding">
+            android:elevation="2dp">
 
-            <TextView
-                android:id="@+id/tv_stats_books_count"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-black"
-                android:gravity="center_horizontal"
-                android:text="@string/number_null"
-                android:textSize="30sp"
-                android:textStyle="bold"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:padding="@dimen/layout_padding">
 
-            <TextView
+                <TextView
+                    android:id="@+id/tv_stats_books_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:gravity="center_horizontal"
+                    android:text="@string/number_null"
+                    android:textSize="30sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/def_margin"
+                    android:gravity="center_horizontal"
+                    android:text="@string/stats_books_count"/>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/def_margin"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:elevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_stats_active_users"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:text="@string/number_null"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/def_margin"
+                        android:gravity="center_horizontal"
+                        android:padding="2dp"
+                        android:text="@string/stats_active_users"
+                        android:textSize="12sp"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/def_margin"
-                android:gravity="center_horizontal"
-                android:text="@string/stats_books_count"/>
+                android:layout_weight="1"
+                android:elevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_stats_wish_list"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:text="@string/number_null"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/def_margin"
+                        android:gravity="center_horizontal"
+                        android:padding="2dp"
+                        android:text="@string/stats_wish_list"
+                        android:textSize="12sp"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
 
         </LinearLayout>
 
-    </android.support.v7.widget.CardView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/def_margin"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <android.support.v7.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/def_margin"
             android:layout_weight="1"
-            android:elevation="2dp">
+            android:orientation="vertical">
 
-            <LinearLayout
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center_horizontal|center_vertical"
-                android:orientation="vertical">
+                android:layout_weight="1"
+                android:elevation="2dp">
 
-                <TextView
-                    android:id="@+id/tv_stats_active_users"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-black"
-                    android:text="@string/number_null"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/def_margin"
-                    android:gravity="center_horizontal"
-                    android:padding="2dp"
-                    android:text="@string/stats_active_users"
-                    android:textSize="12sp"/>
+                    <TextView
+                        android:id="@+id/tv_stats_changed_own"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:text="@string/number_null"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/def_margin"
+                        android:gravity="center_horizontal"
+                        android:padding="2dp"
+                        android:text="@string/stats_changed_own"
+                        android:textSize="12sp"/>
 
-        </android.support.v7.widget.CardView>
+                </LinearLayout>
 
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/def_margin"
-            android:layout_weight="1"
-            android:elevation="2dp">
+            </android.support.v7.widget.CardView>
 
-            <LinearLayout
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center_horizontal|center_vertical"
-                android:orientation="vertical">
+                android:layout_marginTop="@dimen/def_margin"
+                android:layout_weight="1"
+                android:elevation="2dp">
 
-                <TextView
-                    android:id="@+id/tv_stats_wish_list"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-black"
-                    android:text="@string/number_null"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/def_margin"
-                    android:gravity="center_horizontal"
-                    android:padding="2dp"
-                    android:text="@string/stats_wish_list"
-                    android:textSize="12sp"/>
+                    <TextView
+                        android:id="@+id/tv_stats_average_readed_books"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:text="@string/number_null"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/def_margin"
+                        android:gravity="center_horizontal"
+                        android:padding="2dp"
+                        android:text="@string/stats_average_readed_books"
+                        android:textSize="12sp"/>
 
-        </android.support.v7.widget.CardView>
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/def_margin"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:elevation="2dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal|center_vertical"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_stats_changed_own"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-black"
-                    android:text="@string/number_null"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/def_margin"
-                    android:gravity="center_horizontal"
-                    android:padding="2dp"
-                    android:text="@string/stats_changed_own"
-                    android:textSize="12sp"/>
-
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/def_margin"
-            android:layout_weight="1"
-            android:elevation="2dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal|center_vertical"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_stats_average_readed_books"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-black"
-                    android:text="@string/number_null"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/def_margin"
-                    android:gravity="center_horizontal"
-                    android:padding="2dp"
-                    android:text="@string/stats_average_readed_books"
-                    android:textSize="12sp"/>
-
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-    </LinearLayout>
-
-
-</LinearLayout>
+</RelativeLayout>
