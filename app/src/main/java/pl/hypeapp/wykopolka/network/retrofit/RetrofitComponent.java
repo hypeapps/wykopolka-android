@@ -8,11 +8,12 @@ import pl.hypeapp.wykopolka.presenter.BookPanelPresenter;
 import pl.hypeapp.wykopolka.presenter.BookPresenter;
 import pl.hypeapp.wykopolka.presenter.MyBooksPresenter;
 import pl.hypeapp.wykopolka.presenter.RandomBookPresenter;
+import pl.hypeapp.wykopolka.presenter.SelectedBooksPresenter;
 import pl.hypeapp.wykopolka.presenter.SignInPresenter;
 import pl.hypeapp.wykopolka.presenter.StatisticPresenter;
 
 @Singleton
-@Component(modules = { WykopolkaRetrofitModule.class })
+@Component(modules = {WykopolkaRetrofitModule.class})
 public interface RetrofitComponent {
 
     void inject(BookPanelPresenter tiPresenter);
@@ -28,5 +29,7 @@ public interface RetrofitComponent {
     void inject(RandomBookPresenter tiPresenter);
 
     void inject(StatisticPresenter tiPresenter);
+
+    void inject(SelectedBooksPresenter tiPresenter);
 
 }
