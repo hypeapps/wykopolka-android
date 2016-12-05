@@ -69,7 +69,7 @@
     <string name="settings_et_hint_city">Miejscowość</string>
     <string name="tab_title_statistic">Statystyki</string>
     <string name="tab_title_ranking">Ranking</string>
-    <string name="title_activity_stats_and_top_users">Statystyki i ranking</string>
+    <string name="title_activity_stats_and_top_users">Ranking i statystki</string>
     <string name="button_name">aaa</string>
     <string name="stats_books_count">Tyle mamy książek na Wykopółce!</string>
     <string name="stats_active_users">Tylu mamy aktywnych czytelników</string>
