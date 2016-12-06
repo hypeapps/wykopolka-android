@@ -1,12 +1,13 @@
 package pl.hypeapp.wykopolka.model;
-import java.util.HashMap;
-import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @JsonPropertyOrder({
         "id",
@@ -19,7 +20,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "desc",
         "cover",
         "owned_by",
+        "owned_by_login",
         "added_by",
+        "added_by_login",
         "isTmp",
         "quality",
         "created_at",
@@ -47,8 +50,12 @@ public class Book {
     private String cover;
     @JsonProperty("owned_by")
     private String ownedBy;
+    @JsonProperty("owned_by_login")
+    private String ownedByLogin;
     @JsonProperty("added_by")
     private String addedBy;
+    @JsonProperty("added_by_login")
+    private String addedByLogin;
     @JsonProperty("isTmp")
     private Integer isTmp;
     @JsonProperty("quality")
@@ -261,6 +268,22 @@ public class Book {
     }
 
     /**
+     * @return The ownedByLogin
+     */
+    @JsonProperty("owned_by_login")
+    public String getOwnedByLogin() {
+        return ownedByLogin;
+    }
+
+    /**
+     * @param ownedByLogin The owned_by_login
+     */
+    @JsonProperty("owned_by_login")
+    public void setOwnedByLogin(String ownedByLogin) {
+        this.ownedByLogin = ownedByLogin;
+    }
+
+    /**
      *
      * @return
      * The addedBy
@@ -278,6 +301,24 @@ public class Book {
     @JsonProperty("added_by")
     public void setAddedBy(String addedBy) {
         this.addedBy = addedBy;
+    }
+
+    /**
+     *
+     * @return
+     * The addedByLogin
+     */
+    @JsonProperty("added_by_login")
+    public String getAddedByLogin() {
+        return addedByLogin;
+    }
+
+    /**
+     * @param addedByLogin The owned_by_login
+     */
+    @JsonProperty("added_by_login")
+    public void setAddedByLogin(String addedByLogin) {
+        this.addedByLogin = addedByLogin;
     }
 
     /**
