@@ -1,7 +1,5 @@
 package pl.hypeapp.wykopolka.model;
 
-import java.util.HashMap;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -9,117 +7,89 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
+        "id",
         "login",
-        "email",
-        "public_email",
-        "name",
-        "www",
-        "jabber",
-        "gg",
+        "fullName",
+        "adress",
         "city",
-        "about",
-        "author_group",
-        "links_added",
-        "links_published",
-        "comments",
-        "rank",
-        "followers",
-        "following",
-        "entries",
-        "entries_comments",
-        "diggs",
-        "buries",
-        "groups",
-        "related_links",
-        "signup_date",
-        "avatar",
-        "avatar_big",
-        "avatar_med",
-        "avatar_lo",
-        "is_observed",
-        "is_blocked",
-        "sex",
-        "url",
-        "violation_url",
-        "userkey"
+        "postal",
+        "mail",
+        "isMailConfirmed",
+        "accountKeyToken",
+        "accountStatus",
+        "accountType",
+        "userSign",
+        "userKey",
+        "avatarBig",
+        "rankPoints",
+        "password",
+        "created_at",
+        "updated_at"
 })
 public class User {
 
+    @JsonProperty("id")
+    private Integer id;
     @JsonProperty("login")
     private String login;
-    @JsonProperty("email")
-    private String email;
-    @JsonProperty("public_email")
-    private String publicEmail;
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("www")
-    private String www;
-    @JsonProperty("jabber")
-    private String jabber;
-    @JsonProperty("gg")
-    private String gg;
+    @JsonProperty("fullName")
+    private String fullName;
+    @JsonProperty("adress")
+    private String adress;
     @JsonProperty("city")
     private String city;
-    @JsonProperty("about")
-    private String about;
-    @JsonProperty("author_group")
-    private Integer authorGroup;
-    @JsonProperty("links_added")
-    private Integer linksAdded;
-    @JsonProperty("links_published")
-    private Integer linksPublished;
-    @JsonProperty("comments")
-    private Integer comments;
-    @JsonProperty("rank")
-    private Integer rank;
-    @JsonProperty("followers")
-    private Integer followers;
-    @JsonProperty("following")
-    private Integer following;
-    @JsonProperty("entries")
-    private Integer entries;
-    @JsonProperty("entries_comments")
-    private Integer entriesComments;
-    @JsonProperty("diggs")
-    private Integer diggs;
-    @JsonProperty("buries")
-    private Integer buries;
-    @JsonProperty("groups")
-    private Integer groups;
-    @JsonProperty("related_links")
-    private Integer relatedLinks;
-    @JsonProperty("signup_date")
-    private String signupDate;
-    @JsonProperty("avatar")
-    private String avatar;
-    @JsonProperty("avatar_big")
+    @JsonProperty("postal")
+    private String postal;
+    @JsonProperty("mail")
+    private String mail;
+    @JsonProperty("isMailConfirmed")
+    private Integer isMailConfirmed;
+    @JsonProperty("accountKeyToken")
+    private String accountKeyToken;
+    @JsonProperty("accountStatus")
+    private String accountStatus;
+    @JsonProperty("accountType")
+    private String accountType;
+    @JsonProperty("userSign")
+    private String userSign;
+    @JsonProperty("userKey")
+    private String userKey;
+    @JsonProperty("avatarBig")
     private String avatarBig;
-    @JsonProperty("avatar_med")
-    private String avatarMed;
-    @JsonProperty("avatar_lo")
-    private String avatarLo;
-    @JsonProperty("is_observed")
-    private Object isObserved;
-    @JsonProperty("is_blocked")
-    private Object isBlocked;
-    @JsonProperty("sex")
-    private String sex;
-    @JsonProperty("url")
-    private String url;
-    @JsonProperty("violation_url")
-    private Object violationUrl;
-    @JsonProperty("userkey")
-    private String userkey;
+    @JsonProperty("rankPoints")
+    private String rankPoints;
+    @JsonProperty("password")
+    private String password;
+    @JsonProperty("created_at")
+    private String createdAt;
+    @JsonProperty("updated_at")
+    private String updatedAt;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
-     *
-     * @return
-     * The login
+     * @return The id
+     */
+    @JsonProperty("id")
+    public Integer getId() {
+        return id;
+    }
+
+    /**
+     * @param id The id
+     */
+    @JsonProperty("id")
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    /**
+     * @return The login
      */
     @JsonProperty("login")
     public String getLogin() {
@@ -127,9 +97,7 @@ public class User {
     }
 
     /**
-     *
-     * @param login
-     * The login
+     * @param login The login
      */
     @JsonProperty("login")
     public void setLogin(String login) {
@@ -137,129 +105,39 @@ public class User {
     }
 
     /**
-     *
-     * @return
-     * The email
+     * @return The fullName
      */
-    @JsonProperty("email")
-    public String getEmail() {
-        return email;
+    @JsonProperty("fullName")
+    public String getFullName() {
+        return fullName;
     }
 
     /**
-     *
-     * @param email
-     * The email
+     * @param fullName The fullName
      */
-    @JsonProperty("email")
-    public void setEmail(String email) {
-        this.email = email;
+    @JsonProperty("fullName")
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     /**
-     *
-     * @return
-     * The publicEmail
+     * @return The adress
      */
-    @JsonProperty("public_email")
-    public String getPublicEmail() {
-        return publicEmail;
+    @JsonProperty("adress")
+    public String getAdress() {
+        return adress;
     }
 
     /**
-     *
-     * @param publicEmail
-     * The public_email
+     * @param adress The adress
      */
-    @JsonProperty("public_email")
-    public void setPublicEmail(String publicEmail) {
-        this.publicEmail = publicEmail;
+    @JsonProperty("adress")
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
 
     /**
-     *
-     * @return
-     * The name
-     */
-    @JsonProperty("name")
-    public String getName() {
-        return name;
-    }
-
-    /**
-     *
-     * @param name
-     * The name
-     */
-    @JsonProperty("name")
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     *
-     * @return
-     * The www
-     */
-    @JsonProperty("www")
-    public String getWww() {
-        return www;
-    }
-
-    /**
-     *
-     * @param www
-     * The www
-     */
-    @JsonProperty("www")
-    public void setWww(String www) {
-        this.www = www;
-    }
-
-    /**
-     *
-     * @return
-     * The jabber
-     */
-    @JsonProperty("jabber")
-    public String getJabber() {
-        return jabber;
-    }
-
-    /**
-     *
-     * @param jabber
-     * The jabber
-     */
-    @JsonProperty("jabber")
-    public void setJabber(String jabber) {
-        this.jabber = jabber;
-    }
-
-    /**
-     *
-     * @return
-     * The gg
-     */
-    @JsonProperty("gg")
-    public String getGg() {
-        return gg;
-    }
-
-    /**
-     *
-     * @param gg
-     * The gg
-     */
-    @JsonProperty("gg")
-    public void setGg(String gg) {
-        this.gg = gg;
-    }
-
-    /**
-     *
-     * @return
-     * The city
+     * @return The city
      */
     @JsonProperty("city")
     public String getCity() {
@@ -267,9 +145,7 @@ public class User {
     }
 
     /**
-     *
-     * @param city
-     * The city
+     * @param city The city
      */
     @JsonProperty("city")
     public void setCity(String city) {
@@ -277,503 +153,211 @@ public class User {
     }
 
     /**
-     *
-     * @return
-     * The about
+     * @return The postal
      */
-    @JsonProperty("about")
-    public String getAbout() {
-        return about;
+    @JsonProperty("postal")
+    public String getPostal() {
+        return postal;
     }
 
     /**
-     *
-     * @param about
-     * The about
+     * @param postal The postal
      */
-    @JsonProperty("about")
-    public void setAbout(String about) {
-        this.about = about;
+    @JsonProperty("postal")
+    public void setPostal(String postal) {
+        this.postal = postal;
     }
 
     /**
-     *
-     * @return
-     * The authorGroup
+     * @return The mail
      */
-    @JsonProperty("author_group")
-    public Integer getAuthorGroup() {
-        return authorGroup;
+    @JsonProperty("mail")
+    public String getMail() {
+        return mail;
     }
 
     /**
-     *
-     * @param authorGroup
-     * The author_group
+     * @param mail The mail
      */
-    @JsonProperty("author_group")
-    public void setAuthorGroup(Integer authorGroup) {
-        this.authorGroup = authorGroup;
+    @JsonProperty("mail")
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     /**
-     *
-     * @return
-     * The linksAdded
+     * @return The isMailConfirmed
      */
-    @JsonProperty("links_added")
-    public Integer getLinksAdded() {
-        return linksAdded;
+    @JsonProperty("isMailConfirmed")
+    public Integer getIsMailConfirmed() {
+        return isMailConfirmed;
     }
 
     /**
-     *
-     * @param linksAdded
-     * The links_added
+     * @param isMailConfirmed The isMailConfirmed
      */
-    @JsonProperty("links_added")
-    public void setLinksAdded(Integer linksAdded) {
-        this.linksAdded = linksAdded;
+    @JsonProperty("isMailConfirmed")
+    public void setIsMailConfirmed(Integer isMailConfirmed) {
+        this.isMailConfirmed = isMailConfirmed;
     }
 
     /**
-     *
-     * @return
-     * The linksPublished
+     * @return The accountKeyToken
      */
-    @JsonProperty("links_published")
-    public Integer getLinksPublished() {
-        return linksPublished;
+    @JsonProperty("accountKeyToken")
+    public String getAccountKeyToken() {
+        return accountKeyToken;
     }
 
     /**
-     *
-     * @param linksPublished
-     * The links_published
+     * @param accountKeyToken The accountKeyToken
      */
-    @JsonProperty("links_published")
-    public void setLinksPublished(Integer linksPublished) {
-        this.linksPublished = linksPublished;
+    @JsonProperty("accountKeyToken")
+    public void setAccountKeyToken(String accountKeyToken) {
+        this.accountKeyToken = accountKeyToken;
     }
 
     /**
-     *
-     * @return
-     * The comments
+     * @return The accountStatus
      */
-    @JsonProperty("comments")
-    public Integer getComments() {
-        return comments;
+    @JsonProperty("accountStatus")
+    public String getAccountStatus() {
+        return accountStatus;
     }
 
     /**
-     *
-     * @param comments
-     * The comments
+     * @param accountStatus The accountStatus
      */
-    @JsonProperty("comments")
-    public void setComments(Integer comments) {
-        this.comments = comments;
+    @JsonProperty("accountStatus")
+    public void setAccountStatus(String accountStatus) {
+        this.accountStatus = accountStatus;
     }
 
     /**
-     *
-     * @return
-     * The rank
+     * @return The accountType
      */
-    @JsonProperty("rank")
-    public Integer getRank() {
-        return rank;
+    @JsonProperty("accountType")
+    public String getAccountType() {
+        return accountType;
     }
 
     /**
-     *
-     * @param rank
-     * The rank
+     * @param accountType The accountType
      */
-    @JsonProperty("rank")
-    public void setRank(Integer rank) {
-        this.rank = rank;
+    @JsonProperty("accountType")
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
     }
 
     /**
-     *
-     * @return
-     * The followers
+     * @return The userSign
      */
-    @JsonProperty("followers")
-    public Integer getFollowers() {
-        return followers;
+    @JsonProperty("userSign")
+    public String getUserSign() {
+        return userSign;
     }
 
     /**
-     *
-     * @param followers
-     * The followers
+     * @param userSign The userSign
      */
-    @JsonProperty("followers")
-    public void setFollowers(Integer followers) {
-        this.followers = followers;
+    @JsonProperty("userSign")
+    public void setUserSign(String userSign) {
+        this.userSign = userSign;
     }
 
     /**
-     *
-     * @return
-     * The following
+     * @return The userKey
      */
-    @JsonProperty("following")
-    public Integer getFollowing() {
-        return following;
+    @JsonProperty("userKey")
+    public String getUserKey() {
+        return userKey;
     }
 
     /**
-     *
-     * @param following
-     * The following
+     * @param userKey The userKey
      */
-    @JsonProperty("following")
-    public void setFollowing(Integer following) {
-        this.following = following;
+    @JsonProperty("userKey")
+    public void setUserKey(String userKey) {
+        this.userKey = userKey;
     }
 
     /**
-     *
-     * @return
-     * The entries
+     * @return The avatarBig
      */
-    @JsonProperty("entries")
-    public Integer getEntries() {
-        return entries;
-    }
-
-    /**
-     *
-     * @param entries
-     * The entries
-     */
-    @JsonProperty("entries")
-    public void setEntries(Integer entries) {
-        this.entries = entries;
-    }
-
-    /**
-     *
-     * @return
-     * The entriesComments
-     */
-    @JsonProperty("entries_comments")
-    public Integer getEntriesComments() {
-        return entriesComments;
-    }
-
-    /**
-     *
-     * @param entriesComments
-     * The entries_comments
-     */
-    @JsonProperty("entries_comments")
-    public void setEntriesComments(Integer entriesComments) {
-        this.entriesComments = entriesComments;
-    }
-
-    /**
-     *
-     * @return
-     * The diggs
-     */
-    @JsonProperty("diggs")
-    public Integer getDiggs() {
-        return diggs;
-    }
-
-    /**
-     *
-     * @param diggs
-     * The diggs
-     */
-    @JsonProperty("diggs")
-    public void setDiggs(Integer diggs) {
-        this.diggs = diggs;
-    }
-
-    /**
-     *
-     * @return
-     * The buries
-     */
-    @JsonProperty("buries")
-    public Integer getBuries() {
-        return buries;
-    }
-
-    /**
-     *
-     * @param buries
-     * The buries
-     */
-    @JsonProperty("buries")
-    public void setBuries(Integer buries) {
-        this.buries = buries;
-    }
-
-    /**
-     *
-     * @return
-     * The groups
-     */
-    @JsonProperty("groups")
-    public Integer getGroups() {
-        return groups;
-    }
-
-    /**
-     *
-     * @param groups
-     * The groups
-     */
-    @JsonProperty("groups")
-    public void setGroups(Integer groups) {
-        this.groups = groups;
-    }
-
-    /**
-     *
-     * @return
-     * The relatedLinks
-     */
-    @JsonProperty("related_links")
-    public Integer getRelatedLinks() {
-        return relatedLinks;
-    }
-
-    /**
-     *
-     * @param relatedLinks
-     * The related_links
-     */
-    @JsonProperty("related_links")
-    public void setRelatedLinks(Integer relatedLinks) {
-        this.relatedLinks = relatedLinks;
-    }
-
-    /**
-     *
-     * @return
-     * The signupDate
-     */
-    @JsonProperty("signup_date")
-    public String getSignupDate() {
-        return signupDate;
-    }
-
-    /**
-     *
-     * @param signupDate
-     * The signup_date
-     */
-    @JsonProperty("signup_date")
-    public void setSignupDate(String signupDate) {
-        this.signupDate = signupDate;
-    }
-
-    /**
-     *
-     * @return
-     * The avatar
-     */
-    @JsonProperty("avatar")
-    public String getAvatar() {
-        return avatar;
-    }
-
-    /**
-     *
-     * @param avatar
-     * The avatar
-     */
-    @JsonProperty("avatar")
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    /**
-     *
-     * @return
-     * The avatarBig
-     */
-    @JsonProperty("avatar_big")
+    @JsonProperty("avatarBig")
     public String getAvatarBig() {
         return avatarBig;
     }
 
     /**
-     *
-     * @param avatarBig
-     * The avatar_big
+     * @param avatarBig The avatarBig
      */
-    @JsonProperty("avatar_big")
+    @JsonProperty("avatarBig")
     public void setAvatarBig(String avatarBig) {
         this.avatarBig = avatarBig;
     }
 
     /**
-     *
-     * @return
-     * The avatarMed
+     * @return The rankPoints
      */
-    @JsonProperty("avatar_med")
-    public String getAvatarMed() {
-        return avatarMed;
+    @JsonProperty("rankPoints")
+    public String getRankPoints() {
+        return rankPoints;
     }
 
     /**
-     *
-     * @param avatarMed
-     * The avatar_med
+     * @param rankPoints The rankPoints
      */
-    @JsonProperty("avatar_med")
-    public void setAvatarMed(String avatarMed) {
-        this.avatarMed = avatarMed;
+    @JsonProperty("rankPoints")
+    public void setRankPoints(String rankPoints) {
+        this.rankPoints = rankPoints;
     }
 
     /**
-     *
-     * @return
-     * The avatarLo
+     * @return The password
      */
-    @JsonProperty("avatar_lo")
-    public String getAvatarLo() {
-        return avatarLo;
+    @JsonProperty("password")
+    public String getPassword() {
+        return password;
     }
 
     /**
-     *
-     * @param avatarLo
-     * The avatar_lo
+     * @param password The password
      */
-    @JsonProperty("avatar_lo")
-    public void setAvatarLo(String avatarLo) {
-        this.avatarLo = avatarLo;
+    @JsonProperty("password")
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     /**
-     *
-     * @return
-     * The isObserved
+     * @return The createdAt
      */
-    @JsonProperty("is_observed")
-    public Object getIsObserved() {
-        return isObserved;
+    @JsonProperty("created_at")
+    public String getCreatedAt() {
+        return createdAt;
     }
 
     /**
-     *
-     * @param isObserved
-     * The is_observed
+     * @param createdAt The created_at
      */
-    @JsonProperty("is_observed")
-    public void setIsObserved(Object isObserved) {
-        this.isObserved = isObserved;
+    @JsonProperty("created_at")
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 
     /**
-     *
-     * @return
-     * The isBlocked
+     * @return The updatedAt
      */
-    @JsonProperty("is_blocked")
-    public Object getIsBlocked() {
-        return isBlocked;
+    @JsonProperty("updated_at")
+    public String getUpdatedAt() {
+        return updatedAt;
     }
 
     /**
-     *
-     * @param isBlocked
-     * The is_blocked
+     * @param updatedAt The updated_at
      */
-    @JsonProperty("is_blocked")
-    public void setIsBlocked(Object isBlocked) {
-        this.isBlocked = isBlocked;
-    }
-
-    /**
-     *
-     * @return
-     * The sex
-     */
-    @JsonProperty("sex")
-    public String getSex() {
-        return sex;
-    }
-
-    /**
-     *
-     * @param sex
-     * The sex
-     */
-    @JsonProperty("sex")
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    /**
-     *
-     * @return
-     * The url
-     */
-    @JsonProperty("url")
-    public String getUrl() {
-        return url;
-    }
-
-    /**
-     *
-     * @param url
-     * The url
-     */
-    @JsonProperty("url")
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    /**
-     *
-     * @return
-     * The violationUrl
-     */
-    @JsonProperty("violation_url")
-    public Object getViolationUrl() {
-        return violationUrl;
-    }
-
-    /**
-     *
-     * @param violationUrl
-     * The violation_url
-     */
-    @JsonProperty("violation_url")
-    public void setViolationUrl(Object violationUrl) {
-        this.violationUrl = violationUrl;
-    }
-
-    /**
-     *
-     * @return
-     * The userkey
-     */
-    @JsonProperty("userkey")
-    public String getUserkey() {
-        return userkey;
-    }
-
-    /**
-     *
-     * @param userkey
-     * The userkey
-     */
-    @JsonProperty("userkey")
-    public void setUserkey(String userkey) {
-        this.userkey = userkey;
+    @JsonProperty("updated_at")
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     @JsonAnyGetter
@@ -785,6 +369,4 @@ public class User {
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
     }
-
 }
-
