@@ -5,6 +5,7 @@ import java.util.List;
 import okhttp3.ResponseBody;
 import pl.hypeapp.wykopolka.model.Book;
 import pl.hypeapp.wykopolka.model.Statistics;
+import pl.hypeapp.wykopolka.model.User;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -19,8 +20,20 @@ public interface WykopolkaApi {
     Observable<List<Book>> getBook(@Field("id") String id, @Header("apisign") String apisign);
 
     @FormUrlEncoded
+    @POST("wykopolka/public/api/request/book/search")
+    Call<ResponseBody> searchByQuery(@Field("booksearch") String query, @Header("apisign") String apisign);
+
+    @FormUrlEncoded
     @POST("wykopolka/public/api/request/book/find/by/author")
     Call<ResponseBody> findBookByAuthor(@Field("booksearch") String author, @Header("apisign") String apisign);
+
+    @FormUrlEncoded
+    @POST("wykopolka/public/api/request/wishlist/book/status")
+    Call<ResponseBody> getWishBookStatus(@Field("accountkey") String accountkey, @Field("id") String id, @Header("apisign") String apisign);
+
+    @FormUrlEncoded
+    @POST("wykopolka/public/api/request/user/get")
+    Observable<User> getUser(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/user/books/added")
