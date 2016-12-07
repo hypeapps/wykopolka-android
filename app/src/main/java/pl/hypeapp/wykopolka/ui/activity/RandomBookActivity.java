@@ -140,14 +140,8 @@ public class RandomBookActivity extends CompositeActivity implements RandomBookV
 
     @OnClick(R.id.card_view_random_book)
     public void startBookActivity() {
-        String bookId = mBook.getBookId();
-        String bookTitle = mBook.getTitle();
-        String bookCover = mBook.getCover();
-
         Intent intentBookActivity = new Intent(this, BookActivity.class);
-        intentBookActivity.putExtra("BOOK_ID", bookId);
-        intentBookActivity.putExtra("BOOK_TITLE", bookTitle);
-        intentBookActivity.putExtra("BOOK_COVER", bookCover);
+        intentBookActivity.putExtra("book", mBook);
 
         if (BuildUtil.isMinApi21()) {
             String transitionName = getString(R.string.transition_book_cover);
