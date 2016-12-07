@@ -9,8 +9,9 @@
     <color name="textColorSecondary">#0079ea</color>
     <color name="navBackgroundColor">#303030</color>
     <color name="drawerArrowColor">#fcfcfc</color>
-    <color name="cardview_background">#ffe5e5e5</color>
-    <color name="welcome_background_about">@color/colorPrimary</color>
-    <color name="welcome_background_how">#96bbb3</color>
-    <color name="welcome_background_login_via">#03A9F4</color>
+    <color name="cardViewBackground">#ffe5e5e5</color>
+    <color name="wishFabButtonDisabledColor">#555555</color>
+    <color name="welcomeBackgroundAbout">@color/colorPrimary</color>
+    <color name="welcomeBackgroundHow">#96bbb3</color>
+    <color name="welcomeBackgroundLoginVia">#03A9F4</color>
 </resources>
