@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +29,7 @@ import java.util.Map;
         "created_at",
         "updated_at"
 })
-public class Book {
+public class Book implements Serializable {
 
     @JsonProperty("id")
     private Integer id;
@@ -68,9 +69,7 @@ public class Book {
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
-     *
-     * @return
-     * The id
+     * @return The id
      */
     @JsonProperty("id")
     public Integer getId() {
@@ -78,9 +77,7 @@ public class Book {
     }
 
     /**
-     *
-     * @param id
-     * The id
+     * @param id The id
      */
     @JsonProperty("id")
     public void setId(Integer id) {
@@ -88,9 +85,7 @@ public class Book {
     }
 
     /**
-     *
-     * @return
-     * The bookId
+     * @return The bookId
      */
     @JsonProperty("book_id")
     public String getBookId() {
@@ -98,9 +93,7 @@ public class Book {
     }
 
     /**
-     *
-     * @param bookId
-     * The book_id
+     * @param bookId The book_id
      */
     @JsonProperty("book_id")
     public void setBookId(String bookId) {
@@ -108,9 +101,7 @@ public class Book {
     }
 
     /**
-     *
-     * @return
-     * The title
+     * @return The title
      */
     @JsonProperty("title")
     public String getTitle() {
@@ -118,9 +109,7 @@ public class Book {
     }
 
     /**
-     *
-     * @param title
-     * The title
+     * @param title The title
      */
     @JsonProperty("title")
     public void setTitle(String title) {
@@ -128,9 +117,7 @@ public class Book {
     }
 
     /**
-     *
-     * @return
-     * The author
+     * @return The author
      */
     @JsonProperty("author")
     public String getAuthor() {
@@ -138,9 +125,7 @@ public class Book {
     }
 
     /**
-     *
-     * @param author
-     * The author
+     * @param author The author
      */
     @JsonProperty("author")
     public void setAuthor(String author) {
@@ -148,9 +133,7 @@ public class Book {
     }
 
     /**
-     *
-     * @return
-     * The genre
+     * @return The genre
      */
     @JsonProperty("genre")
     public String getGenre() {
@@ -158,9 +141,7 @@ public class Book {
     }
 
     /**
-     *
-     * @param genre
-     * The genre
+     * @param genre The genre
      */
     @JsonProperty("genre")
     public void setGenre(String genre) {
@@ -168,9 +149,7 @@ public class Book {
     }
 
     /**
-     *
-     * @return
-     * The isbn
+     * @return The isbn
      */
     @JsonProperty("isbn")
     public String getIsbn() {
@@ -178,9 +157,7 @@ public class Book {
     }
 
     /**
-     *
-     * @param isbn
-     * The isbn
+     * @param isbn The isbn
      */
     @JsonProperty("isbn")
     public void setIsbn(String isbn) {
@@ -188,9 +165,7 @@ public class Book {
     }
 
     /**
-     *
-     * @return
-     * The rating
+     * @return The rating
      */
     @JsonProperty("rating")
     public String getRating() {
@@ -198,9 +173,7 @@ public class Book {
     }
 
     /**
-     *
-     * @param rating
-     * The rating
+     * @param rating The rating
      */
     @JsonProperty("rating")
     public void setRating(String rating) {
@@ -208,9 +181,7 @@ public class Book {
     }
 
     /**
-     *
-     * @return
-     * The desc
+     * @return The desc
      */
     @JsonProperty("desc")
     public String getDesc() {
@@ -218,9 +189,7 @@ public class Book {
     }
 
     /**
-     *
-     * @param desc
-     * The desc
+     * @param desc The desc
      */
     @JsonProperty("desc")
     public void setDesc(String desc) {
@@ -228,9 +197,7 @@ public class Book {
     }
 
     /**
-     *
-     * @return
-     * The cover
+     * @return The cover
      */
     @JsonProperty("cover")
     public String getCover() {
@@ -238,9 +205,7 @@ public class Book {
     }
 
     /**
-     *
-     * @param cover
-     * The cover
+     * @param cover The cover
      */
     @JsonProperty("cover")
     public void setCover(String cover) {
@@ -248,9 +213,7 @@ public class Book {
     }
 
     /**
-     *
-     * @return
-     * The ownedBy
+     * @return The ownedBy
      */
     @JsonProperty("owned_by")
     public String getOwnedBy() {
@@ -258,9 +221,7 @@ public class Book {
     }
 
     /**
-     *
-     * @param ownedBy
-     * The owned_by
+     * @param ownedBy The owned_by
      */
     @JsonProperty("owned_by")
     public void setOwnedBy(String ownedBy) {
@@ -272,7 +233,7 @@ public class Book {
      */
     @JsonProperty("owned_by_login")
     public String getOwnedByLogin() {
-        return ownedByLogin;
+        return "@" + ownedByLogin;
     }
 
     /**
@@ -284,9 +245,7 @@ public class Book {
     }
 
     /**
-     *
-     * @return
-     * The addedBy
+     * @return The addedBy
      */
     @JsonProperty("added_by")
     public String getAddedBy() {
@@ -294,9 +253,7 @@ public class Book {
     }
 
     /**
-     *
-     * @param addedBy
-     * The added_by
+     * @param addedBy The added_by
      */
     @JsonProperty("added_by")
     public void setAddedBy(String addedBy) {
@@ -304,13 +261,11 @@ public class Book {
     }
 
     /**
-     *
-     * @return
-     * The addedByLogin
+     * @return The addedByLogin
      */
     @JsonProperty("added_by_login")
     public String getAddedByLogin() {
-        return addedByLogin;
+        return "@" + addedByLogin;
     }
 
     /**
@@ -322,9 +277,7 @@ public class Book {
     }
 
     /**
-     *
-     * @return
-     * The isTmp
+     * @return The isTmp
      */
     @JsonProperty("isTmp")
     public Integer getIsTmp() {
@@ -332,9 +285,7 @@ public class Book {
     }
 
     /**
-     *
-     * @param isTmp
-     * The isTmp
+     * @param isTmp The isTmp
      */
     @JsonProperty("isTmp")
     public void setIsTmp(Integer isTmp) {
@@ -342,9 +293,7 @@ public class Book {
     }
 
     /**
-     *
-     * @return
-     * The quality
+     * @return The quality
      */
     @JsonProperty("quality")
     public String getQuality() {
@@ -352,9 +301,7 @@ public class Book {
     }
 
     /**
-     *
-     * @param quality
-     * The quality
+     * @param quality The quality
      */
     @JsonProperty("quality")
     public void setQuality(String quality) {
@@ -362,9 +309,7 @@ public class Book {
     }
 
     /**
-     *
-     * @return
-     * The createdAt
+     * @return The createdAt
      */
     @JsonProperty("created_at")
     public String getCreatedAt() {
@@ -372,9 +317,7 @@ public class Book {
     }
 
     /**
-     *
-     * @param createdAt
-     * The created_at
+     * @param createdAt The created_at
      */
     @JsonProperty("created_at")
     public void setCreatedAt(String createdAt) {
@@ -382,9 +325,7 @@ public class Book {
     }
 
     /**
-     *
-     * @return
-     * The updatedAt
+     * @return The updatedAt
      */
     @JsonProperty("updated_at")
     public String getUpdatedAt() {
@@ -392,9 +333,7 @@ public class Book {
     }
 
     /**
-     *
-     * @param updatedAt
-     * The updated_at
+     * @param updatedAt The updated_at
      */
     @JsonProperty("updated_at")
     public void setUpdatedAt(String updatedAt) {
