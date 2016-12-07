@@ -104,7 +104,7 @@
                 android:layout_alignEnd="@+id/card_view_random_book"
                 android:layout_alignStart="@+id/card_view_random_book"
                 android:layout_below="@id/card_view_random_book"
-                android:drawableStart="@drawable/ic_shuffle"
+                android:drawableStart="@drawable/ic_casino_white_36dp"
                 android:text="@string/random_book_action_button"/>
 
         </RelativeLayout>

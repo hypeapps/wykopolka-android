@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_background">
+    android:background="@color/cardViewBackground">
 
     <include
         android:id="@+id/loading_view"
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:AniBackColor="@color/colorPrimary"
-        app:AniForeColor="@color/cardview_background"
+        app:AniForeColor="@color/cardViewBackground"
         app:CircleSmaller="6">
 
         <android.support.v7.widget.RecyclerView
