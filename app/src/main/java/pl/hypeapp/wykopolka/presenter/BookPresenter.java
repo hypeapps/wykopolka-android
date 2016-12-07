@@ -6,12 +6,11 @@ import net.grandcentrix.thirtyinch.TiPresenter;
 import net.grandcentrix.thirtyinch.rx.RxTiPresenterSubscriptionHandler;
 import net.grandcentrix.thirtyinch.rx.RxTiPresenterUtils;
 
-import java.util.List;
-
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import pl.hypeapp.wykopolka.model.Book;
+import pl.hypeapp.wykopolka.model.WishBookStatus;
 import pl.hypeapp.wykopolka.network.api.WykopolkaApi;
 import pl.hypeapp.wykopolka.network.retrofit.DaggerRetrofitComponent;
 import pl.hypeapp.wykopolka.network.retrofit.RetrofitComponent;
@@ -24,21 +23,20 @@ import rx.schedulers.Schedulers;
 
 public class BookPresenter extends TiPresenter<BookView> {
 
-    private static final int BOOK_INDEX = 0;
     private RxTiPresenterSubscriptionHandler rxHelper = new RxTiPresenterSubscriptionHandler(this);
     private String mAccountKey;
     private String mBookId;
     private WykopolkaApi mWykopolkaApi;
-    private List<Book> book;
+    private Book mBook;
     @Inject
     @Named("wykopolkaApi")
     Retrofit mRetrofit;
     RetrofitComponent mRetrofitComponent;
 
-    public BookPresenter(String accountKey, String bookId) {
+    public BookPresenter(String accountKey, Book book) {
         this.mAccountKey = accountKey;
-        this.mBookId = bookId;
-        Log.e("PRESNETER_BOOK", mAccountKey + " " + mBookId);
+        this.mBookId = book.getBookId();
+        this.mBook = book;
     }
 
     @Override
@@ -47,73 +45,63 @@ public class BookPresenter extends TiPresenter<BookView> {
         mRetrofitComponent = DaggerRetrofitComponent.builder().build();
         mRetrofitComponent.inject(this);
         mWykopolkaApi = mRetrofit.create(WykopolkaApi.class);
-        Log.e("BOOK_PRESENTER base_URL", mRetrofit.baseUrl().toString());
     }
 
     @Override
     protected void onWakeUp() {
         super.onWakeUp();
+        loadWishBookStatus(mAccountKey, mBookId);
+        setBookDescriptionToView(mBook);
+        setBookHoldersToView(mBook);
+    }
 
+
+    private void loadWishBookStatus(final String accountKey, final String bookId) {
+        String apiSign = HashUtil.generateApiSign(accountKey, bookId);
+
+        rxHelper.manageViewSubscription(mWykopolkaApi.getWishBookStatus(accountKey, bookId, apiSign)
+                .compose(RxTiPresenterUtils.<WishBookStatus>deliverLatestToView(this))
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<WishBookStatus>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e("ONNEXT", "ERORR: " + e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(WishBookStatus wishBookStatus) {
+                        setWishBookStatusToView(wishBookStatus);
+                    }
+                })
+        );
+    }
+
+    private void setBookDescriptionToView(Book book) {
+        getView().setBookCover(book.getCover());
+        getView().setBookDescription(book);
         getView().animateCardEnter();
-
-        callBookInfo();
     }
 
-    private void callBookInfo() {
-        String apiSign = HashUtil.generateApiSign(mBookId);
-
-        rxHelper.manageViewSubscription(
-                mWykopolkaApi.getBook(mBookId, apiSign)
-                        .compose(RxTiPresenterUtils.<List<Book>>deliverLatestToView(this))
-                        .subscribeOn(Schedulers.newThread())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Subscriber<List<Book>>() {
-                            @Override
-                            public void onCompleted() {
-
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-
-                            }
-
-                            @Override
-                            public void onNext(List<Book> books) {
-                                getView().setBookCover(books.get(BOOK_INDEX).getCover());
-                                getView().setBookInfo(books.get(BOOK_INDEX));
-                                setBookOwnedBy(books);
-                            }
-                        }));
+    private void setBookHoldersToView(Book book) {
+        getView().setBookHolders(book.getAddedByLogin(), book.getOwnedByLogin());
     }
 
-    private void setBookOwnedBy(List<Book> book) {
-        Log.e("here", "here");
-        String apiSignAddedBy = HashUtil.generateApiSign(book.get(BOOK_INDEX).getAddedBy());
-        String apiSignOwnedBy = HashUtil.generateApiSign(book.get(BOOK_INDEX).getOwnedBy());
-
-//        rxHelper.manageViewSubscription();
-
-//        mWykopolkaApi.getLoginById(book.get(BOOK_INDEX).getOwnedBy(), apiSignOwnedBy).enqueue(new Callback<ResponseBody>() {
-//            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                Log.e("response", response.message() + " " + response.code());
-//                try {
-//                    Log.e("response", response.body().string());
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//
-//            }
-//        });
-//        rxHelper.manageViewSubscription(
-//                mWykopolkaApi.getLoginById(book.get(BOOK_INDEX).getAddedBy(), apiSignAddedBy).enqueue();
-//        );
-
-
+    private void setWishBookStatusToView(WishBookStatus wishBookStatus) {
+        if (!wishBookStatus.getWishAllowed()) {
+            getView().setWishIconDisabled();
+        } else {
+            if (wishBookStatus.getWishStatus()) {
+                getView().setWishStatusWilled();
+            } else {
+                getView().setWishStatusNotWilled();
+            }
+        }
+        getView().animateFabButtonEnter();
     }
 }
