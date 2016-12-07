@@ -76,7 +76,7 @@
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/cardview_background"
+        android:background="@color/cardViewBackground"
         android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -189,10 +189,10 @@
                             android:text="@string/added_by" />
 
                         <TextView
+                            android:id="@+id/tv_book_added_by"
                             style="@style/NicknameOwnStyle"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="\@szyna55" />
+                            android:layout_height="wrap_content"/>
 
                     </LinearLayout>
 
@@ -212,10 +212,10 @@
                             android:text="@string/owned_by" />
 
                         <TextView
+                            android:id="@+id/tv_book_owned_by"
                             style="@style/NicknameOwnStyle"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="\@kWeb24" />
+                            android:layout_height="wrap_content"/>
 
                     </LinearLayout>
 
