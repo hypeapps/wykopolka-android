@@ -185,16 +185,10 @@ public class BaseBookListFragment<P extends TiPresenter<V>, V extends TiView> ex
         }
     };
 
-    protected void startBookActivity(List<Book> mBooks, BooksRecyclerAdapter.BooksRecyclerHolder holder) {
+    protected void startBookActivity(List<Book> books, BooksRecyclerAdapter.BooksRecyclerHolder holder) {
         int position = holder.getLayoutPosition();
-        String bookId = mBooks.get(position).getBookId();
-        String bookTitle = mBooks.get(position).getTitle();
-        String bookCover = mBooks.get(position).getCover();
-
         Intent intentBookActivity = new Intent(getActivity(), BookActivity.class);
-        intentBookActivity.putExtra("BOOK_ID", bookId);
-        intentBookActivity.putExtra("BOOK_TITLE", bookTitle);
-        intentBookActivity.putExtra("BOOK_COVER", bookCover);
+        intentBookActivity.putExtra("book", books.get(position));
 
         if (BuildUtil.isMinApi21()) {
             String transitionName = getString(R.string.transition_book_cover);
