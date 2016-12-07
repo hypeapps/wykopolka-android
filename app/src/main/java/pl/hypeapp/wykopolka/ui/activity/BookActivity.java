@@ -1,6 +1,7 @@
 package pl.hypeapp.wykopolka.ui.activity;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,7 +9,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -29,7 +30,6 @@ import net.grandcentrix.thirtyinch.internal.TiPresenterProvider;
 import net.grandcentrix.thirtyinch.plugin.TiActivityPlugin;
 import net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -39,6 +39,7 @@ import butterknife.OnClick;
 import pl.hypeapp.wykopolka.App;
 import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.model.Book;
+import pl.hypeapp.wykopolka.plugin.ToolbarActivityPlugin;
 import pl.hypeapp.wykopolka.presenter.BookPresenter;
 import pl.hypeapp.wykopolka.ui.listener.AppBarStateChangeListener;
 import pl.hypeapp.wykopolka.view.BookView;
@@ -46,27 +47,28 @@ import xyz.hanks.library.SmallBang;
 import xyz.hanks.library.SmallBangListener;
 
 public class BookActivity extends CompositeActivity implements BookView {
-    private static final String EMPTY_STRING = "";
     private static final String WYKOPOLKA_IMG_HOST = App.WYKOPOLKA_IMG_HOST;
-    private static final int BOOK_UNWISHLISTED = 0;
-    private static final int BOOK_WISHLISTED = 1;
-    private static final int BOOK_WISHLISTING_DISABLED = 2;
-    public static final int BOOK_ID_INDEX = 0;
-    public static final int BOOK_TITLE_INDEX = 1;
-    public static final int BOOK_COVER_INDEX = 2;
-    private String mBookTitle;
     private boolean isSearchViewShown = false;
     private AppBarStateChangeListener.State mState;
     private SmallBang mSmallBang;
+    private Book mBook;
     @BindView(R.id.collapsing_toolbar) CollapsingToolbarLayout mCollapsingToolbarLayout;
     @BindView(R.id.toolbar) Toolbar mToolbar;
     @BindView(R.id.app_bar_layout) AppBarLayout mAppBarLayout;
     @BindView(R.id.search_view) MaterialSearchView mSearchView;
     @BindView(R.id.fab_add_to_wishlist) FloatingActionButton mFabButton;
     @BindView(R.id.search_status_bar) View searchStatusBar;
-    @BindViews({R.id.tv_author, R.id.tv_description, R.id.tv_genre}) List<TextView> mBookInfoTextViews;
     @BindView(R.id.iv_book_cover) ImageView mBookCover;
     @BindView(R.id.cv_overview) CardView mOverviewCard;
+    @BindViews({R.id.tv_author, R.id.tv_description, R.id.tv_genre}) List<TextView> mBookDescriptionsTextViews;
+    @BindViews({R.id.tv_book_added_by, R.id.tv_book_owned_by}) List<TextView> mBookHoldersTextViews;
+
+    public BookActivity() {
+        addPlugin(mPresenterPlugin);
+        addPlugin(mToolbarPlugin);
+    }
+
+    private final ToolbarActivityPlugin mToolbarPlugin = new ToolbarActivityPlugin();
 
     private final TiActivityPlugin<BookPresenter, BookView> mPresenterPlugin =
             new TiActivityPlugin<>(new TiPresenterProvider<BookPresenter>() {
@@ -74,48 +76,25 @@ public class BookActivity extends CompositeActivity implements BookView {
                 @Override
                 public BookPresenter providePresenter() {
                     String accountKey = App.readFromPreferences(BookActivity.this, "user_account_key", null);
-                    String bookId = intentExtra().get(BOOK_ID_INDEX);
-                    return new BookPresenter(accountKey, bookId);
+                    ;
+                    return new BookPresenter(accountKey, getBookIntentExtra());
                 }
             });
-
-    public BookActivity() {
-        addPlugin(mPresenterPlugin);
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book);
         ButterKnife.bind(this);
-        mToolbar = initToolbar();
-        setBookCover(intentExtra().get(BOOK_COVER_INDEX));
         mSmallBang = SmallBang.attach2Window(this);
-        mBookTitle = intentExtra().get(BOOK_TITLE_INDEX);
-        mCollapsingToolbarLayout.setTitle(mBookTitle);
-    }
-
-    //dokonczyc
-    public void animateFabButtonEnter() {
-        if (mFabButton != null) {
-            mFabButton.setVisibility(View.VISIBLE);
-            YoYo.with(Techniques.ZoomIn)
-                    .duration(1000)
-                    .playOn(mFabButton);
-        }
-    }
-
-    @Override
-    public void animateCardEnter() {
-        if (mOverviewCard != null) {
-            YoYo.with(Techniques.SlideInLeft)
-                    .duration(800)
-                    .playOn(mOverviewCard);
-        }
+        mToolbar = mToolbarPlugin.initToolbarWithEmptyTitle(mToolbar);
+        mBook = getBookIntentExtra();
+        mCollapsingToolbarLayout.setTitle(mBook.getTitle());
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        final String EMPTY_STRING = "";
         getMenuInflater().inflate(R.menu.menu_single_book, menu);
 
         searchStatusBar.setLayoutParams(new CoordinatorLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getStatusBarHeight()));
@@ -127,7 +106,7 @@ public class BookActivity extends CompositeActivity implements BookView {
             public void onSearchViewShown() {
                 searchStatusBar.setVisibility(View.VISIBLE);
                 if (mState == AppBarStateChangeListener.State.IDLE || mState == AppBarStateChangeListener.State.EXPANDED) {
-                    mCollapsingToolbarLayout.setTitle(mBookTitle);
+                    mCollapsingToolbarLayout.setTitle(mBook.getTitle());
                 } else if (mState == AppBarStateChangeListener.State.COLLAPSED) {
                     mCollapsingToolbarLayout.setTitle(EMPTY_STRING);
                 }
@@ -137,7 +116,7 @@ public class BookActivity extends CompositeActivity implements BookView {
             @Override
             public void onSearchViewClosed() {
                 searchStatusBar.setVisibility(View.GONE);
-                mCollapsingToolbarLayout.setTitle(mBookTitle);
+                mCollapsingToolbarLayout.setTitle(mBook.getTitle());
                 isSearchViewShown = false;
             }
         });
@@ -146,7 +125,7 @@ public class BookActivity extends CompositeActivity implements BookView {
             public void onStateChanged(AppBarLayout appBarLayout, State state) {
                 mState = state;
                 if (state == State.EXPANDED || state == State.IDLE) {
-                    mCollapsingToolbarLayout.setTitle(mBookTitle);
+                    mCollapsingToolbarLayout.setTitle(mBook.getTitle());
                 } else if (state == State.COLLAPSED && isSearchViewShown) {
                     mCollapsingToolbarLayout.setTitle(EMPTY_STRING);
                 }
@@ -178,10 +157,10 @@ public class BookActivity extends CompositeActivity implements BookView {
     }
 
     @Override
-    public void setBookInfo(Book book) {
-        mBookInfoTextViews.get(0).setText(book.getAuthor());
-        mBookInfoTextViews.get(1).setText(book.getDesc());
-        mBookInfoTextViews.get(2).setText(book.getGenre());
+    public void setBookDescription(Book book) {
+        mBookDescriptionsTextViews.get(0).setText(book.getAuthor());
+        mBookDescriptionsTextViews.get(1).setText(book.getDesc());
+        mBookDescriptionsTextViews.get(2).setText(book.getGenre());
     }
 
     @Override
@@ -196,21 +175,37 @@ public class BookActivity extends CompositeActivity implements BookView {
     }
 
     @Override
-    public void setBookOwner(String addedBy, String ownedBy) {
-
+    public void setWishStatusWilled() {
+        mFabButton.setImageResource(R.drawable.ic_favorite_white_36dp);
     }
 
     @Override
-    public void setWishlistStatus(boolean status) {
-
+    public void setWishStatusNotWilled() {
+        mFabButton.setImageResource(R.drawable.ic_favorite_border_white_36dp);
     }
 
     @Override
+    public void setWishIconDisabled() {
+        mFabButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.wishFabButtonDisabledColor)));
+        mFabButton.setImageResource(R.drawable.ic_favorite_white_disabled_36dp);
+        mFabButton.setClickable(false);
+    }
+
+    @Override
+    public void setBookHolders(String addedBy, String ownedBy) {
+        mBookHoldersTextViews.get(0).setText(addedBy);
+        mBookHoldersTextViews.get(1).setText(ownedBy);
+    }
+
+
+    @Override
+    @OnClick(R.id.btn_edit_book)
     public void editBookDescription() {
-        animateFabButtonEnter();
+
     }
 
     @Override
+    @OnClick(R.id.btn_load_pdf)
     public void loadPdfBookCard() {
 
     }
@@ -233,6 +228,25 @@ public class BookActivity extends CompositeActivity implements BookView {
     }
 
     @Override
+    public void animateCardEnter() {
+        if (mOverviewCard != null) {
+            YoYo.with(Techniques.SlideInLeft)
+                    .duration(800)
+                    .playOn(mOverviewCard);
+        }
+    }
+
+    @Override
+    public void animateFabButtonEnter() {
+        if (mFabButton != null) {
+            mFabButton.setVisibility(View.VISIBLE);
+            YoYo.with(Techniques.ZoomIn)
+                    .duration(1000)
+                    .playOn(mFabButton);
+        }
+    }
+
+    @Override
     public void showSnackbarBookWishlistedSuccesful() {
         Snackbar snackbar = Snackbar.make(mFabButton, R.string.message_added_to_wishlist, Snackbar.LENGTH_LONG);
         snackbar.setAction(R.string.action_go_to_wishlist, new View.OnClickListener() {
@@ -252,23 +266,10 @@ public class BookActivity extends CompositeActivity implements BookView {
         return result;
     }
 
-    private Toolbar initToolbar() {
-        mToolbar.setTitle(EMPTY_STRING);
-        setSupportActionBar(mToolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-        return mToolbar;
-    }
-
-    private List<String> intentExtra() {
+    private Book getBookIntentExtra() {
         Intent intent = getIntent();
-        List<String> extra = new ArrayList<>();
-        extra.add(intent.getStringExtra("BOOK_ID"));
-        extra.add(intent.getStringExtra("BOOK_TITLE"));
-        extra.add(intent.getStringExtra("BOOK_COVER"));
-        return extra;
+        Book book = (Book) intent.getSerializableExtra("book");
+        return book;
     }
 
     private void removeGradient() {
