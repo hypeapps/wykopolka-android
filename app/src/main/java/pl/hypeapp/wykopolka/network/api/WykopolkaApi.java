@@ -6,6 +6,7 @@ import okhttp3.ResponseBody;
 import pl.hypeapp.wykopolka.model.Book;
 import pl.hypeapp.wykopolka.model.Statistics;
 import pl.hypeapp.wykopolka.model.User;
+import pl.hypeapp.wykopolka.model.WishBookStatus;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -29,7 +30,7 @@ public interface WykopolkaApi {
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/wishlist/book/status")
-    Call<ResponseBody> getWishBookStatus(@Field("accountkey") String accountkey, @Field("id") String id, @Header("apisign") String apisign);
+    Observable<WishBookStatus> getWishBookStatus(@Field("accountkey") String accountkey, @Field("id") String id, @Header("apisign") String apisign);
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/user/get")
