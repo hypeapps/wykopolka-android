@@ -10,6 +10,7 @@ import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.ui.fragment.NavigationDrawerFragment;
 
 public class ToolbarActivityPlugin extends ActivityPlugin {
+    private static final String EMPTY_STRING = "";
     private Toolbar mToolbar;
 
     public void setNavigationDrawer(Toolbar toolbar){
@@ -27,5 +28,10 @@ public class ToolbarActivityPlugin extends ActivityPlugin {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         return mToolbar;
+    }
+
+    public Toolbar initToolbarWithEmptyTitle(Toolbar toolbar) {
+        toolbar.setTitle(EMPTY_STRING);
+        return initToolbar(toolbar);
     }
 }
