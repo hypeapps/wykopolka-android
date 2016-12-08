@@ -17,24 +17,16 @@ import rx.Observable;
 public interface WykopolkaApi {
 
     @FormUrlEncoded
+    @POST("wykopolka/public/api/request/user/get")
+    Observable<User> getUser(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
+
+    @FormUrlEncoded
     @POST("wykopolka/public/api/request/book")
     Observable<List<Book>> getBook(@Field("id") String id, @Header("apisign") String apisign);
 
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/book/search")
-    Call<ResponseBody> searchByQuery(@Field("booksearch") String query, @Header("apisign") String apisign);
-
-    @FormUrlEncoded
-    @POST("wykopolka/public/api/request/book/find/by/author")
-    Call<ResponseBody> findBookByAuthor(@Field("booksearch") String author, @Header("apisign") String apisign);
-
-    @FormUrlEncoded
     @POST("wykopolka/public/api/request/wishlist/book/status")
     Observable<WishBookStatus> getWishBookStatus(@Field("accountkey") String accountkey, @Field("id") String id, @Header("apisign") String apisign);
-
-    @FormUrlEncoded
-    @POST("wykopolka/public/api/request/user/get")
-    Observable<User> getUser(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/user/books/added")
@@ -45,10 +37,6 @@ public interface WykopolkaApi {
     Observable<List<Book>> getMyBooks(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
 
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/stats/global")
-    Observable<Statistics> getGlobalStats(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
-
-    @FormUrlEncoded
     @POST("wykopolka/public/api/request/book/selected")
     Observable<List<Book>> getSelectedBooks(@Field("accountkey") String accountKey, @Field("amount") String amount, @Header("apisign") String apisign);
 
@@ -57,14 +45,28 @@ public interface WykopolkaApi {
     Observable<Book> getRandomBook(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
 
     @FormUrlEncoded
+    @POST("wykopolka/public/api/request/stats/global")
+    Observable<Statistics> getGlobalStats(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
+
+    @FormUrlEncoded
+    @POST("wykopolka/public/api/request/book/search")
+    Call<ResponseBody> searchByQuery(@Field("booksearch") String query, @Header("apisign") String apisign);
+
+    @FormUrlEncoded
+    @POST("wykopolka/public/api/request/book/find/by/author")
+    Call<ResponseBody> searchByAuthor(@Field("booksearch") String author, @Header("apisign") String apisign);
+
+    @Deprecated
+    @FormUrlEncoded
     @POST("wykopolka/public/api/request/user/getloginbyid")
     Call<ResponseBody> getLoginById(@Field("id") String userId, @Header("apisign") String apisign);
 
+    @Deprecated
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/book/iswishlisted")
     Call<ResponseBody> isWishlisted(@Field("accountkey") String accountKey, @Field("id") String bookId, @Header("apisign") String apisign);
 
-    //Rzuca status false kiedy zielonka/ban lub książka jest moja lub kiedy transfer jest zarejestrowany ale nieukończony
+    @Deprecated
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/book/iswishlistingallowed")
     Call<ResponseBody> isWishlistingAllowed(@Field("accountkey") String accountKey, @Field("id") String bookId, @Header("apisign") String apisign);
