@@ -86,4 +86,5 @@
     <string name="tab_title_recommended">polecane</string>
     <string name="tab_title_waiting">oczekujący</string>
     <string name="tab_title_wishlist">lista życzeń</string>
+    <string name="title_activity_search">Szukaj książki</string>
 </resources>
