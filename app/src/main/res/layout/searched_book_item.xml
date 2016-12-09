@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/def_margin">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_book_cover"
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:layout_centerHorizontal="true"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/books"/>
+
+        <TextView
+            android:id="@+id/tv_book_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/iv_book_cover"
+            android:layout_alignStart="@id/iv_book_cover"
+            android:layout_below="@id/iv_book_cover"
+            android:layout_marginEnd="@dimen/def_margin"
+            android:layout_marginStart="@dimen/def_margin"
+            android:layout_marginTop="4dp"
+            android:maxLines="2"
+            android:minLines="2"
+            android:ellipsize="end"
+            android:text="Awantury na tle powszechnego ciążenia"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/tv_book_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/iv_book_cover"
+            android:layout_alignStart="@id/iv_book_cover"
+            android:layout_below="@id/tv_book_title"
+            android:layout_marginEnd="@dimen/def_margin"
+            android:layout_marginStart="@dimen/def_margin"
+            android:layout_marginTop="4dp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:minLines="2"
+            android:text="Tomasz LemanowskiGul"
+            android:textSize="12sp"/>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
