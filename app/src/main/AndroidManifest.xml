@@ -48,6 +48,15 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="pl.hypeapp.wykopolka.ui.activity.SearchBookActivity"
+            android:label="@string/title_activity_search">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
             android:name="pl.hypeapp.wykopolka.ui.activity.RandomBookActivity"
             android:label="@string/title_activity_random_book">
             <intent-filter>
