@@ -17,6 +17,7 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:id="@+id/search_results"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="?attr/actionBarSize"
@@ -24,52 +25,71 @@
                 android:paddingTop="@dimen/status_bar_padding">
 
                 <TextView
+                    android:id="@+id/tv_search_failed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/activity_vertical_margin"
+                    android:layout_marginStart="@dimen/activity_vertical_margin"
+                    android:layout_marginTop="@dimen/def_margin"
+                    android:fontFamily="sans-serif-black"
+                    android:gravity="center_horizontal"
+                    android:text="@string/search_message_failed"
+                    android:textStyle="bold"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/tv_search_by_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/activity_vertical_margin"
                     android:layout_marginTop="@dimen/def_margin"
                     android:fontFamily="sans-serif-black"
-                    android:text="Książki znalezione po tytule"
-                    android:textStyle="bold"/>
+                    android:text="@string/search_message_by_title"
+                    android:textStyle="bold"
+                    android:visibility="gone"/>
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/book_searched_by_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="@dimen/def_margin"/>
+                    android:layout_marginTop="@dimen/def_margin"
+                    android:orientation="horizontal"/>
 
                 <TextView
+                    android:id="@+id/tv_search_by_author"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/activity_vertical_margin"
                     android:layout_marginTop="@dimen/def_margin"
                     android:fontFamily="sans-serif-black"
-                    android:text="Książki znalezione po autorze"
-                    android:textStyle="bold"/>
+                    android:text="@string/search_message_by_author"
+                    android:textStyle="bold"
+                    android:visibility="gone"/>
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/book_searched_by_author"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/def_margin"/>
+                    android:layout_marginTop="@dimen/def_margin"
+                    android:orientation="horizontal"/>
 
                 <TextView
+                    android:id="@+id/tv_search_by_genre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/activity_vertical_margin"
                     android:layout_marginTop="@dimen/def_margin"
                     android:fontFamily="sans-serif-black"
-                    android:text="Książki znalezione po gatunkach"
-                    android:textStyle="bold"/>
+                    android:text="@string/search_message_by_genre"
+                    android:textStyle="bold"
+                    android:visibility="gone"/>
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/book_searched_by_genre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="@dimen/def_margin"/>
+                    android:layout_marginTop="@dimen/def_margin"
+                    android:orientation="horizontal"/>
 
             </LinearLayout>
 
@@ -78,7 +98,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize"
+            android:layout_marginTop="100dp"
             android:paddingTop="@dimen/status_bar_padding">
 
             <include

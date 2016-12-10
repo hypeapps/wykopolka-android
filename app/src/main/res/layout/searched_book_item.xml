@@ -4,53 +4,62 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/def_margin">
+    android:layout_marginBottom="@dimen/def_margin"
+    android:layout_marginStart="@dimen/def_margin"
+    android:layout_marginTop="@dimen/def_margin">
 
-    <RelativeLayout
+    <com.balysv.materialripple.MaterialRippleLayout
+        android:id="@+id/ripple_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:mrl_rippleColor="@color/colorPrimary"
+        app:mrl_rippleDelayClick="true">
 
-        <ImageView
-            android:id="@+id/iv_book_cover"
-            android:layout_width="100dp"
-            android:layout_height="120dp"
-            android:layout_centerHorizontal="true"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/books"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tv_book_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@id/iv_book_cover"
-            android:layout_alignStart="@id/iv_book_cover"
-            android:layout_below="@id/iv_book_cover"
-            android:layout_marginEnd="@dimen/def_margin"
-            android:layout_marginStart="@dimen/def_margin"
-            android:layout_marginTop="4dp"
-            android:maxLines="2"
-            android:minLines="2"
-            android:ellipsize="end"
-            android:text="Awantury na tle powszechnego ciążenia"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"/>
+            <ImageView
+                android:id="@+id/iv_book_cover"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:layout_centerHorizontal="true"
+                android:scaleType="fitXY"
+                android:transitionName="book_cover"/>
 
-        <TextView
-            android:id="@+id/tv_book_author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@id/iv_book_cover"
-            android:layout_alignStart="@id/iv_book_cover"
-            android:layout_below="@id/tv_book_title"
-            android:layout_marginEnd="@dimen/def_margin"
-            android:layout_marginStart="@dimen/def_margin"
-            android:layout_marginTop="4dp"
-            android:maxLines="2"
-            android:ellipsize="end"
-            android:minLines="2"
-            android:text="Tomasz LemanowskiGul"
-            android:textSize="12sp"/>
+            <TextView
+                android:id="@+id/tv_book_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@id/iv_book_cover"
+                android:layout_alignStart="@id/iv_book_cover"
+                android:layout_below="@id/iv_book_cover"
+                android:layout_marginEnd="@dimen/def_margin"
+                android:layout_marginStart="@dimen/def_margin"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:minLines="2"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"/>
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_book_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@id/iv_book_cover"
+                android:layout_alignStart="@id/iv_book_cover"
+                android:layout_below="@id/tv_book_title"
+                android:layout_marginEnd="@dimen/def_margin"
+                android:layout_marginStart="@dimen/def_margin"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:minLines="2"
+                android:textSize="12sp"/>
+
+        </RelativeLayout>
+
+    </com.balysv.materialripple.MaterialRippleLayout>
 
 </android.support.v7.widget.CardView>
