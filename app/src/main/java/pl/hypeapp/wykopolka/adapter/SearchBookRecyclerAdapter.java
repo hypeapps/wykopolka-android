@@ -1,6 +1,7 @@
 package pl.hypeapp.wykopolka.adapter;
 
 import android.content.Context;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.balysv.materialripple.MaterialRippleLayout;
 import com.bumptech.glide.Glide;
 
 import java.util.Collections;
@@ -23,7 +25,7 @@ import rx.subjects.PublishSubject;
 
 public class SearchBookRecyclerAdapter extends RecyclerView.Adapter<SearchBookRecyclerAdapter.SearchBookRecyclerHolder> {
     private static final String WYKOPOLKA_IMG_HOST = App.WYKOPOLKA_IMG_HOST;
-    private final PublishSubject<BooksRecyclerAdapter.BooksRecyclerHolder> onClickSubject = PublishSubject.create();
+    private final PublishSubject<Pair<SearchBookRecyclerHolder, Book>> onClickSubject = PublishSubject.create();
     public LayoutInflater mLayoutInflater;
     private List<Book> mDataSet = Collections.emptyList();
     private Context mContext;
@@ -41,7 +43,7 @@ public class SearchBookRecyclerAdapter extends RecyclerView.Adapter<SearchBookRe
 
     @Override
     public void onBindViewHolder(SearchBookRecyclerHolder searchBookRecyclerHolder, int position) {
-        Book current = mDataSet.get(position);
+        final Book current = mDataSet.get(position);
         final SearchBookRecyclerAdapter.SearchBookRecyclerHolder holder = searchBookRecyclerHolder;
         holder.bookTitle.setText(current.getTitle());
         holder.bookAuthor.setText(current.getAuthor());
@@ -52,12 +54,13 @@ public class SearchBookRecyclerAdapter extends RecyclerView.Adapter<SearchBookRe
                 .override(300, 400)
                 .thumbnail(0.9f)
                 .into(holder.bookCover);
-//        holder.materialRippleLayout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                onClickSubject.onNext(holder);
-//            }
-//        });
+        holder.materialRippleLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Pair<SearchBookRecyclerHolder, Book> clickedBook = new Pair<>(holder, current);
+                onClickSubject.onNext(clickedBook);
+            }
+        });
     }
 
     @Override
@@ -65,7 +68,7 @@ public class SearchBookRecyclerAdapter extends RecyclerView.Adapter<SearchBookRe
         return mDataSet.size();
     }
 
-    public Observable<BooksRecyclerAdapter.BooksRecyclerHolder> getOnBookClicks() {
+    public Observable<Pair<SearchBookRecyclerHolder, Book>> getOnBookClicks() {
         return onClickSubject.asObservable();
     }
 
@@ -77,7 +80,8 @@ public class SearchBookRecyclerAdapter extends RecyclerView.Adapter<SearchBookRe
     public class SearchBookRecyclerHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tv_book_title) TextView bookTitle;
         @BindView(R.id.tv_book_author) TextView bookAuthor;
-        @BindView(R.id.iv_book_cover) ImageView bookCover;
+        @BindView(R.id.iv_book_cover) public ImageView bookCover;
+        @BindView(R.id.ripple_layout) MaterialRippleLayout materialRippleLayout;
 
         public SearchBookRecyclerHolder(View itemView) {
             super(itemView);
