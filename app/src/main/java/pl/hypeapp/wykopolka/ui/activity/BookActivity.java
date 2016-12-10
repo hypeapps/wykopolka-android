@@ -46,7 +46,7 @@ import pl.hypeapp.wykopolka.view.BookView;
 import xyz.hanks.library.SmallBang;
 import xyz.hanks.library.SmallBangListener;
 
-public class BookActivity extends CompositeActivity implements BookView {
+public class BookActivity extends CompositeActivity implements BookView, MaterialSearchView.OnQueryTextListener {
     private static final String WYKOPOLKA_IMG_HOST = App.WYKOPOLKA_IMG_HOST;
     private boolean isSearchViewShown = false;
     private AppBarStateChangeListener.State mState;
@@ -76,7 +76,6 @@ public class BookActivity extends CompositeActivity implements BookView {
                 @Override
                 public BookPresenter providePresenter() {
                     String accountKey = App.readFromPreferences(BookActivity.this, "user_account_key", null);
-                    ;
                     return new BookPresenter(accountKey, getBookIntentExtra());
                 }
             });
@@ -101,6 +100,7 @@ public class BookActivity extends CompositeActivity implements BookView {
         MenuItem item = menu.findItem(R.id.action_search);
 
         mSearchView.setMenuItem(item);
+        mSearchView.setOnQueryTextListener(this);
         mSearchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
@@ -154,6 +154,19 @@ public class BookActivity extends CompositeActivity implements BookView {
             removeGradient();
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        Intent intent = new Intent(this, SearchBookActivity.class);
+        intent.putExtra("SEARCH_QUERY", query);
+        startActivity(intent);
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
     }
 
     @Override
@@ -276,5 +289,6 @@ public class BookActivity extends CompositeActivity implements BookView {
         View gradient = findViewById(R.id.gradient);
         if (gradient != null) gradient.setVisibility(View.GONE);
     }
+
 }
 

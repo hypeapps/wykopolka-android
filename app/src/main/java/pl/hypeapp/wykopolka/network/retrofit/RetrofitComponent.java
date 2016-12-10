@@ -9,6 +9,7 @@ import pl.hypeapp.wykopolka.presenter.BookPresenter;
 import pl.hypeapp.wykopolka.presenter.MyBooksPresenter;
 import pl.hypeapp.wykopolka.presenter.ProfileSettingsPresenter;
 import pl.hypeapp.wykopolka.presenter.RandomBookPresenter;
+import pl.hypeapp.wykopolka.presenter.SearchBookPresenter;
 import pl.hypeapp.wykopolka.presenter.SelectedBooksPresenter;
 import pl.hypeapp.wykopolka.presenter.SignInPresenter;
 import pl.hypeapp.wykopolka.presenter.StatisticPresenter;
@@ -34,5 +35,7 @@ public interface RetrofitComponent {
     void inject(SelectedBooksPresenter tiPresenter);
 
     void inject(ProfileSettingsPresenter tiPresenter);
+
+    void inject(SearchBookPresenter tiPresenter);
 
 }

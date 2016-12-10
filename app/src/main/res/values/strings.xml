@@ -12,7 +12,7 @@
     <string name="genre">Gatunek</string>
     <string name="description">Opis</string>
     <string name="author">Autor</string>
-    <string name="search_hint">Szukaj książki…</string>
+    <string name="search_hint">Tytuł, autor, gatunek...</string>
     <string name="message_added_to_wishlist">Dodano książkę na listę życzeń!</string>
     <string name="action_go_to_wishlist">Przejdź do listy życzeń</string>
     <string name="message_stat_readed_books">Przeczytanych książek</string>
@@ -86,4 +86,9 @@
     <string name="tab_title_recommended">polecane</string>
     <string name="tab_title_waiting">oczekujący</string>
     <string name="tab_title_wishlist">lista życzeń</string>
+    <string name="title_activity_search">Szukaj książki</string>
+    <string name="search_message_by_genre">Książki znalezione po gatunkach</string>
+    <string name="search_message_by_author">Książki znalezione po autorze</string>
+    <string name="search_message_by_title">Książki znalezione po tytule</string>
+    <string name="search_message_failed">Niestety nie udało się znaleźć książek o podanym zapytaniu</string>
 </resources>
