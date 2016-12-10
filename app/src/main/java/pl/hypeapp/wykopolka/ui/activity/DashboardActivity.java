@@ -82,7 +82,7 @@ public class DashboardActivity extends CompositeActivity implements DashboardVie
                         text.setText(getString(R.string.tab_title_waiting));
                         break;
                     case 2:
-                        icon.setImageDrawable(resources.getDrawable(R.drawable.ic_star_white_36dp));
+                        icon.setImageDrawable(resources.getDrawable(R.drawable.ic_favorite_white_36dp));
                         text.setText(getString(R.string.tab_title_wishlist));
                         break;
                     default:
