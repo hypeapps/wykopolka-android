@@ -4,6 +4,7 @@ import java.util.List;
 
 import okhttp3.ResponseBody;
 import pl.hypeapp.wykopolka.model.Book;
+import pl.hypeapp.wykopolka.model.SearchResult;
 import pl.hypeapp.wykopolka.model.Statistics;
 import pl.hypeapp.wykopolka.model.User;
 import pl.hypeapp.wykopolka.model.WishBookStatus;
@@ -50,7 +51,7 @@ public interface WykopolkaApi {
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/book/search")
-    Call<ResponseBody> searchByQuery(@Field("booksearch") String query, @Header("apisign") String apisign);
+    Observable<SearchResult> searchByQuery(@Field("booksearch") String query, @Header("apisign") String apisign);
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/book/find/by/author")
