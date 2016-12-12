@@ -3,6 +3,7 @@ package pl.hypeapp.wykopolka.network.retrofit;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import pl.hypeapp.wykopolka.presenter.AddBookPresenter;
 import pl.hypeapp.wykopolka.presenter.AddedBooksPresenter;
 import pl.hypeapp.wykopolka.presenter.BookPanelPresenter;
 import pl.hypeapp.wykopolka.presenter.BookPresenter;
@@ -37,5 +38,7 @@ public interface RetrofitComponent {
     void inject(ProfileSettingsPresenter tiPresenter);
 
     void inject(SearchBookPresenter tiPresenter);
+
+    void inject(AddBookPresenter tiPresenter);
 
 }
