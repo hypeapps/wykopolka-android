@@ -1,4 +1,4 @@
-package pl.hypeapp.wykopolka.ui.fragment.base;
+package pl.hypeapp.wykopolka.ui.base;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -66,7 +66,8 @@ public class BaseBookListFragment<P extends TiPresenter<V>, V extends TiView> ex
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         ScaleInAnimationAdapter scaleInAnimationAdapter = new ScaleInAnimationAdapter(mRecyclerAdapter);
         scaleInAnimationAdapter.setFirstOnly(true);
-        mRecyclerAdapter.getOnBookClicks().subscribe(new Action1<BooksRecyclerAdapter.BooksRecyclerHolder>() {
+        mRecyclerAdapter.getOnBookClicks()
+                .subscribe(new Action1<BooksRecyclerAdapter.BooksRecyclerHolder>() {
             @Override
             public void call(BooksRecyclerAdapter.BooksRecyclerHolder booksRecyclerHolder) {
                 startBookActivity(mBooks, booksRecyclerHolder);

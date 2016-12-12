@@ -12,7 +12,7 @@ import butterknife.OnClick;
 import pl.hypeapp.wykopolka.App;
 import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.presenter.AddedBooksPresenter;
-import pl.hypeapp.wykopolka.ui.fragment.base.BaseBookListFragment;
+import pl.hypeapp.wykopolka.ui.base.BaseBookListFragment;
 import pl.hypeapp.wykopolka.view.BookListView;
 
 public class AddedBooksFragment extends BaseBookListFragment<AddedBooksPresenter, BookListView> {
