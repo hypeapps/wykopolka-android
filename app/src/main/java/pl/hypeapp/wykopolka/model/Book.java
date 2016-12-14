@@ -68,6 +68,20 @@ public class Book implements Serializable {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
+    public Book() {
+    }
+
+    private Book(BookBuilder builder) {
+        this.setTitle(builder.title);
+        this.setAuthor(builder.author);
+        this.setDesc(builder.desc);
+        this.setIsbn(builder.isbn);
+        this.setGenre(builder.genre);
+        this.setRating(builder.rating);
+        this.setQuality(builder.quality);
+        this.setCover(builder.cover);
+    }
+
     /**
      * @return The id
      */
@@ -348,6 +362,62 @@ public class Book implements Serializable {
     @JsonAnySetter
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
+    }
+
+    public static class BookBuilder {
+        private String title;
+        private String author;
+        private String desc;
+        private String isbn;
+        private String genre;
+        private String rating;
+        private String quality;
+        private String cover;
+
+        public BookBuilder setTitle(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public BookBuilder setAuthor(String author) {
+            this.author = author;
+            return this;
+        }
+
+        public BookBuilder setDesc(String desc) {
+            this.desc = desc;
+            return this;
+        }
+
+        public BookBuilder setIsbn(String isbn) {
+            this.isbn = isbn;
+            return this;
+        }
+
+        public BookBuilder setGenre(String genre) {
+            this.genre = genre;
+            return this;
+        }
+
+        public BookBuilder setRating(String rating) {
+            this.rating = rating;
+            return this;
+        }
+
+        public BookBuilder setQuality(String quality) {
+            this.quality = quality;
+            return this;
+        }
+
+        public BookBuilder setCover(String cover) {
+            this.cover = cover;
+            return this;
+        }
+
+        public Book build() {
+            return new Book(this);
+        }
+
     }
 
 }
