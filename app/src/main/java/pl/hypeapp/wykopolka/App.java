@@ -11,9 +11,10 @@ import com.squareup.leakcanary.LeakCanary;
 import pl.hypeapp.wykopolka.network.retrofit.WykopolkaRetrofitModule;
 
 public class App extends Application {
-    private AppComponent appComponent;
-
     public static final String WYKOPOLKA_IMG_HOST = "http://192.168.1.10/wykopolka/public/";
+    public static final String WYKOPOLKA_API_URL = "http://192.168.1.4/";
+    public static final String WYKOP_API_URL = "http://a.wykop.pl/";
+    private AppComponent appComponent;
 
     @Override
     public void onCreate() {

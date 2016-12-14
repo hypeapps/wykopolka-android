@@ -5,14 +5,15 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import pl.hypeapp.wykopolka.App;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
 @Module
 public class WykopolkaRetrofitModule {
-    private static final String WYKOPOLKA_API_URL = "http://192.168.1.10/";
-    private static final String WYKOP_API_URL = "http://a.wykop.pl/";
+    private static final String WYKOPOLKA_API_URL = App.WYKOPOLKA_API_URL;
+    private static final String WYKOP_API_URL = App.WYKOP_API_URL;
 
     @Provides
     @Singleton
