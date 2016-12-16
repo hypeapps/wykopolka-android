@@ -26,11 +26,11 @@ import pl.hypeapp.wykopolka.extra.circlerefreshlayout.CircleRefreshLayout;
 import pl.hypeapp.wykopolka.model.Book;
 import pl.hypeapp.wykopolka.ui.activity.BookActivity;
 import pl.hypeapp.wykopolka.util.BuildUtil;
-import pl.hypeapp.wykopolka.view.BookListView;
+import pl.hypeapp.wykopolka.view.BaseBookListView;
 import rx.functions.Action1;
 
-public class BaseBookListFragment<P extends TiPresenter<V>, V extends TiView> extends TiFragment<P, V>
-        implements BookListView, CircleRefreshLayout.OnCircleRefreshListener {
+public class BaseBaseBookListFragment<P extends TiPresenter<V>, V extends TiView> extends TiFragment<P, V>
+        implements BaseBookListView, CircleRefreshLayout.OnCircleRefreshListener {
     private ProgressBar mSpinLoading;
     private View mLoadingView;
     private View errorView;

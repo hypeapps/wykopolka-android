@@ -1,5 +1,7 @@
 package pl.hypeapp.wykopolka.view;
 
+import android.graphics.Bitmap;
+
 import net.grandcentrix.thirtyinch.TiView;
 import net.grandcentrix.thirtyinch.callonmainthread.CallOnMainThread;
 
@@ -12,10 +14,16 @@ public interface BaseCommitBookView extends TiView {
     void setCover(String coverUrl);
 
     @CallOnMainThread
-    void setTitile(String titile);
+    void setTitle(String titile);
 
     @CallOnMainThread
     void setAuthor(String author);
+
+    @CallOnMainThread
+    void setIsbn(String isbn);
+
+    @CallOnMainThread
+    void setGenre(String genre);
 
     @CallOnMainThread
     void setDescription(String description);
@@ -26,23 +34,21 @@ public interface BaseCommitBookView extends TiView {
     @CallOnMainThread
     void setQuality(String quality);
 
-    @CallOnMainThread
-    void getCover();
+    Bitmap getCover();
 
-    @CallOnMainThread
-    void getTitile();
+    String getTitile();
 
-    @CallOnMainThread
-    void getAuthor();
+    String getAuthor();
 
-    @CallOnMainThread
-    void getDescription();
+    String getDescription();
 
-    @CallOnMainThread
-    void getRating();
+    String getIsbn();
 
-    @CallOnMainThread
-    void getQuality();
+    String getGenre();
+
+    String getRating();
+
+    String getQuality();
 
     @CallOnMainThread
     void showError(String message);
