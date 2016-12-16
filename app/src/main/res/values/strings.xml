@@ -11,7 +11,7 @@
     <string name="owned_by">Aktualnie w rękach:</string>
     <string name="genre">Gatunek</string>
     <string name="description">Opis</string>
-    <string name="book_description">Opis książki(Recenzja)</string>
+    <string name="book_description">Opis książki</string>
     <string name="author">Autor</string>
     <string name="search_hint">Tytuł, autor, gatunek...</string>
     <string name="message_added_to_wishlist">Dodano książkę na listę życzeń!</string>
@@ -92,7 +92,7 @@
     <string name="search_message_by_author">Książki znalezione po autorze</string>
     <string name="search_message_by_title">Książki znalezione po tytule</string>
     <string name="search_message_failed">Brak wyników</string>
-    <string name="title_activity_add_book">Dodaj książkę</string>
+    <string name="title_activity_add_book">Oddaj książkę</string>
     <string name="title_activity_edit_book">Edytuj książkę</string>
     <string name="btn_message_take_photo">Zrób zdjęcie okładki</string>
     <string name="book_title">Tytuł</string>
