@@ -3,6 +3,11 @@
           package="pl.hypeapp.wykopolka">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true"/>
 
     <application
         android:name=".App"
@@ -99,11 +104,35 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name="pl.hypeapp.wykopolka.ui.activity.AddBookActivity"
+            android:label="@string/title_activity_add_book">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="pl.hypeapp.wykopolka.ui.activity.EditBookActivity"
+            android:label="@string/title_activity_edit_book">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="pl.hypeapp.wykopolka.provider.FileContentProvider"
+            android:authorities="pl.hypeapp.wykopolka"
+            android:enabled="true"
+            android:exported="true"/>
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="5bc98c849513033bcb122881a00e175ef4a7ab67"
-            />
+            android:value="5bc98c849513033bcb122881a00e175ef4a7ab67"/>
+
     </application>
 
 </manifest>
