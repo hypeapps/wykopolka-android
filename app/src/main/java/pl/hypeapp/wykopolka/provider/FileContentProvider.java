@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 
 public class FileContentProvider extends ContentProvider {
-    public static final Uri CONTENT_URI = Uri.parse("content://com.example.camerademo/");
+    public static final Uri CONTENT_URI = Uri.parse("content://pl.hypeapp.wykopolka/");
     private static final HashMap<String, String> MIME_TYPES = new HashMap<String, String>();
 
     static {
@@ -29,12 +29,11 @@ public class FileContentProvider extends ContentProvider {
                 mFile.createNewFile();
             }
             getContext().getContentResolver().notifyChange(CONTENT_URI, null);
-            return (true);
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
-
     }
 
     @Nullable
