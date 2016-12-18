@@ -53,19 +53,12 @@ public interface WykopolkaApi {
     @POST("wykopolka/public/api/request/book/search")
     Observable<SearchResult> searchByQuery(@Field("booksearch") String query, @Header("apisign") String apisign);
 
-    //    @FormUrlEncoded
-//    @POST("wykopolka/public/api/request/book/add")
-//    Observable<SearchResult> uploadBook(@Field("accountkey") String acccountKey, @Field("book") String book, @Header("apisign") String apisign);
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/book/add")
-    Call<ResponseBody> uploadBook(@Field("accountkey") String accountKey, @Field("book") String book, @Header("apisign") String apisign);
+    Observable<List<Book>> uploadBook(@Field("accountkey") String accountKey, @Field("book") String book, @Header("apisign") String apisign);
 
     /**
-     * @param accountKey
-     * @param bookId
-     * @param state      (0 - remove from wish list 1 - add to wish list)
-     * @param apisign
-     * @return
+     * @param state (0 - remove from wish list 1 - add to wish list)
      */
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/wishlist/manage")
