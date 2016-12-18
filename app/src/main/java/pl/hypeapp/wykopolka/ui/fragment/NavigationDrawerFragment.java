@@ -202,6 +202,9 @@ public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresent
                 case 8:
                     startActivity(new Intent(getActivity(), ProfileSettingsActivity.class));
                     break;
+                default:
+                    startActivity(new Intent(getActivity(), DashboardActivity.class));
+                    break;
             }
         }
     }
