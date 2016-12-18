@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/scroll_book_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cardViewBackground">
+
+        <RelativeLayout
+            android:id="@+id/book_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar"/>
+
+            <RelativeLayout
+                android:id="@+id/upload_book_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/toolbar"
+                android:padding="16dp">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cv_book_cover"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/iv_book_cover"
+                            android:layout_width="120dp"
+                            android:layout_height="160dp"
+                            android:layout_marginEnd="@dimen/def_margin"
+                            android:layout_marginStart="@dimen/def_margin"
+                            android:layout_marginTop="@dimen/def_margin"
+                            android:scaleType="fitXY"
+                            android:transitionName="@string/transition_book_cover"
+                            android:src="@drawable/default_book_cover"/>
+
+                        <Button
+                            android:id="@+id/btn_take_photo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignEnd="@id/iv_book_cover"
+                            android:layout_alignStart="@id/iv_book_cover"
+                            android:layout_below="@id/iv_book_cover"
+                            android:text="@string/btn_message_take_photo"/>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cv_book_basic_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/cv_book_cover"
+                    android:layout_alignTop="@+id/cv_book_cover"
+                    android:layout_marginStart="@dimen/def_margin"
+                    android:layout_toEndOf="@+id/cv_book_cover">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/def_margin"
+                        android:orientation="vertical">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="2dp"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/et_book_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/def_margin"
+                                android:layout_marginStart="@dimen/def_margin"
+                                android:hint="@string/book_title"
+                                android:inputType="text"
+                                android:maxLength="255"
+                                android:scrollHorizontally="true"
+                                android:textSize="@dimen/edit_text_size"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_author"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/et_book_author"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/def_margin"
+                                android:layout_marginStart="@dimen/def_margin"
+                                android:hint="@string/author"
+                                android:inputType="text"
+                                android:maxLength="255"
+                                android:scrollHorizontally="true"
+                                android:textSize="@dimen/edit_text_size"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_isbn"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/et_book_isbn"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/def_margin"
+                                android:layout_marginStart="@dimen/def_margin"
+                                android:hint="@string/isbn_number"
+                                android:inputType="text"
+                                android:maxLength="255"
+                                android:scrollHorizontally="true"
+                                android:textSize="@dimen/edit_text_size"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_genre"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/et_book_genre"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/def_margin"
+                                android:layout_marginStart="@dimen/def_margin"
+                                android:hint="@string/genre"
+                                android:inputType="text"
+                                android:maxLength="255"
+                                android:scrollHorizontally="true"
+                                android:textSize="@dimen/edit_text_size"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cv_book_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cv_book_cover"
+                    android:layout_marginTop="@dimen/def_margin">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/def_margin"
+                        android:layout_marginTop="@dimen/def_margin"
+                        android:gravity="center_vertical">
+
+                        <EditText
+                            android:id="@+id/et_book_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/def_margin"
+                            android:layout_marginStart="@dimen/def_margin"
+                            android:hint="@string/book_description"
+                            android:inputType="textMultiLine"
+                            android:maxLength="2500"
+                            android:textSize="@dimen/edit_text_size"/>
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cv_book_seek_bars"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cv_book_description"
+                    android:layout_marginTop="@dimen/def_margin">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_rating_header"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/def_margin"
+                            android:layout_marginStart="@dimen/def_margin"
+                            android:layout_marginTop="@dimen/def_margin"
+                            android:text="@string/book_rating"/>
+
+                        <SeekBar
+                            android:id="@+id/seek_bar_rating"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:max="9"/>
+
+                        <TextView
+                            android:id="@+id/tv_rating"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="16dip"
+                            android:text="5"
+                            android:textColor="@color/colorPrimary"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/tv_quality_header"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/def_margin"
+                            android:layout_marginStart="@dimen/def_margin"
+                            android:layout_marginTop="@dimen/def_margin"
+                            android:text="@string/book_quality"/>
+
+                        <SeekBar
+                            android:id="@+id/seek_bar_quality"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:max="9"/>
+
+                        <TextView
+                            android:id="@+id/tv_quality"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="@dimen/def_margin"
+                            android:layout_marginEnd="16dip"
+                            android:text="5"
+                            android:textColor="@color/colorPrimary"
+                            android:textStyle="bold"/>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <Button
+                    android:id="@+id/btn_commit_book"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cv_book_seek_bars"
+                    android:layout_marginTop="@dimen/def_margin"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/loading_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentTop="false"
+        android:background="@color/colorPrimaryHalfTransparent"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/spin_loading"
+            style="@style/SpinKitView.Wave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:SpinKit_Color="@color/colorAccent"/>
+
+        <TextView
+            android:id="@+id/tv_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/def_margin"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/loading_save_message"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
