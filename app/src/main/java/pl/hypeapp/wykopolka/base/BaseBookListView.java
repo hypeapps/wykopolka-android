@@ -1,4 +1,4 @@
-package pl.hypeapp.wykopolka.view;
+package pl.hypeapp.wykopolka.base;
 
 import net.grandcentrix.thirtyinch.TiView;
 import net.grandcentrix.thirtyinch.callonmainthread.CallOnMainThread;
@@ -8,7 +8,7 @@ import java.util.List;
 
 import pl.hypeapp.wykopolka.model.Book;
 
-public interface BookListView extends TiView {
+public interface BaseBookListView extends TiView {
 
     @DistinctUntilChanged
     @CallOnMainThread
