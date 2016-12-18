@@ -1,17 +1,22 @@
-package pl.hypeapp.wykopolka.view;
+package pl.hypeapp.wykopolka.base;
 
 import android.graphics.Bitmap;
 
 import net.grandcentrix.thirtyinch.TiView;
 import net.grandcentrix.thirtyinch.callonmainthread.CallOnMainThread;
 
-public interface BaseCommitBookView extends TiView {
+import pl.hypeapp.wykopolka.model.Book;
+
+public interface BaseUploadBookView extends TiView {
 
     @CallOnMainThread
     void takeCoverPhoto();
 
     @CallOnMainThread
     void setCover(String coverUrl);
+
+    @CallOnMainThread
+    void setCoverBitmap(Bitmap photo);
 
     @CallOnMainThread
     void setTitle(String titile);
@@ -34,9 +39,7 @@ public interface BaseCommitBookView extends TiView {
     @CallOnMainThread
     void setQuality(String quality);
 
-    Bitmap getCover();
-
-    String getTitile();
+    String getBookTitle();
 
     String getAuthor();
 
@@ -51,8 +54,20 @@ public interface BaseCommitBookView extends TiView {
     String getQuality();
 
     @CallOnMainThread
+    void showMessageInputEmpty(int messageIndex);
+
+    @CallOnMainThread
+    void showLoading();
+
+    @CallOnMainThread
+    void hideLoading();
+
+    @CallOnMainThread
+    void uploadingBookSuccessful(Book book);
+
+    @CallOnMainThread
     void showError(String message);
 
     @CallOnMainThread
-    void hideError();
+    void showUploadError();
 }
