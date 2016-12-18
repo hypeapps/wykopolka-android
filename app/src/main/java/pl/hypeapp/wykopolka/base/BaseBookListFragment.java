@@ -1,4 +1,4 @@
-package pl.hypeapp.wykopolka.ui.base;
+package pl.hypeapp.wykopolka.base;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -26,11 +26,10 @@ import pl.hypeapp.wykopolka.extra.circlerefreshlayout.CircleRefreshLayout;
 import pl.hypeapp.wykopolka.model.Book;
 import pl.hypeapp.wykopolka.ui.activity.BookActivity;
 import pl.hypeapp.wykopolka.util.BuildUtil;
-import pl.hypeapp.wykopolka.view.BookListView;
 import rx.functions.Action1;
 
 public class BaseBookListFragment<P extends TiPresenter<V>, V extends TiView> extends TiFragment<P, V>
-        implements BookListView, CircleRefreshLayout.OnCircleRefreshListener {
+        implements BaseBookListView, CircleRefreshLayout.OnCircleRefreshListener {
     private ProgressBar mSpinLoading;
     private View mLoadingView;
     private View errorView;

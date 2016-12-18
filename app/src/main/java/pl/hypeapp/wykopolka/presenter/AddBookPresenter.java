@@ -1,33 +1,27 @@
 package pl.hypeapp.wykopolka.presenter;
 
-import android.graphics.Bitmap;
-import android.util.Log;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import net.grandcentrix.thirtyinch.TiPresenter;
 import net.grandcentrix.thirtyinch.rx.RxTiPresenterSubscriptionHandler;
+import net.grandcentrix.thirtyinch.rx.RxTiPresenterUtils;
 
-import java.io.IOException;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import okhttp3.ResponseBody;
+import pl.hypeapp.wykopolka.base.BaseUploadBookPresenter;
 import pl.hypeapp.wykopolka.model.Book;
 import pl.hypeapp.wykopolka.network.api.WykopolkaApi;
 import pl.hypeapp.wykopolka.network.retrofit.DaggerRetrofitComponent;
 import pl.hypeapp.wykopolka.network.retrofit.RetrofitComponent;
 import pl.hypeapp.wykopolka.util.HashUtil;
-import pl.hypeapp.wykopolka.util.ImageUtil;
 import pl.hypeapp.wykopolka.view.AddBookView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
-public class AddBookPresenter extends TiPresenter<AddBookView> {
+public class AddBookPresenter extends BaseUploadBookPresenter<AddBookView> {
+    private static int BOOK_INDEX = 0;
     @Inject
     @Named("wykopolkaApi")
     Retrofit mRetrofit;
@@ -44,68 +38,69 @@ public class AddBookPresenter extends TiPresenter<AddBookView> {
         super.onCreate();
         RetrofitComponent mRetrofitComponent = DaggerRetrofitComponent.builder().build();
         mRetrofitComponent.inject(this);
-        mWykopolkaApi = mRetrofit.create(WykopolkaApi.class);
     }
 
-    @Override
-    protected void onWakeUp() {
-        super.onWakeUp();
-//        try {
-//            uploadBook(mAccountkey);
-//        } catch (JsonProcessingException e) {
-//            e.printStackTrace();
-//        }
-    }
+    public void prepareBook() {
+        if (isInputsCompatible()) {
+            startLoading();
+            if (mCoverPhoto != null) {
+                rxHelper.manageViewSubscription(decodeCoverAsync()
+                        .compose(RxTiPresenterUtils.<String>deliverLatestToView(this))
+                        .subscribeOn(Schedulers.newThread())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Subscriber<String>() {
+                            @Override
+                            public void onCompleted() {
 
-    public void uploadBook(Bitmap cover, Book book) {
-        String coverEncoded = ImageUtil.encodeToBase64(cover, Bitmap.CompressFormat.PNG, 100);
-//        Book book = new Book();
-//        book.setAuthor("DROP TABLE1");
-//        book.setTitle("JUBON");
-//        book.setDesc("TABS");
-//        book.setIsbn("1234");
-//        book.setGenre("CHUJNIA");
-//        book.setRating("5");
-//        book.setQuality("1");
-        book.setCover(coverEncoded);
+                            }
 
-        String object;
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            Log.e("hashCode", "" + objectMapper.writeValueAsString(book));
-            object = objectMapper.writeValueAsString(book);
-            String sign = HashUtil.generateApiSign(mAccountkey, object);
+                            @Override
+                            public void onError(Throwable e) {
+                                stopLoading();
+                                getView().showUploadError();
+                            }
 
-            Call<ResponseBody> call = mWykopolkaApi.uploadBook(mAccountkey, object, sign);
-            call.enqueue(new Callback<ResponseBody>() {
-                @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    Log.e("message", response.message() + " " + response.code());
-                    try {
-                        Log.e("response", response.body().string());
-                    } catch (IOException e) {
-
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                }
-            });
-        } catch (JsonProcessingException ex) {
-
+                            @Override
+                            public void onNext(String s) {
+                                Book book = createBook(s);
+                                uploadBookCall(book);
+                            }
+                        }));
+            } else {
+                Book book = createBook(null);
+                uploadBookCall(book);
+            }
         }
-
-
-//        rxHelper.manageSubscription(mWykopolkaApi.uploadBook(accountKey, object, sign)
-//                .compose(RxTiPresenterUtils.<List<Book>>deliverLatestToView(this))
-//                .subscribeOn(Schedulers.newThread())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe()););
-
-
     }
 
+    private void uploadBookCall(Book book) {
+        String bookJson = createBookJson(book);
+        if (bookJson != null) {
+            String sign = HashUtil.generateApiSign(mAccountkey, bookJson);
+            mWykopolkaApi = mRetrofit.create(WykopolkaApi.class);
+            rxHelper.manageViewSubscription(mWykopolkaApi.uploadBook(mAccountkey, bookJson, sign)
+                    .compose(RxTiPresenterUtils.<List<Book>>deliverLatestToView(this))
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Subscriber<List<Book>>() {
+                        @Override
+                        public void onCompleted() {
 
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            stopLoading();
+                            getView().showUploadError();
+                        }
+
+                        @Override
+                        public void onNext(List<Book> book) {
+                            stopLoading();
+                            getView().uploadingBookSuccessful(book.get(BOOK_INDEX));
+                        }
+                    })
+            );
+        }
+    }
 }
