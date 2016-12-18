@@ -99,4 +99,13 @@
     <string name="isbn_number">Number ISBN</string>
     <string name="book_rating">Ocena książki</string>
     <string name="book_quality">Stan książki</string>
+    <string name="error_camera_unavailable">Aparat jest niedostępny</string>
+    <string name="error_camer_while_taking_photo">Błąd podczas robienia zdjęcia</string>
+    <string name="error_message_default">Coś poszło nie tak</string>
+    <string name="error_edit_text_desc_empty">Uzupełnij opis</string>
+    <string name="error_edit_text_genre_empty">Uzupełnij gatunek</string>
+    <string name="error_edit_text_isbn_empty">Uzupełnij numer ISBN</string>
+    <string name="error_edit_text_author_empty">Uzupełnij autora</string>
+    <string name="error_edit_text_title_empty">Uzupełnij tytuł</string>
+    <string name="loading_save_message">Wysyłanie książki</string>
 </resources>
