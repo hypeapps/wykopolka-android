@@ -2,21 +2,17 @@ package pl.hypeapp.wykopolka.view;
 
 import net.grandcentrix.thirtyinch.TiView;
 import net.grandcentrix.thirtyinch.callonmainthread.CallOnMainThread;
-import net.grandcentrix.thirtyinch.distinctuntilchanged.DistinctUntilChanged;
 
 import pl.hypeapp.wykopolka.model.Book;
 
 public interface BookView extends TiView {
 
-    @DistinctUntilChanged
     @CallOnMainThread
     void setBookDescription(Book book);
 
-    @DistinctUntilChanged
     @CallOnMainThread
     void setBookHolders(String addedBy, String ownedBy);
 
-    @DistinctUntilChanged
     @CallOnMainThread
     void setBookCover(String coverUrl);
 
@@ -36,14 +32,20 @@ public interface BookView extends TiView {
     void animateFabButtonEnter();
 
     @CallOnMainThread
-    void loadPdfBookCard();
+    void showPdfBookCard();
 
     @CallOnMainThread
     void editBookDescription();
 
     @CallOnMainThread
-    void addBookToWishlist();
+    void addBookToWishList();
 
     @CallOnMainThread
-    void showSnackbarBookWishlistedSuccesful();
+    void showSnackbarAddWishListSuccessful();
+
+    @CallOnMainThread
+    void showSnackbarRemovedFromWishList();
+
+    @CallOnMainThread
+    void showSnackbarWishListError();
 }
