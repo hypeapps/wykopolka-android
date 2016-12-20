@@ -1,7 +1,5 @@
 package pl.hypeapp.wykopolka.presenter;
 
-import android.util.Log;
-
 import net.grandcentrix.thirtyinch.TiPresenter;
 import net.grandcentrix.thirtyinch.rx.RxTiPresenterSubscriptionHandler;
 import net.grandcentrix.thirtyinch.rx.RxTiPresenterUtils;
@@ -9,6 +7,7 @@ import net.grandcentrix.thirtyinch.rx.RxTiPresenterUtils;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import okhttp3.ResponseBody;
 import pl.hypeapp.wykopolka.model.Book;
 import pl.hypeapp.wykopolka.model.WishBookStatus;
 import pl.hypeapp.wykopolka.network.api.WykopolkaApi;
@@ -22,12 +21,14 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class BookPresenter extends TiPresenter<BookView> {
-
-    private RxTiPresenterSubscriptionHandler rxHelper = new RxTiPresenterSubscriptionHandler(this);
+    private static final int ADD_TO_WISH_LIST = 1;
+    private static final int REMOVE_FROM_WISH_LIST = 0;
     private String mAccountKey;
     private String mBookId;
+    private WishBookStatus mWishBookStatus;
     private WykopolkaApi mWykopolkaApi;
     private Book mBook;
+    private RxTiPresenterSubscriptionHandler rxHelper = new RxTiPresenterSubscriptionHandler(this);
     @Inject
     @Named("wykopolkaApi")
     Retrofit mRetrofit;
@@ -45,22 +46,24 @@ public class BookPresenter extends TiPresenter<BookView> {
         mRetrofitComponent = DaggerRetrofitComponent.builder().build();
         mRetrofitComponent.inject(this);
         mWykopolkaApi = mRetrofit.create(WykopolkaApi.class);
+        loadWishBookStatus(mAccountKey, mBookId);
     }
 
     @Override
     protected void onWakeUp() {
         super.onWakeUp();
-        loadWishBookStatus(mAccountKey, mBookId);
         setBookDescriptionToView(mBook);
         setBookHoldersToView(mBook);
+        if (mWishBookStatus != null) {
+            setWishBookStatusToView(mWishBookStatus);
+        }
     }
-
 
     private void loadWishBookStatus(final String accountKey, final String bookId) {
         String apiSign = HashUtil.generateApiSign(accountKey, bookId);
 
-        rxHelper.manageViewSubscription(mWykopolkaApi.getWishBookStatus(accountKey, bookId, apiSign)
-                .compose(RxTiPresenterUtils.<WishBookStatus>deliverLatestToView(this))
+        rxHelper.manageSubscription(mWykopolkaApi.getWishBookStatus(accountKey, bookId, apiSign)
+                .compose(RxTiPresenterUtils.<WishBookStatus>deliverToView(this))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<WishBookStatus>() {
@@ -71,12 +74,48 @@ public class BookPresenter extends TiPresenter<BookView> {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e("ONNEXT", "ERORR: " + e.getMessage());
                     }
 
                     @Override
                     public void onNext(WishBookStatus wishBookStatus) {
-                        setWishBookStatusToView(wishBookStatus);
+                        mWishBookStatus = wishBookStatus;
+                        setWishBookStatusToView(mWishBookStatus);
+                    }
+                })
+        );
+    }
+
+    public void addBookToWishList() {
+        int wishOperation;
+        boolean wishStatus = mWishBookStatus.getWishStatus();
+        if (wishStatus) {
+            wishOperation = REMOVE_FROM_WISH_LIST;
+        } else {
+            wishOperation = ADD_TO_WISH_LIST;
+        }
+        mWishBookStatus.setWishStatus(!wishStatus);
+        setWishBookStatusWithSnackBar(mWishBookStatus);
+
+        String apiSign = HashUtil.generateApiSign(mAccountKey, mBookId, String.valueOf(wishOperation));
+
+        rxHelper.manageViewSubscription(mWykopolkaApi.manageWishList(mAccountKey, mBookId, wishOperation, apiSign)
+                .compose(RxTiPresenterUtils.<ResponseBody>deliverToView(this))
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<ResponseBody>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        mWishBookStatus.setWishAllowed(false);
+                        setWishBookStatusWithSnackBar(mWishBookStatus);
+                    }
+
+                    @Override
+                    public void onNext(ResponseBody responseBody) {
                     }
                 })
         );
@@ -89,7 +128,7 @@ public class BookPresenter extends TiPresenter<BookView> {
     }
 
     private void setBookHoldersToView(Book book) {
-        getView().setBookHolders(book.getAddedByLogin(), book.getOwnedByLogin());
+        getView().setBookHolders(book.getAddedByLoginFormatted(), book.getOwnedByLoginFormatted());
     }
 
     private void setWishBookStatusToView(WishBookStatus wishBookStatus) {
@@ -100,6 +139,22 @@ public class BookPresenter extends TiPresenter<BookView> {
                 getView().setWishStatusWilled();
             } else {
                 getView().setWishStatusNotWilled();
+            }
+        }
+        getView().animateFabButtonEnter();
+    }
+
+    private void setWishBookStatusWithSnackBar(WishBookStatus wishBookStatus) {
+        if (!wishBookStatus.getWishAllowed()) {
+            getView().setWishIconDisabled();
+            getView().showSnackbarWishListError();
+        } else {
+            if (wishBookStatus.getWishStatus()) {
+                getView().setWishStatusWilled();
+                getView().showSnackbarAddWishListSuccessful();
+            } else {
+                getView().setWishStatusNotWilled();
+                getView().showSnackbarRemovedFromWishList();
             }
         }
         getView().animateFabButtonEnter();
