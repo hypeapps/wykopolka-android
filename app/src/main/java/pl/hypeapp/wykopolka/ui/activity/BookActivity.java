@@ -9,10 +9,11 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,13 +43,14 @@ import pl.hypeapp.wykopolka.model.Book;
 import pl.hypeapp.wykopolka.plugin.ToolbarActivityPlugin;
 import pl.hypeapp.wykopolka.presenter.BookPresenter;
 import pl.hypeapp.wykopolka.ui.listener.AppBarStateChangeListener;
+import pl.hypeapp.wykopolka.util.BuildUtil;
 import pl.hypeapp.wykopolka.view.BookView;
 import xyz.hanks.library.SmallBang;
-import xyz.hanks.library.SmallBangListener;
 
 public class BookActivity extends CompositeActivity implements BookView, MaterialSearchView.OnQueryTextListener {
     private static final String WYKOPOLKA_IMG_HOST = App.WYKOPOLKA_IMG_HOST;
     private boolean isSearchViewShown = false;
+    private BookPresenter mBookPresenter;
     private AppBarStateChangeListener.State mState;
     private SmallBang mSmallBang;
     private Book mBook;
@@ -76,7 +78,8 @@ public class BookActivity extends CompositeActivity implements BookView, Materia
                 @Override
                 public BookPresenter providePresenter() {
                     String accountKey = App.readFromPreferences(BookActivity.this, "user_account_key", null);
-                    return new BookPresenter(accountKey, getBookIntentExtra());
+                    mBookPresenter = new BookPresenter(accountKey, getBookIntentExtra());
+                    return mBookPresenter;
                 }
             });
 
@@ -87,6 +90,7 @@ public class BookActivity extends CompositeActivity implements BookView, Materia
         ButterKnife.bind(this);
         mSmallBang = SmallBang.attach2Window(this);
         mToolbar = mToolbarPlugin.initToolbarWithEmptyTitle(mToolbar);
+        mBookPresenter = mPresenterPlugin.getPresenter();
         mBook = getBookIntentExtra();
         mCollapsingToolbarLayout.setTitle(mBook.getTitle());
     }
@@ -139,7 +143,6 @@ public class BookActivity extends CompositeActivity implements BookView, Materia
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_search:
-                Log.e("MENU", " SEARCH ACTION");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -159,7 +162,6 @@ public class BookActivity extends CompositeActivity implements BookView, Materia
     @Override
     public boolean onQueryTextSubmit(String query) {
         Intent intent = new Intent(this, SearchBookActivity.class);
-        intent.putExtra("SEARCH_QUERY", query);
         startActivity(intent);
         return false;
     }
@@ -189,12 +191,12 @@ public class BookActivity extends CompositeActivity implements BookView, Materia
 
     @Override
     public void setWishStatusWilled() {
-        mFabButton.setImageResource(R.drawable.ic_favorite_white_36dp);
+        mFabButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite_white_36dp));
     }
 
     @Override
     public void setWishStatusNotWilled() {
-        mFabButton.setImageResource(R.drawable.ic_favorite_border_white_36dp);
+        mFabButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite_border_white_36dp));
     }
 
     @Override
@@ -214,30 +216,35 @@ public class BookActivity extends CompositeActivity implements BookView, Materia
     @Override
     @OnClick(R.id.btn_edit_book)
     public void editBookDescription() {
+        startEditBookActivity(mBook);
+    }
 
+    private void startEditBookActivity(Book book) {
+        Intent intentBookActivity = new Intent(this, EditBookActivity.class);
+        intentBookActivity.putExtra("book", book);
+
+        if (BuildUtil.isMinApi21()) {
+            String transitionName = getString(R.string.transition_book_cover);
+            Pair<View, String> p1 = Pair.create((View) mBookCover, transitionName);
+            ActivityOptionsCompat transitionActivityOptions = ActivityOptionsCompat.
+                    makeSceneTransitionAnimation(this, p1);
+            startActivity(intentBookActivity, transitionActivityOptions.toBundle());
+        } else {
+            startActivity(intentBookActivity);
+        }
     }
 
     @Override
     @OnClick(R.id.btn_load_pdf)
-    public void loadPdfBookCard() {
+    public void showPdfBookCard() {
 
     }
 
     @Override
     @OnClick(R.id.fab_add_to_wishlist)
-    public void addBookToWishlist() {
-        mSmallBang.bang(mFabButton, new SmallBangListener() {
-            @Override
-            public void onAnimationStart() {
-                mFabButton.setImageResource(R.drawable.ic_favorite_white_36dp);
-            }
-
-            @Override
-            public void onAnimationEnd() {
-
-            }
-        });
-        showSnackbarBookWishlistedSuccesful();
+    public void addBookToWishList() {
+        mBookPresenter.addBookToWishList();
+        mSmallBang.bang(mFabButton);
     }
 
     @Override
@@ -260,12 +267,24 @@ public class BookActivity extends CompositeActivity implements BookView, Materia
     }
 
     @Override
-    public void showSnackbarBookWishlistedSuccesful() {
-        Snackbar snackbar = Snackbar.make(mFabButton, R.string.message_added_to_wishlist, Snackbar.LENGTH_LONG);
+    public void showSnackbarWishListError() {
+        Snackbar.make(mFabButton, R.string.message_wish_list_error, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showSnackbarRemovedFromWishList() {
+        Snackbar.make(mFabButton, R.string.message_removed_from_wish_list, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showSnackbarAddWishListSuccessful() {
+        Snackbar snackbar = Snackbar.make(mFabButton, R.string.message_added_to_wish_list, Snackbar.LENGTH_LONG);
         snackbar.setAction(R.string.action_go_to_wishlist, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent to wish list
+                Intent i = new Intent(BookActivity.this, BookPanelActivity.class);
+                i.putExtra("page", 3);
+                startActivity(i);
             }
         }).show();
     }

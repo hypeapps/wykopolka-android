@@ -44,7 +44,7 @@ public class Book implements Serializable {
     @JsonProperty("isbn")
     private String isbn;
     @JsonProperty("rating")
-    private String rating;
+    private int rating;
     @JsonProperty("desc")
     private String desc;
     @JsonProperty("cover")
@@ -60,7 +60,7 @@ public class Book implements Serializable {
     @JsonProperty("isTmp")
     private Integer isTmp;
     @JsonProperty("quality")
-    private String quality;
+    private int quality;
     @JsonProperty("created_at")
     private String createdAt;
     @JsonProperty("updated_at")
@@ -182,7 +182,7 @@ public class Book implements Serializable {
      * @return The rating
      */
     @JsonProperty("rating")
-    public String getRating() {
+    public int getRating() {
         return rating;
     }
 
@@ -190,7 +190,7 @@ public class Book implements Serializable {
      * @param rating The rating
      */
     @JsonProperty("rating")
-    public void setRating(String rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 
@@ -247,6 +247,10 @@ public class Book implements Serializable {
      */
     @JsonProperty("owned_by_login")
     public String getOwnedByLogin() {
+        return ownedByLogin;
+    }
+
+    public String getOwnedByLoginFormatted() {
         return "@" + ownedByLogin;
     }
 
@@ -279,6 +283,10 @@ public class Book implements Serializable {
      */
     @JsonProperty("added_by_login")
     public String getAddedByLogin() {
+        return addedByLogin;
+    }
+
+    public String getAddedByLoginFormatted() {
         return "@" + addedByLogin;
     }
 
@@ -310,7 +318,7 @@ public class Book implements Serializable {
      * @return The quality
      */
     @JsonProperty("quality")
-    public String getQuality() {
+    public int getQuality() {
         return quality;
     }
 
@@ -318,7 +326,7 @@ public class Book implements Serializable {
      * @param quality The quality
      */
     @JsonProperty("quality")
-    public void setQuality(String quality) {
+    public void setQuality(int quality) {
         this.quality = quality;
     }
 
@@ -370,8 +378,8 @@ public class Book implements Serializable {
         private String desc;
         private String isbn;
         private String genre;
-        private String rating;
-        private String quality;
+        private int rating;
+        private int quality;
         private String cover;
 
         public BookBuilder setTitle(String title) {
@@ -399,12 +407,12 @@ public class Book implements Serializable {
             return this;
         }
 
-        public BookBuilder setRating(String rating) {
+        public BookBuilder setRating(int rating) {
             this.rating = rating;
             return this;
         }
 
-        public BookBuilder setQuality(String quality) {
+        public BookBuilder setQuality(int quality) {
             this.quality = quality;
             return this;
         }

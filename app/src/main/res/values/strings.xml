@@ -14,7 +14,7 @@
     <string name="book_description">Opis książki</string>
     <string name="author">Autor</string>
     <string name="search_hint">Tytuł, autor, gatunek...</string>
-    <string name="message_added_to_wishlist">Dodano książkę na listę życzeń!</string>
+    <string name="message_added_to_wish_list">Dodano książkę na listę życzeń!</string>
     <string name="action_go_to_wishlist">Przejdź do listy życzeń</string>
     <string name="message_stat_readed_books">Przeczytanych książek</string>
     <string name="message_stat_ranking_position">Pozycja w rankingu</string>
@@ -108,4 +108,7 @@
     <string name="error_edit_text_author_empty">Uzupełnij autora</string>
     <string name="error_edit_text_title_empty">Uzupełnij tytuł</string>
     <string name="loading_save_message">Wysyłanie książki</string>
+    <string name="title_activity_all_books">Wszystkie książki</string>
+    <string name="message_removed_from_wish_list">Książka usunięta z listy życzeń</string>
+    <string name="message_wish_list_error">Napotkano błąd</string>
 </resources>
