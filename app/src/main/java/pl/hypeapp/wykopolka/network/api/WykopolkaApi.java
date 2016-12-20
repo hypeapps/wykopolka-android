@@ -26,6 +26,14 @@ public interface WykopolkaApi {
     Observable<List<Book>> getBook(@Field("id") String bookId, @Header("apisign") String apisign);
 
     @FormUrlEncoded
+    @POST("wykopolka/public/api/request/book/all")
+    Call<ResponseBody> getAllBooks(@Field("currentpage") int currentPage, @Field("perpage") String perPage, @Header("apisign") String apisign);
+
+    @FormUrlEncoded
+    @POST("wykopolka/public/api/request/wishlist/get/all")
+    Call<ResponseBody> getWishList(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
+
+    @FormUrlEncoded
     @POST("wykopolka/public/api/request/wishlist/book/status")
     Observable<WishBookStatus> getWishBookStatus(@Field("accountkey") String accountkey, @Field("id") String bookId, @Header("apisign") String apisign);
 
@@ -57,12 +65,16 @@ public interface WykopolkaApi {
     @POST("wykopolka/public/api/request/book/add")
     Observable<List<Book>> uploadBook(@Field("accountkey") String accountKey, @Field("book") String book, @Header("apisign") String apisign);
 
+    @FormUrlEncoded
+    @POST("wykopolka/public/api/request/book/edit")
+    Observable<List<Book>> editBook(@Field("accountkey") String accountKey, @Field("book") String book, @Header("apisign") String apisign);
+
     /**
      * @param state (0 - remove from wish list 1 - add to wish list)
      */
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/wishlist/manage")
-    Call<ResponseBody> manageWishList(@Field("accountkey") String accountKey, @Field("id") String bookId, @Field("state") String state, @Header("apisign") String apisign);
+    Observable<ResponseBody> manageWishList(@Field("accountkey") String accountKey, @Field("id") String bookId, @Field("state") int state, @Header("apisign") String apisign);
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/book/find/by/author")
