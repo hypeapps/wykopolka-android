@@ -6,8 +6,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import pl.hypeapp.wykopolka.ui.fragment.AddedBooksFragment;
-import pl.hypeapp.wykopolka.ui.fragment.MyBooksFragment;
 import pl.hypeapp.wykopolka.ui.fragment.SelectedBooksFragment;
+import pl.hypeapp.wykopolka.ui.fragment.WishListFragment;
 
 public class DashboardPagerAdapter extends FragmentPagerAdapter {
 
@@ -25,7 +25,7 @@ public class DashboardPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return new AddedBooksFragment();
             case 2:
-                return new MyBooksFragment();
+                return new WishListFragment();
             default:
                 return null;
         }
