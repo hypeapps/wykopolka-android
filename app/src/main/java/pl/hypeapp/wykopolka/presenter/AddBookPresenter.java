@@ -40,11 +40,19 @@ public class AddBookPresenter extends BaseUploadBookPresenter<AddBookView> {
         mRetrofitComponent.inject(this);
     }
 
+    @Override
+    protected void onWakeUp() {
+        super.onWakeUp();
+        if (mCoverPhoto != null) {
+            getView().setCoverBitmap(mCoverPhoto);
+        }
+    }
+
     public void prepareBook() {
         if (isInputsCompatible()) {
             startLoading();
             if (mCoverPhoto != null) {
-                rxHelper.manageViewSubscription(decodeCoverAsync()
+                rxHelper.manageSubscription(decodeCoverAsync()
                         .compose(RxTiPresenterUtils.<String>deliverLatestToView(this))
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -62,12 +70,12 @@ public class AddBookPresenter extends BaseUploadBookPresenter<AddBookView> {
 
                             @Override
                             public void onNext(String s) {
-                                Book book = createBook(s);
+                                Book book = createBookToAdd(s);
                                 uploadBookCall(book);
                             }
                         }));
             } else {
-                Book book = createBook(null);
+                Book book = createBookToAdd(null);
                 uploadBookCall(book);
             }
         }
@@ -78,7 +86,8 @@ public class AddBookPresenter extends BaseUploadBookPresenter<AddBookView> {
         if (bookJson != null) {
             String sign = HashUtil.generateApiSign(mAccountkey, bookJson);
             mWykopolkaApi = mRetrofit.create(WykopolkaApi.class);
-            rxHelper.manageViewSubscription(mWykopolkaApi.uploadBook(mAccountkey, bookJson, sign)
+
+            rxHelper.manageSubscription(mWykopolkaApi.uploadBook(mAccountkey, bookJson, sign)
                     .compose(RxTiPresenterUtils.<List<Book>>deliverLatestToView(this))
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
