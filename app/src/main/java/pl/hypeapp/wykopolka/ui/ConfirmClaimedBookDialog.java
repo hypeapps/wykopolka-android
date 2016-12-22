@@ -1,6 +1,5 @@
 package pl.hypeapp.wykopolka.ui;
 
-
 import android.app.Dialog;
 import android.content.Context;
 import android.view.View;

@@ -28,6 +28,8 @@ import pl.hypeapp.wykopolka.presenter.DashboardPresenter;
 import pl.hypeapp.wykopolka.view.DashboardView;
 
 public class DashboardActivity extends CompositeActivity implements DashboardView {
+    private DashboardPagerAdapter mDashboardPagerAdapter;
+    private DashboardPresenter mDashboardPresenter;
     @BindView(R.id.toolbar) Toolbar mToolbar;
     @BindView(R.id.viewpager) ViewPager mViewPager;
     @BindView(R.id.viewpager_tab) SmartTabLayout mSmartTabLayout;
@@ -39,7 +41,8 @@ public class DashboardActivity extends CompositeActivity implements DashboardVie
                 @NonNull
                 @Override
                 public DashboardPresenter providePresenter() {
-                    return new DashboardPresenter();
+                    mDashboardPresenter = new DashboardPresenter(getIntent());
+                    return mDashboardPresenter;
                 }
             });
 
@@ -57,11 +60,12 @@ public class DashboardActivity extends CompositeActivity implements DashboardVie
         Toolbar toolbar = mToolbarPlugin.initToolbar(mToolbar);
         mToolbarPlugin.setNavigationDrawer(toolbar);
         initViewPager(mViewPager, mSmartTabLayout);
+        mDashboardPresenter = mPresenterPlugin.getPresenter();
     }
 
     private void initViewPager(ViewPager viewPager, SmartTabLayout smartTabLayout) {
-        DashboardPagerAdapter dashboardPagerAdapter = new DashboardPagerAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(dashboardPagerAdapter);
+        mDashboardPagerAdapter = new DashboardPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(mDashboardPagerAdapter);
 
         final LayoutInflater layoutInflater = LayoutInflater.from(this);
         final Resources resources = getResources();
@@ -94,4 +98,8 @@ public class DashboardActivity extends CompositeActivity implements DashboardVie
         smartTabLayout.setViewPager(viewPager);
     }
 
+    @Override
+    public void setCurrentPage(int page) {
+        mViewPager.setCurrentItem(page);
+    }
 }

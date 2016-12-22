@@ -49,6 +49,7 @@ import xyz.hanks.library.SmallBang;
 
 public class BookActivity extends CompositeActivity implements BookView, MaterialSearchView.OnQueryTextListener {
     private static final String WYKOPOLKA_IMG_HOST = App.WYKOPOLKA_IMG_HOST;
+    private static final int WISH_LIST_PAGE = 2;
     private boolean isSearchViewShown = false;
     private BookPresenter mBookPresenter;
     private AppBarStateChangeListener.State mState;
@@ -162,6 +163,7 @@ public class BookActivity extends CompositeActivity implements BookView, Materia
     @Override
     public boolean onQueryTextSubmit(String query) {
         Intent intent = new Intent(this, SearchBookActivity.class);
+        intent.putExtra("SEARCH_QUERY", query);
         startActivity(intent);
         return false;
     }
@@ -282,8 +284,8 @@ public class BookActivity extends CompositeActivity implements BookView, Materia
         snackbar.setAction(R.string.action_go_to_wishlist, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(BookActivity.this, BookPanelActivity.class);
-                i.putExtra("page", 3);
+                Intent i = new Intent(BookActivity.this, DashboardActivity.class);
+                i.putExtra("page", WISH_LIST_PAGE);
                 startActivity(i);
             }
         }).show();
