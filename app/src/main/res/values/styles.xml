@@ -15,6 +15,10 @@
         <item name="android:buttonStyle">@style/BrandButtonStyle</item>
     </style>
 
+    <style name="Confirm.Button" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/buttonColorGreen</item>
+    </style>
+
     <style name="AppTheme.Toolbar" parent="@style/ThemeOverlay.AppCompat.Light">
         <item name="android:background">@color/colorPrimary</item>
         <item name="android:textColorPrimary">@color/textColorPrimary</item>

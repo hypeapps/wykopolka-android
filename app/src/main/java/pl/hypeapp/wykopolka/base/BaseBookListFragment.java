@@ -37,7 +37,7 @@ public class BaseBookListFragment<P extends TiPresenter<V>, V extends TiView> ex
     private TextView mEmptyBookListMessage;
     private boolean isRefreshing = false;
     private boolean isFirstRun;
-    public BooksRecyclerAdapter mRecyclerAdapter;
+    private BooksRecyclerAdapter mRecyclerAdapter;
     public CircleRefreshLayout mCircleRefreshLayout;
     public FloatingActionButton mFab;
     private List<Book> mBooks;

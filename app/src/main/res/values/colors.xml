@@ -15,4 +15,5 @@
     <color name="welcomeBackgroundHow">#96bbb3</color>
     <color name="welcomeBackgroundLoginVia">#7578b2</color>
     <color name="colorPrimaryHalfTransparent">#70ffb033</color>
+    <color name="buttonColorGreen">#65d527</color>
 </resources>
