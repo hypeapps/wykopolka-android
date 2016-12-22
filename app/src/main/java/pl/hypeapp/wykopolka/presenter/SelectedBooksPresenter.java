@@ -12,18 +12,18 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import pl.hypeapp.wykopolka.base.BaseBookListView;
 import pl.hypeapp.wykopolka.model.Book;
 import pl.hypeapp.wykopolka.network.api.WykopolkaApi;
 import pl.hypeapp.wykopolka.network.retrofit.DaggerRetrofitComponent;
 import pl.hypeapp.wykopolka.network.retrofit.RetrofitComponent;
 import pl.hypeapp.wykopolka.util.HashUtil;
-import pl.hypeapp.wykopolka.view.BookListView;
 import retrofit2.Retrofit;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class SelectedBooksPresenter extends TiPresenter<BookListView> {
+public class SelectedBooksPresenter extends TiPresenter<BaseBookListView> {
     private static final String BOOKS_AMOUNT = "20";
     @Inject
     @Named("wykopolkaApi")

@@ -10,18 +10,18 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import pl.hypeapp.wykopolka.base.BaseBookListView;
 import pl.hypeapp.wykopolka.model.Book;
 import pl.hypeapp.wykopolka.network.api.WykopolkaApi;
 import pl.hypeapp.wykopolka.network.retrofit.DaggerRetrofitComponent;
 import pl.hypeapp.wykopolka.network.retrofit.RetrofitComponent;
 import pl.hypeapp.wykopolka.util.HashUtil;
-import pl.hypeapp.wykopolka.view.BookListView;
 import retrofit2.Retrofit;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class MyBooksPresenter extends TiPresenter<BookListView> {
+public class MyBooksPresenter extends TiPresenter<BaseBookListView> {
     @Inject
     @Named("wykopolkaApi")
     Retrofit mRetrofit;
@@ -50,7 +50,6 @@ public class MyBooksPresenter extends TiPresenter<BookListView> {
         getView().startLoadingAnimation();
         String apiSign = HashUtil.generateApiSign(accountKey);
         WykopolkaApi wykopolkaApi = mRetrofit.create(WykopolkaApi.class);
-
         rxHelper.manageSubscription(
                 wykopolkaApi.getMyBooks(accountKey, apiSign)
                         .compose(RxTiPresenterUtils.<List<Book>>deliverLatestToView(this))
@@ -75,7 +74,6 @@ public class MyBooksPresenter extends TiPresenter<BookListView> {
                             }
                         }));
     }
-
 
     public void initRefreshData() {
         loadMyBooks(mAccountKey);

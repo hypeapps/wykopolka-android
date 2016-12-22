@@ -12,19 +12,18 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import pl.hypeapp.wykopolka.base.BaseBookListView;
 import pl.hypeapp.wykopolka.model.Book;
 import pl.hypeapp.wykopolka.network.api.WykopolkaApi;
 import pl.hypeapp.wykopolka.network.retrofit.DaggerRetrofitComponent;
 import pl.hypeapp.wykopolka.network.retrofit.RetrofitComponent;
 import pl.hypeapp.wykopolka.util.HashUtil;
-import pl.hypeapp.wykopolka.view.BookListView;
 import retrofit2.Retrofit;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class AddedBooksPresenter extends TiPresenter<BookListView> {
-
+public class AddedBooksPresenter extends TiPresenter<BaseBookListView> {
     @Inject
     @Named("wykopolkaApi")
     Retrofit mRetrofit;
@@ -68,6 +67,7 @@ public class AddedBooksPresenter extends TiPresenter<BookListView> {
 
                             @Override
                             public void onError(Throwable e) {
+                                Log.e("TAG", "onError: " + e.getMessage());
                                 getView().showError();
                                 getView().setBookData(Collections.<Book>emptyList());
                             }
