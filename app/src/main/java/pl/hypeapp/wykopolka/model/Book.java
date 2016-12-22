@@ -65,6 +65,8 @@ public class Book implements Serializable {
     private String createdAt;
     @JsonProperty("updated_at")
     private String updatedAt;
+    @JsonProperty("transfer_id")
+    private Integer transferId;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -360,6 +362,22 @@ public class Book implements Serializable {
     @JsonProperty("updated_at")
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    /**
+     * @return The transferId
+     */
+    @JsonProperty("transfer_id")
+    public Integer getTransferId() {
+        return transferId;
+    }
+
+    /**
+     * @param transferId The transfer_id
+     */
+    @JsonProperty("transfer_id")
+    public void setTransferId(Integer transferId) {
+        this.transferId = transferId;
     }
 
     @JsonAnyGetter

@@ -13,7 +13,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.util.Pair;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -29,6 +28,7 @@ import java.io.File;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import pl.hypeapp.wykopolka.App;
 import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.model.Book;
 import pl.hypeapp.wykopolka.provider.FileContentProvider;
@@ -73,7 +73,6 @@ public class BaseUploadBookActivity<P extends BaseUploadBookPresenter<V>, V exte
         mSeekBarRating.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                Log.e("seek", " " + i);
                 mRatingTextView.setText(String.valueOf(i + 1));
             }
 
@@ -156,7 +155,8 @@ public class BaseUploadBookActivity<P extends BaseUploadBookPresenter<V>, V exte
 
     @Override
     public void setCover(String coverUrl) {
-        if (mCoverImageView != null) Glide.with(this).load(coverUrl).into(mCoverImageView);
+        if (mCoverImageView != null)
+            Glide.with(this).load(App.WYKOPOLKA_IMG_HOST + coverUrl).into(mCoverImageView);
     }
 
     @Override
@@ -190,13 +190,19 @@ public class BaseUploadBookActivity<P extends BaseUploadBookPresenter<V>, V exte
     }
 
     @Override
-    public void setRating(String rating) {
-        if (mRatingTextView != null) mRatingTextView.setText(rating);
+    public void setRating(int rating) {
+        if (mRatingTextView != null && mSeekBarRating != null) {
+            mRatingTextView.setText(String.valueOf(rating));
+            mSeekBarRating.setProgress(rating - 1);
+        }
     }
 
     @Override
-    public void setQuality(String quality) {
-        if (mQualityTextView != null) mQualityTextView.setText(quality);
+    public void setQuality(int quality) {
+        if (mQualityTextView != null && mSeekBarQuality != null) {
+            mQualityTextView.setText(String.valueOf(quality));
+            mSeekBarQuality.setProgress(quality - 1);
+        }
     }
 
     @Override
@@ -225,13 +231,13 @@ public class BaseUploadBookActivity<P extends BaseUploadBookPresenter<V>, V exte
     }
 
     @Override
-    public String getRating() {
-        return mRatingTextView.getText().toString();
+    public int getRating() {
+        return Integer.parseInt(mRatingTextView.getText().toString());
     }
 
     @Override
-    public String getQuality() {
-        return mQualityTextView.getText().toString();
+    public int getQuality() {
+        return Integer.parseInt(mQualityTextView.getText().toString());
     }
 
     @Override

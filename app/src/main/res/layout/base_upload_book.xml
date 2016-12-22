@@ -92,7 +92,7 @@
                                 android:layout_marginEnd="@dimen/def_margin"
                                 android:layout_marginStart="@dimen/def_margin"
                                 android:hint="@string/book_title"
-                                android:inputType="text"
+                                android:inputType="textEmailAddress"
                                 android:maxLength="255"
                                 android:scrollHorizontally="true"
                                 android:textSize="@dimen/edit_text_size"/>
@@ -112,7 +112,7 @@
                                 android:layout_marginEnd="@dimen/def_margin"
                                 android:layout_marginStart="@dimen/def_margin"
                                 android:hint="@string/author"
-                                android:inputType="text"
+                                android:inputType="textEmailAddress"
                                 android:maxLength="255"
                                 android:scrollHorizontally="true"
                                 android:textSize="@dimen/edit_text_size"/>
@@ -132,7 +132,7 @@
                                 android:layout_marginEnd="@dimen/def_margin"
                                 android:layout_marginStart="@dimen/def_margin"
                                 android:hint="@string/isbn_number"
-                                android:inputType="text"
+                                android:inputType="textEmailAddress"
                                 android:maxLength="255"
                                 android:scrollHorizontally="true"
                                 android:textSize="@dimen/edit_text_size"/>
@@ -152,7 +152,7 @@
                                 android:layout_marginEnd="@dimen/def_margin"
                                 android:layout_marginStart="@dimen/def_margin"
                                 android:hint="@string/genre"
-                                android:inputType="text"
+                                android:inputType="textEmailAddress"
                                 android:maxLength="255"
                                 android:scrollHorizontally="true"
                                 android:textSize="@dimen/edit_text_size"/>
@@ -185,7 +185,7 @@
                             android:layout_marginEnd="@dimen/def_margin"
                             android:layout_marginStart="@dimen/def_margin"
                             android:hint="@string/book_description"
-                            android:inputType="textMultiLine"
+                            android:inputType="textMultiLine|textEmailAddress"
                             android:maxLength="2500"
                             android:textSize="@dimen/edit_text_size"/>
 

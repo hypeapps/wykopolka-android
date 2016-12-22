@@ -111,4 +111,10 @@
     <string name="title_activity_all_books">Wszystkie książki</string>
     <string name="message_removed_from_wish_list">Książka usunięta z listy życzeń</string>
     <string name="message_wish_list_error">Napotkano błąd</string>
+    <string name="message_in_query">W kolejce</string>
+    <string name="button_confirm_claim">potwierdź odbiór</string>
+    <string name="dialog_message_rate_quality">Poświęć chwilę na ocenę stanu książki, którą otrzymałeś.</string>
+    <string name="dialog_button_confirm">potwierdź</string>
+    <string name="dialog_title">Odbieranie książki</string>
+    <string name="wish_list_empty">Nie masz żadnej książki na listę życzeń</string>
 </resources>

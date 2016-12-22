@@ -5,6 +5,9 @@ sudo: true
 before_install:
 - chmod +x gradlew
 env:
+-WAPI_SECRET=WAPI_SECRET
+-WYKOPOLKA_SECRET=WYKOPOLKA_SECRET
+-APP_KEY=APP_KEY
   global:
    - ANDROID_API_LEVEL=24
    - EMULATOR_API_LEVEL=21

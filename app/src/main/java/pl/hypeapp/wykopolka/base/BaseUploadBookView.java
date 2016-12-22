@@ -34,10 +34,10 @@ public interface BaseUploadBookView extends TiView {
     void setDescription(String description);
 
     @CallOnMainThread
-    void setRating(String rating);
+    void setRating(int rating);
 
     @CallOnMainThread
-    void setQuality(String quality);
+    void setQuality(int quality);
 
     String getBookTitle();
 
@@ -49,9 +49,9 @@ public interface BaseUploadBookView extends TiView {
 
     String getGenre();
 
-    String getRating();
+    int getRating();
 
-    String getQuality();
+    int getQuality();
 
     @CallOnMainThread
     void showMessageInputEmpty(int messageIndex);

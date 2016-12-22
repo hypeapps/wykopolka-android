@@ -23,9 +23,6 @@ public class BaseUploadBookPresenter<V extends BaseUploadBookView> extends TiPre
     @Override
     protected void onWakeUp() {
         super.onWakeUp();
-        if (mCoverPhoto != null) {
-            getView().setCoverBitmap(mCoverPhoto);
-        }
         if (isLoading) {
             startLoading();
         } else {
@@ -79,17 +76,30 @@ public class BaseUploadBookPresenter<V extends BaseUploadBookView> extends TiPre
         });
     }
 
-    protected Book createBook(String coverEncoded) {
+    protected Book createBookToAdd(String cover) {
         return new Book.BookBuilder()
                 .setTitle(getView().getBookTitle().trim())
                 .setAuthor(getView().getAuthor().trim())
                 .setIsbn(getView().getIsbn().trim())
                 .setGenre(getView().getGenre().trim())
                 .setDesc(getView().getDescription().trim())
-                .setRating(getView().getRating().trim())
-                .setQuality(getView().getQuality().trim())
-                .setCover(coverEncoded)
+                .setRating(getView().getRating())
+                .setQuality(getView().getQuality())
+                .setCover(cover)
                 .build();
+    }
+
+    protected Book createEditedBook(Book book, String cover) {
+        Book editedBook = book;
+        editedBook.setTitle(getView().getBookTitle().trim());
+        editedBook.setAuthor(getView().getAuthor().trim());
+        editedBook.setGenre(getView().getGenre().trim());
+        editedBook.setIsbn(getView().getIsbn().trim());
+        editedBook.setQuality(getView().getQuality());
+        editedBook.setRating(getView().getRating());
+        editedBook.setDesc(getView().getDescription().trim());
+        editedBook.setCover(cover);
+        return editedBook;
     }
 
     @Nullable

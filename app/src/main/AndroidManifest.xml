@@ -116,7 +116,17 @@
         </activity>
         <activity
             android:name="pl.hypeapp.wykopolka.ui.activity.EditBookActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_edit_book">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="pl.hypeapp.wykopolka.ui.activity.AllBooksActivity"
+            android:label="@string/title_activity_all_books">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
