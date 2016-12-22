@@ -67,7 +67,7 @@
                 android:layout_alignBottom="@id/iv_book_thumbnail"
                 android:layout_marginEnd="@dimen/def_margin"
                 android:layout_toEndOf="@id/iv_book_thumbnail"
-                android:text="@string/button_confirm"
+                android:text="@string/button_confirm_claim"
                 android:theme="@style/Confirm.Button"/>
 
         </RelativeLayout>
