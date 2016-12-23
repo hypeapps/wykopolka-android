@@ -115,6 +115,13 @@
     <string name="button_confirm_claim">potwierdź odbiór</string>
     <string name="dialog_message_rate_quality">Poświęć chwilę na ocenę stanu książki, którą otrzymałeś.</string>
     <string name="dialog_button_confirm">potwierdź</string>
-    <string name="dialog_title">Odbieranie książki</string>
+    <string name="dialog_claimed_book_title">Odbieranie książki</string>
     <string name="wish_list_empty">Nie masz żadnej książki na listę życzeń</string>
+    <string name="transfers_list_empty">Twoja lista oczekujących jest pusta</string>
+    <string name="dialog_transfer_book_title">Przekaż książkę</string>
+    <string name="button_confirm_transfer">przekaż książkę</string>
+    <string name="dialog_transfer_confirm">przekaż</string>
+    <string name="dialog_no_address_content">Użytkownik nie udostępnił szczegółowych danych wysyłki.</string>
+    <string name="dialog_address_content_present">Jeśli dane wysyłki wyglądaja na nieprawidłowe:</string>
+    <string name="dialog_priv_message">Zapytaj go o nie w wiadomości na Wykopie</string>
 </resources>
