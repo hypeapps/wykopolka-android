@@ -241,6 +241,7 @@
                     <Button
                         android:id="@+id/btn_edit_book"
                         style="@style/LoadPdfButtonStyle"
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_mode_edit_white_24dp"
