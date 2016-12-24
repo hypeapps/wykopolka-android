@@ -8,6 +8,7 @@ import pl.hypeapp.wykopolka.presenter.AddedBooksPresenter;
 import pl.hypeapp.wykopolka.presenter.AllBooksPresenter;
 import pl.hypeapp.wykopolka.presenter.BookPanelPresenter;
 import pl.hypeapp.wykopolka.presenter.BookPresenter;
+import pl.hypeapp.wykopolka.presenter.DemandQueuePresenter;
 import pl.hypeapp.wykopolka.presenter.EditBookPresenter;
 import pl.hypeapp.wykopolka.presenter.MyBooksPresenter;
 import pl.hypeapp.wykopolka.presenter.ProfileSettingsPresenter;
@@ -50,4 +51,5 @@ public interface RetrofitComponent {
 
     void inject(WishListPresenter tiPresenter);
 
+    void inject(DemandQueuePresenter tiPresenter);
 }
