@@ -4,6 +4,7 @@ import java.util.List;
 
 import okhttp3.ResponseBody;
 import pl.hypeapp.wykopolka.model.Book;
+import pl.hypeapp.wykopolka.model.DemandQueue;
 import pl.hypeapp.wykopolka.model.SearchResult;
 import pl.hypeapp.wykopolka.model.Statistics;
 import pl.hypeapp.wykopolka.model.User;
@@ -33,6 +34,10 @@ public interface WykopolkaApi {
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/wishlist/get/all")
     Observable<List<Book>> getWishList(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
+
+    @FormUrlEncoded
+    @POST("wykopolka/public/api/request/demand/queue")
+    Observable<DemandQueue> getDemandQueue(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/wishlist/book/status")
@@ -90,9 +95,8 @@ public interface WykopolkaApi {
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/transfer/register")
-    Call<ResponseBody> transferBook(@Field("accountkey") String accountKey, @Field("id") String bookId, @Field("receiverid") int transferId,
-                                    @Header("apisign") String apisign);
-
+    Observable<ResponseBody> transferBook(@Field("accountkey") String accountKey, @Field("id") String bookId,
+                                          @Field("receiverid") int receiverId, @Header("apisign") String apisign);
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/book/find/by/author")
