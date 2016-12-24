@@ -1,5 +1,7 @@
 package pl.hypeapp.wykopolka.presenter;
 
+import android.util.Log;
+
 import net.grandcentrix.thirtyinch.rx.RxTiPresenterSubscriptionHandler;
 import net.grandcentrix.thirtyinch.rx.RxTiPresenterUtils;
 
@@ -143,6 +145,7 @@ public class EditBookPresenter extends BaseUploadBookPresenter<EditBookView> {
                         public void onError(Throwable e) {
                             stopLoading();
                             getView().showUploadError();
+                            Log.e("editError", e.getMessage());
                         }
 
                         @Override
