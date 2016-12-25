@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -63,6 +64,7 @@ public class BookActivity extends CompositeActivity implements BookView, Materia
     @BindView(R.id.search_status_bar) View searchStatusBar;
     @BindView(R.id.iv_book_cover) ImageView mBookCover;
     @BindView(R.id.cv_overview) CardView mOverviewCard;
+    @BindView(R.id.btn_edit_book) Button mEditButton;
     @BindViews({R.id.tv_author, R.id.tv_description, R.id.tv_genre}) List<TextView> mBookDescriptionsTextViews;
     @BindViews({R.id.tv_book_added_by, R.id.tv_book_owned_by}) List<TextView> mBookHoldersTextViews;
 
@@ -79,7 +81,8 @@ public class BookActivity extends CompositeActivity implements BookView, Materia
                 @Override
                 public BookPresenter providePresenter() {
                     String accountKey = App.readFromPreferences(BookActivity.this, "user_account_key", null);
-                    mBookPresenter = new BookPresenter(accountKey, getBookIntentExtra());
+                    String nickname = App.readFromPreferences(BookActivity.this, "user_login", null);
+                    mBookPresenter = new BookPresenter(accountKey, nickname, getBookIntentExtra());
                     return mBookPresenter;
                 }
             });
@@ -214,6 +217,12 @@ public class BookActivity extends CompositeActivity implements BookView, Materia
         mBookHoldersTextViews.get(1).setText(ownedBy);
     }
 
+    @Override
+    public void showEditButton() {
+        if (mEditButton != null) {
+            mEditButton.setVisibility(View.VISIBLE);
+        }
+    }
 
     @Override
     @OnClick(R.id.btn_edit_book)

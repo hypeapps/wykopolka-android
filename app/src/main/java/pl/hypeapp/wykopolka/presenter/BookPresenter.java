@@ -25,6 +25,7 @@ public class BookPresenter extends TiPresenter<BookView> {
     private static final int REMOVE_FROM_WISH_LIST = 0;
     private String mAccountKey;
     private String mBookId;
+    private String mNickname;
     private WishBookStatus mWishBookStatus;
     private WykopolkaApi mWykopolkaApi;
     private Book mBook;
@@ -34,10 +35,11 @@ public class BookPresenter extends TiPresenter<BookView> {
     Retrofit mRetrofit;
     RetrofitComponent mRetrofitComponent;
 
-    public BookPresenter(String accountKey, Book book) {
+    public BookPresenter(String accountKey, String nickname, Book book) {
         this.mAccountKey = accountKey;
         this.mBookId = book.getBookId();
         this.mBook = book;
+        this.mNickname = nickname;
     }
 
     @Override
@@ -54,8 +56,15 @@ public class BookPresenter extends TiPresenter<BookView> {
         super.onWakeUp();
         setBookDescriptionToView(mBook);
         setBookHoldersToView(mBook);
+        manageEditBookButton(mBook);
         if (mWishBookStatus != null) {
             setWishBookStatusToView(mWishBookStatus);
+        }
+    }
+
+    private void manageEditBookButton(Book book) {
+        if (book.getAddedByLogin().equals(mNickname)) {
+            getView().showEditButton();
         }
     }
 

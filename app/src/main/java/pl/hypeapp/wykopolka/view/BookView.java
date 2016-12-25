@@ -23,6 +23,9 @@ public interface BookView extends TiView {
     void setWishStatusNotWilled();
 
     @CallOnMainThread
+    void showEditButton();
+
+    @CallOnMainThread
     void setWishIconDisabled();
 
     @CallOnMainThread
