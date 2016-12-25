@@ -32,7 +32,7 @@ public class ConfirmClaimedBookDialog extends Dialog {
         setContentView(R.layout.dialog_confirm_claim);
         this.setCancelable(true);
         this.context = context;
-        this.setTitle(context.getString(R.string.dialog_title));
+        this.setTitle(context.getString(R.string.dialog_confim_title));
     }
 
     public void setBookData(Book book) {
