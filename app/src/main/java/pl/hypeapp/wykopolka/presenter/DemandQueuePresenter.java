@@ -7,6 +7,8 @@ import net.grandcentrix.thirtyinch.TiPresenter;
 import net.grandcentrix.thirtyinch.rx.RxTiPresenterSubscriptionHandler;
 import net.grandcentrix.thirtyinch.rx.RxTiPresenterUtils;
 
+import java.util.Collections;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -44,6 +46,9 @@ public class DemandQueuePresenter extends TiPresenter<DemandQueueView> {
         mRetrofitComponent = DaggerRetrofitComponent.builder().build();
         mRetrofitComponent.inject(this);
         mWykopolkaApi = mRetrofit.create(WykopolkaApi.class);
+        mDemandQueue = new DemandQueue();
+        mDemandQueue.setPendingUsers(Collections.<PendingUser>emptyList());
+        mDemandQueue.setBooks(Collections.<Book>emptyList());
     }
 
     @Override
