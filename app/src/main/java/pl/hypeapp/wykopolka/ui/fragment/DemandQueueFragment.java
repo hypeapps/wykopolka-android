@@ -171,7 +171,6 @@ public class DemandQueueFragment extends TiFragment<DemandQueuePresenter, Demand
     public void startLoadingAnimation() {
         Wave wave = new Wave();
         mSpinLoading.setIndeterminateDrawable(wave);
-
     }
 
     @Override
