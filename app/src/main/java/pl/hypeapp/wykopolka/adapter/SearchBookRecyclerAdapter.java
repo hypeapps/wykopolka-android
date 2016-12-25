@@ -37,7 +37,7 @@ public class SearchBookRecyclerAdapter extends RecyclerView.Adapter<SearchBookRe
 
     @Override
     public SearchBookRecyclerHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mLayoutInflater.inflate(R.layout.searched_book_item, parent, false);
+        View view = mLayoutInflater.inflate(R.layout.vertical_book_item, parent, false);
         return new SearchBookRecyclerHolder(view);
     }
 
