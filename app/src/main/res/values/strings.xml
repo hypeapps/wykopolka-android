@@ -124,4 +124,5 @@
     <string name="dialog_address_content_present">Jeśli dane wysyłki wyglądaja na nieprawidłowe:</string>
     <string name="dialog_priv_message">Zapytaj go o nie w wiadomości na Wykopie</string>
     <string name="dialog_confim_title">Odbieranie książki</string>
+    <string name="all_books_list_empty">Z jakiegoś powodu nie ma tu książek</string>
 </resources>

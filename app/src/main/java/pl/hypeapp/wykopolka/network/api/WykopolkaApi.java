@@ -5,6 +5,7 @@ import java.util.List;
 import okhttp3.ResponseBody;
 import pl.hypeapp.wykopolka.model.Book;
 import pl.hypeapp.wykopolka.model.DemandQueue;
+import pl.hypeapp.wykopolka.model.Pagination;
 import pl.hypeapp.wykopolka.model.SearchResult;
 import pl.hypeapp.wykopolka.model.Statistics;
 import pl.hypeapp.wykopolka.model.User;
@@ -28,8 +29,8 @@ public interface WykopolkaApi {
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/book/all")
-    Call<ResponseBody> getAllBooks(@Field("currentpage") int currentPage, @Field("perpage") String perPage,
-                                   @Header("apisign") String apisign);
+    Observable<Pagination> getAllBooks(@Field("currentpage") int currentPage, @Field("perpage") String perPage,
+                                       @Header("apisign") String apisign);
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/wishlist/get/all")

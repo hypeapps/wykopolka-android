@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:background="@color/cardViewBackground"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/tab_toolbar"/>
+
+        <TextView
+            android:id="@+id/tv_book_list_null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/all_books_list_empty"
+            android:textStyle="bold"
+            android:visibility="gone"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolbar"
+            android:id="@+id/loading_view">
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/spin_loading"
+                style="@style/SpinKitView.Wave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                app:SpinKit_Color="@color/colorAccent"/>
+
+            <TextView
+                android:id="@+id/tv_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/spin_loading"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/def_margin"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/loading_message"
+                android:textStyle="bold"/>
+
+        </RelativeLayout>
+
+        <pl.hypeapp.wykopolka.extra.circlerefreshlayout.CircleRefreshLayout
+            android:id="@+id/refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolbar"
+            app:AniBackColor="@color/colorPrimary"
+            app:AniForeColor="@color/cardViewBackground"
+            app:CircleSmaller="6">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/all_books_list"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="@dimen/def_margin"
+                android:layout_height="match_parent"/>
+
+        </pl.hypeapp.wykopolka.extra.circlerefreshlayout.CircleRefreshLayout>
+
+        <include
+            android:id="@+id/error_view"
+            layout="@layout/error_layout"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+    <fragment
+        android:id="@+id/fragment_navigation_drawer"
+        android:name="pl.hypeapp.wykopolka.ui.fragment.NavigationDrawerFragment"
+        android:layout_width="@dimen/nav_drawer_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:layout="@layout/fragment_navigation_drawer"
+        tools:layout="@layout/fragment_navigation_drawer"/>
+
+</android.support.v4.widget.DrawerLayout>
