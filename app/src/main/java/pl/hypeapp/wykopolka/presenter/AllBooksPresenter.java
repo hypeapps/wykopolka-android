@@ -6,6 +6,7 @@ import net.grandcentrix.thirtyinch.TiPresenter;
 import net.grandcentrix.thirtyinch.rx.RxTiPresenterSubscriptionHandler;
 import net.grandcentrix.thirtyinch.rx.RxTiPresenterUtils;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -31,8 +32,6 @@ public class AllBooksPresenter extends TiPresenter<AllBooksView> {
     private RetrofitComponent mRetrofitComponent;
     private RxTiPresenterSubscriptionHandler rxHelper = new RxTiPresenterSubscriptionHandler(this);
     private WykopolkaApi mWykopolkaApi;
-    private int currentPage;
-    private List<Book> mBooks;
 
     @Override
     protected void onCreate() {
@@ -40,20 +39,53 @@ public class AllBooksPresenter extends TiPresenter<AllBooksView> {
         mRetrofitComponent = DaggerRetrofitComponent.builder().build();
         mRetrofitComponent.inject(this);
         mWykopolkaApi = mRetrofit.create(WykopolkaApi.class);
-        currentPage = 1;
     }
 
     @Override
     protected void onWakeUp() {
         super.onWakeUp();
-        allBooksCall(currentPage);
+        loadFirstPageBooks();
     }
 
     public void initRefreshData() {
-        allBooksCall(currentPage);
+        loadFirstPageBooks();
     }
 
-    private void allBooksCall(int currentPage) {
+    private void loadFirstPageBooks() {
+        getView().startLoadingAnimation();
+        int firstPage = 1;
+        String page = String.valueOf(firstPage);
+        String apiSign = HashUtil.generateApiSign(page, BOOKS_PER_PAGE);
+        rxHelper.manageSubscription(mWykopolkaApi.getAllBooks(firstPage, BOOKS_PER_PAGE, apiSign)
+                .compose(RxTiPresenterUtils.<Pagination>deliverLatestToView(this))
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Pagination>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e("On error pagination", e.getMessage());
+                        onLoadErrorHandling();
+                    }
+
+                    @Override
+                    public void onNext(Pagination pagination) {
+                        Log.e("On next pagination", pagination.getPerPage() + " " + pagination.getData().size());
+                        Log.e("page", "1");
+                        onLoadFirstPageSuccessful(pagination.getData());
+                    }
+                })
+        );
+
+    }
+
+    public void loadMoreBooks(final int currentPage, int totalItemsCount) {
+        totalItemsCount += 15;
+        final int itemsCount = totalItemsCount;
         String page = String.valueOf(currentPage);
         String apiSign = HashUtil.generateApiSign(page, BOOKS_PER_PAGE);
         rxHelper.manageSubscription(mWykopolkaApi.getAllBooks(currentPage, BOOKS_PER_PAGE, apiSign)
@@ -68,32 +100,35 @@ public class AllBooksPresenter extends TiPresenter<AllBooksView> {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Log.e("On error pagination", e.getMessage());
+                        onLoadErrorHandling();
                     }
 
                     @Override
                     public void onNext(Pagination pagination) {
-                        Log.e("pagination", pagination.getPerPage() + " " + pagination.getData().size());
-                        onLoadSuccessful(pagination.getData());
+                        Log.e("On next pagination", pagination.getPerPage() + " " + pagination.getData().size());
+                        Log.e("page", "more");
+                        onLoadMoreDataSuccessful(pagination.getData(), itemsCount);
                     }
                 })
         );
 
     }
 
-    private void onLoadErrorHandling() {
-//        mDemandQueue.getBooks().clear();
-//        mDemandQueue.getPendingUsers().clear();
-//        getView().setBookData(mDemandQueue);
-//        getView().showError();
-//        getView().stopLoadingAnimation();
-//        getView().stopRefreshing();
-    }
-
-    private void onLoadSuccessful(List<Book> books) {
-        mBooks = books;
+    private void onLoadFirstPageSuccessful(List<Book> books) {
         getView().setBookData(books);
         getView().hideError();
+        getView().stopLoadingAnimation();
+        getView().stopRefreshing();
+    }
+
+    private void onLoadMoreDataSuccessful(List<Book> books, int itemsCount) {
+        getView().onLoadedMoreDataFromApi(books, itemsCount);
+    }
+
+    private void onLoadErrorHandling() {
+        getView().setBookData(Collections.<Book>emptyList());
+        getView().showError();
         getView().stopLoadingAnimation();
         getView().stopRefreshing();
     }

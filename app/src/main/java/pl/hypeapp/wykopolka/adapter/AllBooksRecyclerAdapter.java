@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.balysv.materialripple.MaterialRippleLayout;
@@ -24,6 +25,9 @@ import rx.Observable;
 import rx.subjects.PublishSubject;
 
 public class AllBooksRecyclerAdapter extends RecyclerView.Adapter<AllBooksRecyclerAdapter.AllBooksRecyclerHolder> {
+    //TODO: LOADING ITEM
+    private final int VIEW_TYPE_ITEM = 0;
+    private final int VIEW_TYPE_LOADING = 1;
     private static final String WYKOPOLKA_IMG_HOST = App.WYKOPOLKA_IMG_HOST;
     private final PublishSubject<AllBooksRecyclerAdapter.AllBooksRecyclerHolder> onClickSubject = PublishSubject.create();
     private LayoutInflater mLayoutInflater;
@@ -76,13 +80,12 @@ public class AllBooksRecyclerAdapter extends RecyclerView.Adapter<AllBooksRecycl
         notifyDataSetChanged();
     }
 
+    public void setMoreData(List<Book> books) {
+        mDataSet.addAll(books);
+//        notifyDataSetChanged();
+    }
+
     public class AllBooksRecyclerHolder extends RecyclerView.ViewHolder {
-        //        @BindView(R.id.iv_book_thumbnail) public ImageView bookThumbnail;
-//        @BindView(R.id.gradient) public ImageView gradient;
-//        @BindView(R.id.tv_book_title) TextView bookTitle;
-//        @BindView(R.id.tv_book_author) TextView bookAuthor;
-//        @BindView(R.id.card_view_added_book) CardView cardView;
-//        @BindView(R.id.ripple) MaterialRippleLayout materialRippleLayout;
         @BindView(R.id.tv_book_title) TextView bookTitle;
         @BindView(R.id.tv_book_author) TextView bookAuthor;
         @BindView(R.id.iv_book_cover) public ImageView bookCover;
@@ -92,5 +95,19 @@ public class AllBooksRecyclerAdapter extends RecyclerView.Adapter<AllBooksRecycl
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+    }
+
+    //TODO: LOADING ITEM
+    class LoadingViewHolder extends RecyclerView.ViewHolder {
+        public ProgressBar progressBar;
+
+        public LoadingViewHolder(View itemView) {
+            super(itemView);
+            progressBar = (ProgressBar) itemView.findViewById(R.id.spin_loading);
+        }
+    }
+
+    public interface OnLoadMoreListener {
+        void onLoadMore();
     }
 }

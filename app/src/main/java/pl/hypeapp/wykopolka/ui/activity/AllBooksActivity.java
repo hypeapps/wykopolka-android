@@ -25,13 +25,14 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
 import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.adapter.AllBooksRecyclerAdapter;
 import pl.hypeapp.wykopolka.extra.circlerefreshlayout.CircleRefreshLayout;
 import pl.hypeapp.wykopolka.model.Book;
 import pl.hypeapp.wykopolka.plugin.ToolbarActivityPlugin;
 import pl.hypeapp.wykopolka.presenter.AllBooksPresenter;
+import pl.hypeapp.wykopolka.ui.listener.EndlessRecyclerViewScrollListener;
 import pl.hypeapp.wykopolka.util.BuildUtil;
 import pl.hypeapp.wykopolka.view.AllBooksView;
 import rx.functions.Action1;
@@ -46,6 +47,7 @@ public class AllBooksActivity extends CompositeActivity implements AllBooksView,
     @BindView(R.id.refresh_layout) CircleRefreshLayout mCircleRefreshLayout;
     private boolean isRefreshing = false;
     private AllBooksRecyclerAdapter mRecyclerAdapter;
+    private EndlessRecyclerViewScrollListener mScrollListener;
     private List<Book> mBooks;
     private AllBooksPresenter mAllBooksPresenter;
 
@@ -73,10 +75,12 @@ public class AllBooksActivity extends CompositeActivity implements AllBooksView,
         ButterKnife.bind(this);
         mToolbar = mToolbarPlugin.initToolbar(mToolbar);
         mToolbarPlugin.setNavigationDrawer(mToolbar);
+        mAllBooksPresenter = mPresenterPlugin.getPresenter();
+        mCircleRefreshLayout.setOnRefreshListener(this);
         initRecyclerAdapter();
     }
 
-    public void initRecyclerAdapter() {
+    private void initRecyclerAdapter() {
         mRecyclerAdapter = new AllBooksRecyclerAdapter(this);
         int orientation = getResources().getConfiguration().orientation;
         GridLayoutManager gridLayoutManager;
@@ -86,8 +90,8 @@ public class AllBooksActivity extends CompositeActivity implements AllBooksView,
             gridLayoutManager = new GridLayoutManager(this, 4);
         }
         mRecyclerView.setLayoutManager(gridLayoutManager);
-        ScaleInAnimationAdapter scaleInAnimationAdapter = new ScaleInAnimationAdapter(mRecyclerAdapter);
-        scaleInAnimationAdapter.setFirstOnly(true);
+        AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(mRecyclerAdapter);
+        alphaInAnimationAdapter.setFirstOnly(true);
         mRecyclerAdapter.getOnBookClicks()
                 .subscribe(new Action1<AllBooksRecyclerAdapter.AllBooksRecyclerHolder>() {
                     @Override
@@ -95,13 +99,37 @@ public class AllBooksActivity extends CompositeActivity implements AllBooksView,
                         startBookActivity(mBooks, allBooksRecyclerHolder);
                     }
                 });
-        mRecyclerView.setAdapter(scaleInAnimationAdapter);
+        mRecyclerView.addOnScrollListener(initEndlessScrollListener(gridLayoutManager));
+        mRecyclerView.setAdapter(alphaInAnimationAdapter);
+    }
+
+    private EndlessRecyclerViewScrollListener initEndlessScrollListener(GridLayoutManager gridLayoutManager) {
+        mScrollListener = new EndlessRecyclerViewScrollListener(gridLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                mAllBooksPresenter.loadMoreBooks(++page, totalItemsCount);
+            }
+        };
+        return mScrollListener;
+    }
+
+    @Override
+    public void onLoadedMoreDataFromApi(List<Book> books, final int itemsCount) {
+        mRecyclerAdapter.setMoreData(books);
+        mRecyclerView.post(new Runnable() {
+            @Override
+            public void run() {
+                mRecyclerAdapter.notifyItemRangeInserted(itemsCount, 15);
+            }
+        });
+        this.mBooks.addAll(books);
     }
 
     @Override
     public void setBookData(List<Book> books) {
         if (books != null) {
             this.mBooks = books;
+            initRecyclerAdapter();
             mRecyclerAdapter.setData(this.mBooks);
             mEmptyBookListMessage.setVisibility(View.GONE);
         } else {
