@@ -28,6 +28,7 @@ import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.adapter.DrawerRecyclerAdapter;
 import pl.hypeapp.wykopolka.model.NavigationItem;
 import pl.hypeapp.wykopolka.presenter.NavigationDrawerPresenter;
+import pl.hypeapp.wykopolka.ui.activity.AllBooksActivity;
 import pl.hypeapp.wykopolka.ui.activity.BookPanelActivity;
 import pl.hypeapp.wykopolka.ui.activity.DashboardActivity;
 import pl.hypeapp.wykopolka.ui.activity.FaqActivity;
@@ -180,30 +181,44 @@ public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresent
         }
 
         private void startIntentActivity(int position) {
+            Intent intent = new Intent();
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             switch (position) {
                 case 0:
-                    startActivity(new Intent(getActivity(), DashboardActivity.class));
+                    intent.setClass(getActivity(), DashboardActivity.class);
+                    getActivity().startActivity(intent);
                     break;
                 case 1:
-                    startActivity(new Intent(getActivity(), SearchBookActivity.class));
+                    intent.setClass(getActivity(), SearchBookActivity.class);
+                    getActivity().startActivity(intent);
                     break;
                 case 2:
-                    startActivity(new Intent(getActivity(), BookPanelActivity.class));
+                    intent.setClass(getActivity(), BookPanelActivity.class);
+                    getActivity().startActivity(intent);
+                    break;
+                case 3:
+                    intent.setClass(getActivity(), AllBooksActivity.class);
+                    getActivity().startActivity(intent);
                     break;
                 case 4:
-                    startActivity(new Intent(getActivity(), RandomBookActivity.class));
+                    intent.setClass(getActivity(), RandomBookActivity.class);
+                    getActivity().startActivity(intent);
+                    break;
+                case 5:
+                    intent.setClass(getActivity(), FaqActivity.class);
+                    getActivity().startActivity(intent);
                     break;
                 case 6:
-                    startActivity(new Intent(getActivity(), FaqActivity.class));
+                    intent.setClass(getActivity(), StatsAndTopUsersActivity.class);
+                    getActivity().startActivity(intent);
                     break;
                 case 7:
-                    startActivity(new Intent(getActivity(), StatsAndTopUsersActivity.class));
-                    break;
-                case 8:
-                    startActivity(new Intent(getActivity(), ProfileSettingsActivity.class));
+                    intent.setClass(getActivity(), ProfileSettingsActivity.class);
+                    getActivity().startActivity(intent);
                     break;
                 default:
-                    startActivity(new Intent(getActivity(), DashboardActivity.class));
+                    intent.setClass(getActivity(), DashboardActivity.class);
+                    getActivity().startActivity(intent);
                     break;
             }
         }
