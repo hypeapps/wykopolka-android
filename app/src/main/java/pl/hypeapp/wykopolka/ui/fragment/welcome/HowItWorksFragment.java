@@ -23,6 +23,8 @@ public class HowItWorksFragment extends Fragment {
 
     @OnClick(R.id.btn_open_faq)
     public void openFaq() {
-        startActivity(new Intent(getActivity(), FaqActivity.class));
+        Intent intent = new Intent(getActivity(), FaqActivity.class);
+        intent.putExtra("from_welcome", true);
+        startActivity(intent);
     }
 }
