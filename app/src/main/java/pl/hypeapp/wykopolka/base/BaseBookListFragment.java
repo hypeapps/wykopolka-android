@@ -96,12 +96,13 @@ public class BaseBookListFragment<P extends TiPresenter<V>, V extends TiView> ex
 
     @Override
     public void setBookData(List<Book> books) {
-        if (books != null) {
+        if (books.size() == 0) {
+            initRecyclerAdapter();
+            mEmptyBookListMessage.setVisibility(View.VISIBLE);
+        } else {
             this.mBooks = books;
             mRecyclerAdapter.setData(this.mBooks);
             mEmptyBookListMessage.setVisibility(View.GONE);
-        } else {
-            mEmptyBookListMessage.setVisibility(View.VISIBLE);
         }
         stopRefreshing();
     }
@@ -129,6 +130,9 @@ public class BaseBookListFragment<P extends TiPresenter<V>, V extends TiView> ex
         }
         if (mLoadingView.getVisibility() == View.VISIBLE) {
             mLoadingView.setVisibility(View.GONE);
+        }
+        if (mEmptyBookListMessage != null) {
+            mEmptyBookListMessage.setVisibility(View.GONE);
         }
     }
 

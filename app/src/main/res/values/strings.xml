@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Wykopółka</string>
-    <string name="title_activity_sign_in">SignIn</string>
+    <string name="title_activity_sign_in">Logowanie</string>
     <string name="title_activity_added_books">Oddane książki</string>
     <string name="title_activity_dashboard">Dashboard</string>
     <string name="drawer_open">open</string>
@@ -39,20 +39,6 @@
     <string name="welcome_login_via_header">Logowanie</string>
     <string name="welcome_login_via_content">Aby skorzystać z naszej biblioteczki musisz być częścią społeczności Wykopu. Zaloguj się używając swojego wykopowego konta.</string>
     <string name="welcome_login_via_button_text">zaloguj przez wykop</string>
-
-    <string name="faq_content">
-        <big><b>1. Czym jest Wykopółka?\n\n</b></big>Wykopółka to serwis book-crossingowy dla użytkowników Wykop.pl. Dzięki niej możesz wymieniać się książkami z innymi użytkownikami serwisu.\n\n
-<big><b>2. Czy muszę mieć konto na Wykopie żeby korzystać Wykopółki?\n\n</b></big>Tak - konta na Wykopółce są ściśle powiązane z kontami na Wykopie. Nie możesz korzystać z serwisu nie mając tam konta, będąc zbanowanym lub nowym użytkownikiem.\n\n
-<big><b>3. Po jakim czasie od założenia konta będę mógł korzystać z serwisu?\n\n</b></big>Część funkcjonalności Wykopółki będzie zablokowana dla nowych kont (zielonek na Wykopie). Żeby móc w pełni używać serwisu musisz odczekać miesiąc lub oddać i przekazać minimum 1 książkę na Wykopółce.\n\n
-<big><b>4. Ile to kosztuje?\n\n</b></big>Korzystanie z Wykopółki kosztuje tyle co wysyłka książki. Inwestycja zwróci się kiedy tylko otrzymasz książkę ze swojej listy życzeń.\n\n
-<big><b>5. Kto widzi moje dane?\n\n</b></big>Jeśli uzupełnisz swoje dane w profilu, nadawca Twojej książki będzie je widział tylko na czas przekazania książki. Straci do nich dostęp zaraz po potwierdzeniu przez Ciebie odbioru. Uzupełnienie tych danych nie jest jednak obowiązkowe, w sytuacji kiedy ich nie podasz Twój odbiorca będzie mógł zapytać o nie w wiadomości prywatnej na Wykopie.\n\n
-<big><b>6. Ile książek mogę wypożyczyć?\n\n</b></big>Możesz jednocześnie posiadać do 3 książek wypożyczonych od innych użytkowników. Wyjątkiem są książki dodane przez Ciebie i jeszcze nie przekazane dalej.\n\n
-<big><b>7. Czy mogę zwiększyć ilość slotów na książki?\n\n</b></big>Planujemy wprowadzić osiągnięcie, które po oddaniu określonej ilości książek pozwoli na wypożyczanie 4 lub 5 pozycji w tej samej chwili.\n\n
-<big><b>8. Jak długo mogę trzymać książkę?\n\n</b></big>Najlepiej jak najkrócej. W kolejce zapewne czeka sporo osób, jednak nie ograniczamy czasu trzymania książki.\n\n
-<big><b>9. Od czego zależy moja pozycja w kolejce po książkę?\n\n</b></big>Najważniejsza jest oczywiście data dodania pozycji na listę życzeń. W pierwszej kolejności książkę otrzymują osoby, które dodały ją jako pierwsze. Oczywiście na listę życzeń mają wpływ również inne czynniki. System na podstawie ocen książki przez odbierających użytkowników sprawdza komu często zdarza się niszczyć książki lub zalegać z wysyłką. Takie osoby będa spadały w kolejce niżej. Znów osoby oddające sporo książek na Wykopółkę mogą liczyć na podniesienie ich pozycji w kolejce.\n\n
-<big><b>10. Czy mogę odzyskać oddaną książkę?\n\n</b></big>Tak - Opcja wypożyczenia czasowego daje możliwość szybkiego odzyskania swojej książki. Ma to zastosowanie szczególnie w przypadku książek technicznych, do których często wracamy. Jeśli opcja ta jest zaznaczona, osoba dodająca książkę na Wykopółkę po dodaniu swojej pozycji na wishlistę pojawi się jako pierwsza w kolejce do otrzymania książki. Nadal będzie musiała poczekać aż aktualny posiadacz ukończy czytanie, ale otrzyma możliwość zwrotu książki poza kolejką.\n\n
-<big><b>11. Skąd pewność, że oddam pożyczoną książkę?\n\n</b></big>Znikąd. System stara się jak najdokładniej odsiewać osoby, które niszczą lub zalegają z książkami, jednak wszystko ciągle opiera się na zaufaniu. Wykopółka powstała w odpowiedzi na książki, które po trafieniu w #rozdajo już nigdy nie wracały w mirkowy obieg. Jeśli uda się puścić dalej choć część z tych książek to obwieścimy sukces. ;)
-    </string>
     <string name="title_activity_random_book">Losuj książkę</string>
     <string name="random_book_action">Losuję książkę...</string>
     <string name="random_book_action_button">losuj dalej</string>
@@ -121,7 +107,7 @@
     <string name="dialog_transfer_book_title">Przekaż książkę</string>
     <string name="button_confirm_transfer">przekaż książkę</string>
     <string name="dialog_transfer_confirm">przekaż</string>
-    <string name="dialog_no_address_content">Użytkownik nie udostępnił szczegółowych danych wysyłki.</string>
+    <string name="dialog_no_address_content">Użytkownik nie udostępnił danych wysyłki.</string>
     <string name="dialog_address_content_present">Jeśli dane wysyłki wyglądaja na nieprawidłowe:</string>
     <string name="dialog_priv_message">Zapytaj go o nie w wiadomości na Wykopie</string>
     <string name="dialog_confim_title">Odbieranie książki</string>
@@ -137,4 +123,18 @@
     <string name="dialog_card_book_url">Link:</string>
     <string name="dialog_card_book_button_dismiss">zamknij</string>
     <string name="error_login_message">Nie udało się zalogować</string>
+    <string name="faq_content">
+        <big><b>1. Czym jest Wykopółka?\n\n</b></big>Wykopółka to serwis book-crossingowy dla użytkowników Wykop.pl. Dzięki niej możesz wymieniać się książkami z innymi użytkownikami serwisu.\n\n
+<big><b>2. Czy muszę mieć konto na Wykopie żeby korzystać Wykopółki?\n\n</b></big>Tak - konta na Wykopółce są ściśle powiązane z kontami na Wykopie. Nie możesz korzystać z serwisu nie mając tam konta, będąc zbanowanym lub nowym użytkownikiem.\n\n
+<big><b>3. Po jakim czasie od założenia konta będę mógł korzystać z serwisu?\n\n</b></big>Część funkcjonalności Wykopółki będzie zablokowana dla nowych kont (zielonek na Wykopie). Żeby móc w pełni używać serwisu musisz odczekać miesiąc lub oddać i przekazać minimum 1 książkę na Wykopółce.\n\n
+<big><b>4. Ile to kosztuje?\n\n</b></big>Korzystanie z Wykopółki kosztuje tyle co wysyłka książki. Inwestycja zwróci się kiedy tylko otrzymasz książkę ze swojej listy życzeń.\n\n
+<big><b>5. Kto widzi moje dane?\n\n</b></big>Jeśli uzupełnisz swoje dane w profilu, nadawca Twojej książki będzie je widział tylko na czas przekazania książki. Straci do nich dostęp zaraz po potwierdzeniu przez Ciebie odbioru. Uzupełnienie tych danych nie jest jednak obowiązkowe, w sytuacji kiedy ich nie podasz Twój odbiorca będzie mógł zapytać o nie w wiadomości prywatnej na Wykopie.\n\n
+<big><b>6. Ile książek mogę wypożyczyć?\n\n</b></big>Możesz jednocześnie posiadać do 3 książek wypożyczonych od innych użytkowników. Wyjątkiem są książki dodane przez Ciebie i jeszcze nie przekazane dalej.\n\n
+<big><b>7. Czy mogę zwiększyć ilość slotów na książki?\n\n</b></big>Planujemy wprowadzić osiągnięcie, które po oddaniu określonej ilości książek pozwoli na wypożyczanie 4 lub 5 pozycji w tej samej chwili.\n\n
+<big><b>8. Jak długo mogę trzymać książkę?\n\n</b></big>Najlepiej jak najkrócej. W kolejce zapewne czeka sporo osób, jednak nie ograniczamy czasu trzymania książki.\n\n
+<big><b>9. Od czego zależy moja pozycja w kolejce po książkę?\n\n</b></big>Najważniejsza jest oczywiście data dodania pozycji na listę życzeń. W pierwszej kolejności książkę otrzymują osoby, które dodały ją jako pierwsze. Oczywiście na listę życzeń mają wpływ również inne czynniki. System na podstawie ocen książki przez odbierających użytkowników sprawdza komu często zdarza się niszczyć książki lub zalegać z wysyłką. Takie osoby będa spadały w kolejce niżej. Znów osoby oddające sporo książek na Wykopółkę mogą liczyć na podniesienie ich pozycji w kolejce.\n\n
+<big><b>10. Czy mogę odzyskać oddaną książkę?\n\n</b></big>Tak - Opcja wypożyczenia czasowego daje możliwość szybkiego odzyskania swojej książki. Ma to zastosowanie szczególnie w przypadku książek technicznych, do których często wracamy. Jeśli opcja ta jest zaznaczona, osoba dodająca książkę na Wykopółkę po dodaniu swojej pozycji na wishlistę pojawi się jako pierwsza w kolejce do otrzymania książki. Nadal będzie musiała poczekać aż aktualny posiadacz ukończy czytanie, ale otrzyma możliwość zwrotu książki poza kolejką.\n\n
+<big><b>11. Skąd pewność, że oddam pożyczoną książkę?\n\n</b></big>Znikąd. System stara się jak najdokładniej odsiewać osoby, które niszczą lub zalegają z książkami, jednak wszystko ciągle opiera się na zaufaniu. Wykopółka powstała w odpowiedzi na książki, które po trafieniu w #rozdajo już nigdy nie wracały w mirkowy obieg. Jeśli uda się puścić dalej choć część z tych książek to obwieścimy sukces. ;)
+    </string>
+
 </resources>

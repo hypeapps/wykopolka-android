@@ -4,6 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        android:id="@+id/added_books_layout"
+        layout="@layout/base_book_list_layout"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,9 +18,5 @@
         android:textStyle="bold"
         android:visibility="gone"
         android:fontFamily="sans-serif-black"/>
-
-    <include
-        android:id="@+id/added_books_layout"
-        layout="@layout/base_book_list_layout"/>
 
 </RelativeLayout>

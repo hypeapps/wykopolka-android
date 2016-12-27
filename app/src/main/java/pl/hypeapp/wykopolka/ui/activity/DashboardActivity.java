@@ -1,5 +1,6 @@
 package pl.hypeapp.wykopolka.ui.activity;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,6 +22,7 @@ import net.grandcentrix.thirtyinch.plugin.TiActivityPlugin;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.adapter.DashboardPagerAdapter;
 import pl.hypeapp.wykopolka.plugin.ToolbarActivityPlugin;
@@ -101,5 +103,12 @@ public class DashboardActivity extends CompositeActivity implements DashboardVie
     @Override
     public void setCurrentPage(int page) {
         mViewPager.setCurrentItem(page);
+    }
+
+    @Override
+    @OnClick(R.id.fab_add_book)
+    public void addBook() {
+        Intent intent = new Intent(this, AddBookActivity.class);
+        startActivity(intent);
     }
 }

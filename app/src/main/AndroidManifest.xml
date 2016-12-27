@@ -26,7 +26,8 @@
         </activity>
         <activity
             android:name="pl.hypeapp.wykopolka.ui.activity.SignInActivity"
-            android:label="@string/title_activity_sign_in">
+            android:label="@string/title_activity_sign_in"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -44,7 +45,8 @@
         </activity>
         <activity
             android:name="pl.hypeapp.wykopolka.ui.activity.DashboardActivity"
-            android:label="@string/title_activity_dashboard">
+            android:label="@string/title_activity_dashboard"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -53,7 +55,8 @@
         </activity>
         <activity
             android:name="pl.hypeapp.wykopolka.ui.activity.SearchBookActivity"
-            android:label="@string/title_activity_search">
+            android:label="@string/title_activity_search"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -62,7 +65,8 @@
         </activity>
         <activity
             android:name="pl.hypeapp.wykopolka.ui.activity.RandomBookActivity"
-            android:label="@string/title_activity_random_book">
+            android:label="@string/title_activity_random_book"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -71,14 +75,18 @@
         </activity>
         <activity
             android:name="pl.hypeapp.wykopolka.ui.activity.BookPanelActivity"
-            android:label="@string/title_activity_book_panel">
+            android:label="@string/title_activity_book_panel"
+            android:launchMode="singleTop"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity android:name="pl.hypeapp.wykopolka.ui.activity.BookActivity">
+        <activity
+            android:name="pl.hypeapp.wykopolka.ui.activity.BookActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -87,7 +95,8 @@
         </activity>
         <activity
             android:name="pl.hypeapp.wykopolka.ui.activity.ProfileSettingsActivity"
-            android:label="@string/title_activity_profile_settings">
+            android:label="@string/title_activity_profile_settings"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -96,7 +105,8 @@
         </activity>
         <activity
             android:name="pl.hypeapp.wykopolka.ui.activity.StatsAndTopUsersActivity"
-            android:label="@string/title_activity_stats_and_top_users">
+            android:label="@string/title_activity_stats_and_top_users"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

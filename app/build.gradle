@@ -20,6 +20,11 @@ android {
     packagingOptions {
         exclude 'META-INF/LICENSE'
     }
+    android {
+        lintOptions {
+            abortOnError false
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false

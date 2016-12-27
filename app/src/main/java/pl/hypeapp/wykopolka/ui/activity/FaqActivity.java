@@ -1,5 +1,6 @@
 package pl.hypeapp.wykopolka.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
@@ -21,6 +22,7 @@ public class FaqActivity extends CompositeActivity {
     @Override
     @OnClick({R.id.btn_back, R.id.btn_back_bottom, R.id.faq_text_back})
     public void onBackPressed() {
-        super.onBackPressed();
+        startActivity(new Intent(this, DashboardActivity.class));
     }
+
 }
