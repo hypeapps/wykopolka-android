@@ -3,18 +3,15 @@ package pl.hypeapp.wykopolka.view;
 import net.grandcentrix.thirtyinch.TiView;
 import net.grandcentrix.thirtyinch.callonmainthread.CallOnMainThread;
 
-import pl.hypeapp.wykopolka.model.User;
+import pl.hypeapp.wykopolka.model.WykopUser;
 
 public interface SignInView extends TiView {
 
-    void loginAndSaveUser(User user, String accountKey);
+    void loginAndSaveUser(WykopUser user, String accountKey);
 
     @CallOnMainThread
-    void showSuccessLoginInfo();
+    void showWykopolkaLoginInfo();
 
     @CallOnMainThread
-    void showLoading();
-
-    @CallOnMainThread
-    void showError();
+    void handleError();
 }

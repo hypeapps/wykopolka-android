@@ -16,6 +16,6 @@
     <color name="welcomeBackgroundLoginVia">#7578b2</color>
     <color name="colorPrimaryHalfTransparent">#70ffb033</color>
     <color name="buttonColorGreen">#65d527</color>
-    <color name="buttonColorBlue">#4bc5c3</color>
+    <color name="ColorBlue">#4bc5c3</color>
     <color name="linkColor">#3097D1</color>
 </resources>

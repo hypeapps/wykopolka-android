@@ -11,7 +11,7 @@ import com.squareup.leakcanary.LeakCanary;
 import pl.hypeapp.wykopolka.network.retrofit.WykopolkaRetrofitModule;
 
 public class App extends Application {
-    public static final String WYKOPOLKA_IMG_HOST = "http://192.168.1.10/wykopolka/public/";
+    public static final String WYKOPOLKA_IMG_HOST = "http://192.168.1.4/wykopolka/public/";
     public static final String WYKOPOLKA_API_URL = "http://192.168.1.4/";
     public static final String WYKOP_API_URL = "http://a.wykop.pl/";
     private AppComponent appComponent;
@@ -59,5 +59,12 @@ public class App extends Application {
     public static boolean readFromPreferences(Context context, String preferenceName, boolean defaultValue) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
         return sharedPreferences.getBoolean(preferenceName, defaultValue);
+    }
+
+    public static void clearPreferences(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
     }
 }
