@@ -62,6 +62,12 @@ public class BookPresenter extends TiPresenter<BookView> {
         }
     }
 
+    @Override
+    protected void onSleep() {
+        super.onSleep();
+        getView().dismissBookCard();
+    }
+
     private void manageEditBookButton(Book book) {
         if (book.getAddedByLogin().equals(mNickname)) {
             getView().showEditButton();
