@@ -7,4 +7,7 @@ public interface DashboardView extends TiView {
 
     @CallOnMainThread
     void setCurrentPage(int page);
+
+    @CallOnMainThread
+    void addBook();
 }
