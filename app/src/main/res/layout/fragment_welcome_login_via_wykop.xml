@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/welcomeBackgroundLoginVia"
-              android:gravity="center_vertical|center_horizontal"
-              android:orientation="vertical">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/welcomeBackgroundLoginVia"
+    android:gravity="center_vertical|center_horizontal"
+    android:orientation="vertical">
 
     <TextView
         style="@style/welcomePagerHeaderStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="@string/welcome_login_via_header" />
+        android:text="@string/welcome_login_via_header"/>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginBottom="40dp"
         android:layout_marginTop="40dp"
-        android:src="@drawable/section_3" />
+        android:src="@drawable/section_3"/>
 
     <TextView
         style="@style/welcomePagerContentStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="@string/welcome_login_via_content" />
+        android:text="@string/welcome_login_via_content"/>
 
     <Button
         android:id="@+id/btn_login_via_wykop"
@@ -34,6 +35,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
         android:layout_marginTop="16dp"
-        android:text="@string/welcome_login_via_button_text" />
+        android:text="@string/welcome_login_via_button_text"
+        android:textColor="@android:color/white"/>
 
 </LinearLayout>

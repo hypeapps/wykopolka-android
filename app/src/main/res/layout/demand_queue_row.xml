@@ -25,6 +25,7 @@
                 android:layout_width="@dimen/book_thumbnail_width"
                 android:layout_height="140dp"
                 android:layout_margin="@dimen/def_margin"
+                android:paddingBottom="@dimen/def_margin"
                 android:scaleType="fitXY"
                 android:transitionName="@string/transition_book_cover"/>
 
@@ -40,52 +41,52 @@
                 android:id="@+id/tv_book_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toStartOf="@+id/iv_avatar"
                 android:layout_alignTop="@+id/iv_book_thumbnail"
                 android:layout_marginEnd="@dimen/def_margin"
                 android:layout_toEndOf="@+id/iv_book_thumbnail"
-                android:textSize="16sp"
-                android:minLines="1"
-                android:maxLines="2"
+                android:layout_toStartOf="@+id/iv_avatar"
                 android:ellipsize="end"
+                android:maxLines="2"
+                android:minLines="1"
+                android:textSize="16sp"
                 android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/tv_book_author"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toStartOf="@id/iv_avatar"
                 android:layout_below="@id/tv_book_title"
-                android:layout_marginTop="@dimen/def_margin"
                 android:layout_marginEnd="@dimen/def_margin"
+                android:layout_marginTop="@dimen/def_margin"
                 android:layout_toEndOf="@+id/iv_book_thumbnail"
-                android:textSize="16sp"
-                android:minLines="1"
+                android:layout_toStartOf="@id/iv_avatar"
+                android:ellipsize="end"
                 android:maxLines="1"
-                android:ellipsize="end"/>
+                android:minLines="1"
+                android:textSize="16sp"/>
 
             <ImageView
                 android:id="@+id/iv_avatar"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginTop="@dimen/def_margin"
+                android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/def_margin"
-                android:layout_alignParentEnd="true"/>
+                android:layout_marginTop="@dimen/def_margin"/>
 
             <TextView
                 android:id="@+id/nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/iv_avatar"
                 android:layout_alignEnd="@id/iv_avatar"
-                android:layout_toEndOf="@id/iv_book_thumbnail"
+                android:layout_below="@id/iv_avatar"
                 android:layout_marginTop="@dimen/def_margin"
-                android:textSize="12sp"
-                android:gravity="end"
-                android:textStyle="bold"
-                android:minLines="1"
+                android:layout_toEndOf="@id/iv_book_thumbnail"
                 android:ellipsize="end"
-                android:maxLines="1"/>
+                android:gravity="end"
+                android:maxLines="1"
+                android:minLines="1"
+                android:textSize="12sp"
+                android:textStyle="bold"/>
 
             <Button
                 android:id="@+id/btn_confirm_transfer"
@@ -96,8 +97,8 @@
                 android:layout_marginEnd="@dimen/def_margin"
                 android:layout_toEndOf="@id/iv_book_thumbnail"
                 android:text="@string/button_confirm_transfer"
-                android:visibility="gone"
-                android:theme="@style/Confirm.Button"/>
+                android:theme="@style/Confirm.Button"
+                android:visibility="gone"/>
 
             <Button
                 android:id="@+id/btn_show_address"
@@ -108,8 +109,8 @@
                 android:layout_marginEnd="@dimen/def_margin"
                 android:layout_toEndOf="@id/iv_book_thumbnail"
                 android:text="@string/message_button_show_address"
-                android:visibility="gone"
-                android:theme="@style/ShowAddress.Button"/>
+                android:theme="@style/ShowAddress.Button"
+                android:visibility="gone"/>
 
         </RelativeLayout>
 
