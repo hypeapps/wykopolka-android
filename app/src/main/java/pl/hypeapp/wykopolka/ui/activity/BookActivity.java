@@ -43,6 +43,7 @@ import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.model.Book;
 import pl.hypeapp.wykopolka.plugin.ToolbarActivityPlugin;
 import pl.hypeapp.wykopolka.presenter.BookPresenter;
+import pl.hypeapp.wykopolka.ui.CardBookDialog;
 import pl.hypeapp.wykopolka.ui.listener.AppBarStateChangeListener;
 import pl.hypeapp.wykopolka.util.BuildUtil;
 import pl.hypeapp.wykopolka.view.BookView;
@@ -56,6 +57,7 @@ public class BookActivity extends CompositeActivity implements BookView, Materia
     private AppBarStateChangeListener.State mState;
     private SmallBang mSmallBang;
     private Book mBook;
+    private CardBookDialog mDialog;
     @BindView(R.id.collapsing_toolbar) CollapsingToolbarLayout mCollapsingToolbarLayout;
     @BindView(R.id.toolbar) Toolbar mToolbar;
     @BindView(R.id.app_bar_layout) AppBarLayout mAppBarLayout;
@@ -97,6 +99,7 @@ public class BookActivity extends CompositeActivity implements BookView, Materia
         mBookPresenter = mPresenterPlugin.getPresenter();
         mBook = getBookIntentExtra();
         mCollapsingToolbarLayout.setTitle(mBook.getTitle());
+        mDialog = new CardBookDialog(this);
     }
 
     @Override
@@ -166,7 +169,7 @@ public class BookActivity extends CompositeActivity implements BookView, Materia
     @Override
     public boolean onQueryTextSubmit(String query) {
         Intent intent = new Intent(this, SearchBookActivity.class);
-        intent.putExtra("SEARCH_QUERY", query);
+        intent.putExtra(getString(R.string.intent_put_search), query);
         startActivity(intent);
         return false;
     }
@@ -185,13 +188,13 @@ public class BookActivity extends CompositeActivity implements BookView, Materia
 
     @Override
     public void setBookCover(String coverUrl) {
-        if (mBookCover.getDrawable() == null) {
+
             Glide.with(this)
                     .load(WYKOPOLKA_IMG_HOST + coverUrl)
-                    .override(300, 400)
+//                    .override(300, 400)
                     .skipMemoryCache(true)
                     .into(mBookCover);
-        }
+
     }
 
     @Override
@@ -247,8 +250,20 @@ public class BookActivity extends CompositeActivity implements BookView, Materia
 
     @Override
     @OnClick(R.id.btn_load_pdf)
-    public void showPdfBookCard() {
+    public void showBookCard() {
+        mDialog.setBookData(mBook);
+        mDialog.getDismissButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDialog.dismiss();
+            }
+        });
+        mDialog.show();
+    }
 
+    @Override
+    public void dismissBookCard() {
+        mDialog.dismiss();
     }
 
     @Override

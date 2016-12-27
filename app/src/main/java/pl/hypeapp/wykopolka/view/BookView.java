@@ -35,7 +35,10 @@ public interface BookView extends TiView {
     void animateFabButtonEnter();
 
     @CallOnMainThread
-    void showPdfBookCard();
+    void showBookCard();
+
+    @CallOnMainThread
+    void dismissBookCard();
 
     @CallOnMainThread
     void editBookDescription();
