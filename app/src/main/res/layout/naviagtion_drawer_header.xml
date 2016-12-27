@@ -11,11 +11,11 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/nav_header_height"
         android:layout_marginTop="@dimen/nav_drawer_margin_top"
         android:background="@color/colorPrimaryDark"
         android:paddingBottom="8dp"
-        android:id="@+id/header_content">
+        android:id="@+id/header_content"
+        android:layout_height="170dp">
 
         <ImageView
             android:id="@+id/iv_avatar"
