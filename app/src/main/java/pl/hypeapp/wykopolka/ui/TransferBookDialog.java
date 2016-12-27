@@ -63,7 +63,6 @@ public class TransferBookDialog extends Dialog {
         bookTitle.setText(book.getTitle().trim());
         ImageView bookCover = (ImageView) this.findViewById(R.id.iv_book_cover);
         spinLoading = (ProgressBar) this.findViewById(R.id.dialog_loading);
-        confirmTransferButton = (Button) this.findViewById(R.id.btn_confirm);
         Glide.with(context).load(App.WYKOPOLKA_IMG_HOST + book.getCover()).into(bookCover);
         TextView userPw = (TextView) this.findViewById(R.id.dialog_user_pw);
         userPw.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +89,12 @@ public class TransferBookDialog extends Dialog {
             city.setText(pendingUser.getCity());
         } else {
             aboutUserAddress.setText(context.getString(R.string.dialog_no_address_content));
+        }
+        confirmTransferButton = (Button) this.findViewById(R.id.btn_confirm);
+        if (pendingUser.getIsRegistered()) {
+            confirmTransferButton.setVisibility(View.GONE);
+        } else {
+            confirmTransferButton.setVisibility(View.VISIBLE);
         }
     }
 

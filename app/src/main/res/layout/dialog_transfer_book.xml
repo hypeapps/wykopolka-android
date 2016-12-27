@@ -42,6 +42,7 @@
         android:id="@+id/dialog_user_pw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/def_margin"
         android:layout_marginEnd="@dimen/def_margin"
         android:layout_marginStart="@dimen/def_margin"
         android:layout_marginTop="@dimen/def_margin"
@@ -60,8 +61,7 @@
         <TextView
             android:id="@+id/dialog_user_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/def_margin"/>
+            android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/dialog_user_address"
@@ -95,8 +95,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/def_margin"
         android:layout_marginBottom="@dimen/def_margin"
+        android:layout_marginTop="@dimen/def_margin"
         android:visibility="gone"
         app:SpinKit_Color="@color/colorAccent"/>
 
