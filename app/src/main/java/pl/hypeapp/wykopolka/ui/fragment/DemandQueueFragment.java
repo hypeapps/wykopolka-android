@@ -42,7 +42,7 @@ public class DemandQueueFragment extends TiFragment<DemandQueuePresenter, Demand
         CircleRefreshLayout.OnCircleRefreshListener {
     private DemandQueuePresenter mDemandQueuePresenter;
     private boolean isRefreshing = false;
-    private DemandQueue demandQueue;
+    private DemandQueue mDemandQueue;
     private TransferBookDialog mDialog;
     private DemandQueueRecyclerAdapter mRecyclerAdapter;
     private View parentLayout;
@@ -124,10 +124,10 @@ public class DemandQueueFragment extends TiFragment<DemandQueuePresenter, Demand
 
     @Override
     public void setBookData(DemandQueue demandQueue) {
-        this.demandQueue = demandQueue;
+        this.mDemandQueue = demandQueue;
         initRecyclerAdapter();
-        mRecyclerAdapter.setData(demandQueue);
-        if (demandQueue.getBooks().size() == 0) {
+        mRecyclerAdapter.setData(this.mDemandQueue);
+        if (this.mDemandQueue.getBooks().size() == 0) {
             mEmptyBookListMessage.setVisibility(View.VISIBLE);
         } else {
             mEmptyBookListMessage.setVisibility(View.GONE);
@@ -255,7 +255,7 @@ public class DemandQueueFragment extends TiFragment<DemandQueuePresenter, Demand
     public void startBookActivity(DemandQueueRecyclerAdapter.DemandQueueRecyclerHolder holder) {
         int position = holder.getLayoutPosition();
         Intent intentBookActivity = new Intent(getActivity(), BookActivity.class);
-        intentBookActivity.putExtra("book", demandQueue.getBooks().get(position));
+        intentBookActivity.putExtra("book", mDemandQueue.getBooks().get(position));
 
         if (BuildUtil.isMinApi21()) {
             String transitionName = getString(R.string.transition_book_cover);

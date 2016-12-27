@@ -13,7 +13,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "Name",
         "Address",
         "City",
-        "Postal"
+        "Postal",
+        "isRegistered"
 })
 public class PendingUser {
     @JsonProperty("ReceiverId")
@@ -32,6 +33,8 @@ public class PendingUser {
     private String city;
     @JsonProperty("Postal")
     private String postal;
+    @JsonProperty("isRegistered")
+    private boolean isRegistered;
 
     @JsonProperty("ReceiverId")
     public Integer getReceiverId() {
@@ -115,6 +118,16 @@ public class PendingUser {
     @JsonProperty("Postal")
     public void setPostal(String postal) {
         this.postal = postal;
+    }
+
+    @JsonProperty("isRegistered")
+    public boolean getIsRegistered() {
+        return isRegistered;
+    }
+
+    @JsonProperty("isRegistered")
+    public void setIsRegistered(boolean isRegistered) {
+        this.isRegistered = isRegistered;
     }
 
 }
