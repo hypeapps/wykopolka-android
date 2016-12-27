@@ -2,6 +2,7 @@ package pl.hypeapp.wykopolka.ui.activity;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -53,6 +54,7 @@ public class BookActivity extends CompositeActivity implements BookView, Materia
     private static final String WYKOPOLKA_IMG_HOST = App.WYKOPOLKA_IMG_HOST;
     private static final int WISH_LIST_PAGE = 2;
     private boolean isSearchViewShown = false;
+    private boolean isAddedBook;
     private BookPresenter mBookPresenter;
     private AppBarStateChangeListener.State mState;
     private SmallBang mSmallBang;
@@ -95,7 +97,20 @@ public class BookActivity extends CompositeActivity implements BookView, Materia
         setContentView(R.layout.activity_book);
         ButterKnife.bind(this);
         mSmallBang = SmallBang.attach2Window(this);
-        mToolbar = mToolbarPlugin.initToolbarWithEmptyTitle(mToolbar);
+        Drawable navIcon = ContextCompat.getDrawable(this, R.drawable.ic_action_navigation_arrow_back_inverted);
+        mToolbar = mToolbarPlugin.initCollapsingToolbar(navIcon, mToolbar);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isAddedBook) {
+                    Intent intentToAddedBooks = new Intent(BookActivity.this, BookPanelActivity.class);
+                    intentToAddedBooks.putExtra("page", 1);
+                    startActivity(intentToAddedBooks);
+                } else {
+                    onBackPressed();
+                }
+            }
+        });
         mBookPresenter = mPresenterPlugin.getPresenter();
         mBook = getBookIntentExtra();
         mCollapsingToolbarLayout.setTitle(mBook.getTitle());
@@ -327,6 +342,7 @@ public class BookActivity extends CompositeActivity implements BookView, Materia
     private Book getBookIntentExtra() {
         Intent intent = getIntent();
         Book book = (Book) intent.getSerializableExtra("book");
+        isAddedBook = intent.getBooleanExtra("added_book", false);
         return book;
     }
 
