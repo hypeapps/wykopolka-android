@@ -74,12 +74,23 @@ public class DemandQueueRecyclerAdapter extends RecyclerView.Adapter<DemandQueue
                 onBookClickSubject.onNext(holder);
             }
         });
-        holder.confirmTransfer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onTransferClickSubject.onNext(position);
-            }
-        });
+        if (currentPendingUser.getIsRegistered()) {
+            holder.showAddressButton.setVisibility(View.VISIBLE);
+            holder.showAddressButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onTransferClickSubject.onNext(position);
+                }
+            });
+        } else {
+            holder.confirmTransferButton.setVisibility(View.VISIBLE);
+            holder.confirmTransferButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onTransferClickSubject.onNext(position);
+                }
+            });
+        }
     }
 
     public Observable<DemandQueueRecyclerAdapter.DemandQueueRecyclerHolder> getOnBookClick() {
@@ -107,7 +118,8 @@ public class DemandQueueRecyclerAdapter extends RecyclerView.Adapter<DemandQueue
         @BindView(R.id.nickname) TextView nickname;
         @BindView(R.id.tv_book_title) TextView bookTitle;
         @BindView(R.id.card_view_added_book) CardView cardView;
-        @BindView(R.id.btn_confirm_transfer) Button confirmTransfer;
+        @BindView(R.id.btn_confirm_transfer) Button confirmTransferButton;
+        @BindView(R.id.btn_show_address) Button showAddressButton;
         @BindView(R.id.tv_book_author) TextView author;
 
         DemandQueueRecyclerHolder(View itemView) {

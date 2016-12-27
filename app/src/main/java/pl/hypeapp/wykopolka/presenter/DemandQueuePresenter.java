@@ -1,7 +1,6 @@
 package pl.hypeapp.wykopolka.presenter;
 
 import android.support.v4.util.Pair;
-import android.util.Log;
 
 import net.grandcentrix.thirtyinch.TiPresenter;
 import net.grandcentrix.thirtyinch.rx.RxTiPresenterSubscriptionHandler;
@@ -90,13 +89,11 @@ public class DemandQueuePresenter extends TiPresenter<DemandQueueView> {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e("eroro", e.getMessage());
                         onTransferError();
                     }
 
                     @Override
                     public void onNext(ResponseBody responseBody) {
-                        Log.e("response", "ONNEXT");
                         onTransferSuccessful();
                     }
                 })
@@ -118,7 +115,6 @@ public class DemandQueuePresenter extends TiPresenter<DemandQueueView> {
     private void loadDemandQueue(String accountKey) {
         getView().startLoadingAnimation();
         String sign = HashUtil.generateApiSign(accountKey);
-
         rxHelper.manageViewSubscription(mWykopolkaApi.getDemandQueue(accountKey, sign)
                 .compose(RxTiPresenterUtils.<DemandQueue>deliverLatestToView(this))
                 .subscribeOn(Schedulers.newThread())
@@ -135,7 +131,6 @@ public class DemandQueuePresenter extends TiPresenter<DemandQueueView> {
 
                     @Override
                     public void onNext(DemandQueue demandQueue) {
-                        Log.e("demandQueue", " " + demandQueue.books.get(0).getAuthor() + " " + demandQueue.pendingUsers.get(0).getAddress());
                         onDemandQueueLoadSuccessful(demandQueue);
                     }
                 })
