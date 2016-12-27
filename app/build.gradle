@@ -11,7 +11,7 @@ android {
     buildToolsVersion "25.0.0"
     defaultConfig {
         applicationId "pl.hypeapp.wykopolka"
-        minSdkVersion 17
+        minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -34,7 +34,7 @@ android {
 }
 
 dependencies {
-    def thirtyinchVersion = '0.7.1'
+    def thirtyinchVersion = '0.8.0-rc2'
     def supportLibraryVersion = '25.0.0'
     def bumptechGlideVersion = '3.7.0'
     def butterKnifeVersion = '8.3.0'

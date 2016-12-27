@@ -128,4 +128,13 @@
     <string name="all_books_list_empty">Z jakiegoś powodu nie ma tu książek</string>
     <string name="intent_put_search">SEARCH_QUERY</string>
     <string name="message_button_show_address">pokaż dane odbiorcy</string>
+    <string name="dialog_card_title">Karta książki</string>
+    <string name="dialog_about_card">Karta książki powinna zostać wydrukowana lub napisana ręcznie na kartce po węwnętrznej stronie okładki</string>
+    <string name="dialog_card_book_id">Numer ksiązki:</string>
+    <string name="dialog_card_book_title">Tytuł:</string>
+    <string name="dialog_card_book_author">Autor:</string>
+    <string name="dialog_card_book_genre">Gatunek:</string>
+    <string name="dialog_card_book_url">Link:</string>
+    <string name="dialog_card_book_button_dismiss">zamknij</string>
+    <string name="error_login_message">Nie udało się zalogować</string>
 </resources>

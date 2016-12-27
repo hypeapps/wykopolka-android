@@ -1,24 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="pl.hypeapp.wykopolka.ui.activity.SignInActivity"
-    android:gravity="center_vertical|center_horizontal">
+    android:background="@color/colorPrimary">
 
-    <WebView  xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/webview"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
-
-    <TextView
-        android:text="Witaj! Zalogowano pomyślnie. Trwa przekierowanie"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/tv_connect_success"
-        android:gravity="center_vertical|center_horizontal"
-        android:background="@color/colorPrimary"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:id="@+id/login_to_wykopolka_info"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_above="@+id/spin_loading"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/wykopolka_logo"/>
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/spin_loading"
+            style="@style/SpinKitView.Wave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="24dp"
+            app:SpinKit_Color="@android:color/white"/>
+
+        <TextView
+            android:id="@+id/tv_connect_success"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spin_loading"
+            android:layout_marginEnd="@dimen/activity_vertical_margin"
+            android:layout_marginStart="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/def_margin"
+            android:gravity="center_horizontal"
+            android:text="Witaj! Zalogowano pomyślnie do Wykopu. Trwa weryfikacja na Wykopółce"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"/>
+
+    </RelativeLayout>
+
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>

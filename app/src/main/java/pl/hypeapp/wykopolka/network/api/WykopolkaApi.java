@@ -6,6 +6,7 @@ import okhttp3.ResponseBody;
 import pl.hypeapp.wykopolka.model.Book;
 import pl.hypeapp.wykopolka.model.DemandQueue;
 import pl.hypeapp.wykopolka.model.Pagination;
+import pl.hypeapp.wykopolka.model.RegisterStatus;
 import pl.hypeapp.wykopolka.model.SearchResult;
 import pl.hypeapp.wykopolka.model.Statistics;
 import pl.hypeapp.wykopolka.model.User;
@@ -18,6 +19,18 @@ import retrofit2.http.POST;
 import rx.Observable;
 
 public interface WykopolkaApi {
+
+//    @FormUrlEncoded
+//    @POST("wykopolka/public/api/request/user/login")
+//    Call<ResponseBody> handleSignIn(@Field("connectData") String connectSuccessUrl, @Header("apisign") String apisign);
+
+    @FormUrlEncoded
+    @POST("wykopolka/public/api/request/user/login")
+    Call<ResponseBody> handleSignIn1(@Field("login") String login, @Field("token") String token, @Header("apisign") String apisign);
+
+    @FormUrlEncoded
+    @POST("wykopolka/public/api/request/user/login")
+    Observable<RegisterStatus> handleSignIn(@Field("login") String login, @Field("token") String token, @Header("apisign") String apisign);
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/user/get")
