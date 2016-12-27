@@ -293,6 +293,7 @@ public class BaseUploadBookActivity<P extends BaseUploadBookPresenter<V>, V exte
     public void startBookActivity(Book book) {
         Intent intentBookActivity = new Intent(this, BookActivity.class);
         intentBookActivity.putExtra("book", book);
+        intentBookActivity.putExtra("added_book", true);
 
         if (BuildUtil.isMinApi21()) {
             String transitionName = getString(R.string.transition_book_cover);
@@ -303,6 +304,7 @@ public class BaseUploadBookActivity<P extends BaseUploadBookPresenter<V>, V exte
         } else {
             startActivity(intentBookActivity);
         }
+        finish();
     }
 
     @Override
