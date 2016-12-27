@@ -132,6 +132,8 @@
         android:layout_marginEnd="@dimen/def_margin"
         android:layout_marginStart="@dimen/def_margin"
         android:layout_marginTop="@dimen/def_margin"
+        android:textColor="@android:color/white"
+        android:textAllCaps="true"
         android:text="@string/dialog_card_book_button_dismiss"/>
 
 </LinearLayout>

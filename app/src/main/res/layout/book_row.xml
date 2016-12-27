@@ -32,6 +32,7 @@
                     android:layout_width="@dimen/book_thumbnail_width"
                     android:layout_height="@dimen/book_thumbnail_height"
                     android:layout_margin="@dimen/def_margin"
+                    android:paddingBottom="@dimen/def_margin"
                     android:scaleType="fitXY"
                     android:transitionName="@string/transition_book_cover" />
 

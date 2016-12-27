@@ -13,8 +13,8 @@
 
         <ImageView
             android:id="@+id/iv_book_cover"
-            android:layout_width="@dimen/book_thumbnail_width"
-            android:layout_height="@dimen/book_thumbnail_height"
+            android:layout_width="60dp"
+            android:layout_height="90dp"
             android:layout_marginStart="@dimen/def_margin"
             android:layout_marginTop="@dimen/def_margin"
             android:scaleType="fitXY"/>
@@ -104,6 +104,8 @@
         android:id="@+id/btn_confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/dialog_transfer_confirm"/>
+        android:text="@string/dialog_transfer_confirm"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"/>
 
 </LinearLayout>
