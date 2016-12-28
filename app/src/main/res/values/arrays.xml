@@ -15,7 +15,7 @@
         <item>@drawable/ic_dashboard_white_36dp</item>
         <item>@drawable/ic_search_white_36dp</item>
         <item>@drawable/ic_book_white_36dp</item>
-        <item>@drawable/ic_favorite_white_36dp</item>
+        <item>@drawable/ic_all_books</item>
         <item>@drawable/ic_casino_white_36dp</item>
         <item>@drawable/ic_explore_white_36dp</item>
         <item>@drawable/ic_equalizer_white_36dp</item>
