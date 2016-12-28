@@ -2,6 +2,7 @@ package pl.hypeapp.wykopolka.ui.activity;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -24,6 +25,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
@@ -203,12 +206,15 @@ public class BookActivity extends CompositeActivity implements BookView, Materia
 
     @Override
     public void setBookCover(String coverUrl) {
-
-            Glide.with(this)
-                    .load(WYKOPOLKA_IMG_HOST + coverUrl)
-//                    .override(300, 400)
-                    .skipMemoryCache(true)
-                    .into(mBookCover);
+        Glide.with(this)
+                .load(WYKOPOLKA_IMG_HOST + coverUrl)
+                .asBitmap()
+                .into(new SimpleTarget<Bitmap>(300, 400) {
+                    @Override
+                    public void onResourceReady(Bitmap resource, GlideAnimation glideAnimation) {
+                        mBookCover.setImageBitmap(resource);
+                    }
+                });
 
     }
 
