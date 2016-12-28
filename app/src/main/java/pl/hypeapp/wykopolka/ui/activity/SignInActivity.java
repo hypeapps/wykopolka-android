@@ -72,7 +72,10 @@ public class SignInActivity extends CompositeActivity implements SignInView {
         App.saveToPreferences(this, "user_login", user.getLogin());
         App.saveToPreferences(this, "user_avatar", user.getAvatarBig());
         App.saveToPreferences(this, "user_login_status", true);
-        startActivity(new Intent(this, DashboardActivity.class));
+        Intent intentToDashboard = new Intent(this, DashboardActivity.class);
+        intentToDashboard.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intentToDashboard);
+        finish();
     }
 
     @Override
@@ -91,6 +94,7 @@ public class SignInActivity extends CompositeActivity implements SignInView {
         Intent intentBackToWelcome = new Intent(this, WelcomeActivity.class);
         intentBackToWelcome.putExtra("login_failed", true);
         startActivity(intentBackToWelcome);
+        finish();
     }
 
     class WebClient extends WebViewClient {
