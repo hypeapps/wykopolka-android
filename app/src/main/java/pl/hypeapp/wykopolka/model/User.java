@@ -49,6 +49,8 @@ public class User {
     private String mail;
     @JsonProperty("isMailConfirmed")
     private Integer isMailConfirmed;
+    @JsonProperty("notifyType")
+    private Integer notifyType;
     @JsonProperty("accountKeyToken")
     private String accountKeyToken;
     @JsonProperty("accountStatus")
@@ -200,6 +202,21 @@ public class User {
         this.isMailConfirmed = isMailConfirmed;
     }
 
+    /**
+     * @return The notifyType
+     */
+    @JsonProperty("notifyType")
+    public Integer getNotifyType() {
+        return notifyType;
+    }
+
+    /**
+     * @param notifyType The notifyType
+     */
+    @JsonProperty("notifyType")
+    public void setNotifyType(Integer notifyType) {
+        this.notifyType = notifyType;
+    }
     /**
      * @return The accountKeyToken
      */
