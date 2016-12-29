@@ -10,6 +10,7 @@ import pl.hypeapp.wykopolka.model.RegisterStatus;
 import pl.hypeapp.wykopolka.model.SearchResult;
 import pl.hypeapp.wykopolka.model.Statistics;
 import pl.hypeapp.wykopolka.model.User;
+import pl.hypeapp.wykopolka.model.UserStats;
 import pl.hypeapp.wykopolka.model.WishBookStatus;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -27,6 +28,10 @@ public interface WykopolkaApi {
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/user/get")
     Observable<User> getUser(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
+
+    @FormUrlEncoded
+    @POST("wykopolka/public/api/request/user/stats/simple")
+    Observable<UserStats> getUserStats(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/book")
