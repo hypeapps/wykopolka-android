@@ -20,14 +20,6 @@ import rx.Observable;
 
 public interface WykopolkaApi {
 
-//    @FormUrlEncoded
-//    @POST("wykopolka/public/api/request/user/login")
-//    Call<ResponseBody> handleSignIn(@Field("connectData") String connectSuccessUrl, @Header("apisign") String apisign);
-
-    @FormUrlEncoded
-    @POST("wykopolka/public/api/request/user/login")
-    Call<ResponseBody> handleSignIn1(@Field("login") String login, @Field("token") String token, @Header("apisign") String apisign);
-
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/user/login")
     Observable<RegisterStatus> handleSignIn(@Field("login") String login, @Field("token") String token, @Header("apisign") String apisign);
@@ -82,6 +74,11 @@ public interface WykopolkaApi {
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/book/search")
     Observable<SearchResult> searchByQuery(@Field("booksearch") String query, @Header("apisign") String apisign);
+
+    @FormUrlEncoded
+    @POST("wykopolka/public/api/request/user/settings/update")
+    Observable<User> updateUser(@Field("accountkey") String accountKey, @Field("data") String userJson,
+                                @Header("apisign") String apisign);
 
     @FormUrlEncoded
     @POST("wykopolka/public/api/request/book/add")

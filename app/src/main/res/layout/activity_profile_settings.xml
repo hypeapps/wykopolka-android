@@ -9,6 +9,7 @@
 
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/settings_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -135,18 +136,6 @@
 
                     </android.support.design.widget.TextInputLayout>
 
-                    <Button
-                        android:id="@+id/btn_save_settings"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/activity_vertical_margin"
-                        android:layout_marginRight="@dimen/activity_vertical_margin"
-                        android:drawablePadding="4dp"
-                        android:drawableStart="@drawable/ic_done_white_24dp"
-                        android:text="@string/settings_btn_action_save"
-                        android:textAllCaps="true"
-                        android:textColor="@android:color/white"/>
-
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.15dp"
@@ -166,12 +155,39 @@
                         android:textStyle="bold"/>
 
                     <LinearLayout
+                        android:id="@+id/notification_pm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/def_margin"
+                        android:layout_marginLeft="@dimen/activity_vertical_margin"
+                        android:layout_marginRight="@dimen/activity_vertical_margin"
+                        android:layout_marginTop="@dimen/def_margin"
+                        android:gravity="start|end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/def_margin"
+                            android:layout_weight="1"
+                            android:text="@string/settings_option_notification_pw_wykop"
+                            android:textSize="16sp"/>
+
+                        <Switch
+                            android:id="@+id/switch_notification_pm"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="true"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:id="@+id/notification_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/activity_vertical_margin"
                         android:layout_marginRight="@dimen/activity_vertical_margin"
-                        android:layout_marginTop="@dimen/def_margin"
                         android:gravity="start|end"
                         android:orientation="horizontal">
 
@@ -190,31 +206,34 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/notification_pm"
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_address_email"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/et_settings_address_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_vertical_margin"
+                            android:layout_marginRight="@dimen/activity_vertical_margin"
+                            android:hint="@string/hint_input_email"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"/>
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/btn_save_settings"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/def_margin"
                         android:layout_marginLeft="@dimen/activity_vertical_margin"
                         android:layout_marginRight="@dimen/activity_vertical_margin"
-                        android:layout_marginTop="@dimen/def_margin"
-                        android:gravity="start|end"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/settings_option_notification_pw_wykop"
-                            android:textSize="16sp"/>
-
-                        <Switch
-                            android:id="@+id/switch_notification_pm"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"/>
-
-                    </LinearLayout>
+                        android:drawablePadding="4dp"
+                        android:drawableStart="@drawable/ic_done_white_24dp"
+                        android:text="@string/settings_btn_action_save"
+                        android:textAllCaps="true"
+                        android:textColor="@android:color/white"/>
 
                     <View
                         android:layout_width="match_parent"
