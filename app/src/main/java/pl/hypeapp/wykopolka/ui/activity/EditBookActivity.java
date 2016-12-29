@@ -10,8 +10,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
+import com.crashlytics.android.Crashlytics;
+
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.fabric.sdk.android.Fabric;
 import pl.hypeapp.wykopolka.App;
 import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.base.BaseUploadBookActivity;
@@ -23,6 +26,7 @@ public class EditBookActivity extends BaseUploadBookActivity<EditBookPresenter, 
     @BindView(R.id.toolbar) Toolbar mToolbar;
     @BindView(R.id.btn_commit_book) Button mCommitBookButton;
     private EditBookPresenter mEditBookPresenter;
+    private Crashlytics mCrashlytics;
 
     @NonNull
     @Override
@@ -34,6 +38,8 @@ public class EditBookActivity extends BaseUploadBookActivity<EditBookPresenter, 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+        mCrashlytics = new Crashlytics();
+        Fabric.with(this, mCrashlytics);
         super.onCreate(savedInstanceState);
         initToolbar(mToolbar);
         mCommitBookButton.setText(getString(R.string.title_activity_edit_book));

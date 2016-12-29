@@ -30,6 +30,7 @@ import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.adapter.AllBooksRecyclerAdapter;
 import pl.hypeapp.wykopolka.extra.circlerefreshlayout.CircleRefreshLayout;
 import pl.hypeapp.wykopolka.model.Book;
+import pl.hypeapp.wykopolka.plugin.CrashlyticsPlugin;
 import pl.hypeapp.wykopolka.plugin.ToolbarActivityPlugin;
 import pl.hypeapp.wykopolka.presenter.AllBooksPresenter;
 import pl.hypeapp.wykopolka.ui.listener.EndlessRecyclerViewScrollListener;
@@ -45,6 +46,8 @@ public class AllBooksActivity extends CompositeActivity implements AllBooksView,
     @BindView(R.id.tv_book_list_null) TextView mEmptyBookListMessage;
     @BindView(R.id.error_view) View mErrorView;
     @BindView(R.id.refresh_layout) CircleRefreshLayout mCircleRefreshLayout;
+    private final ToolbarActivityPlugin mToolbarPlugin = new ToolbarActivityPlugin();
+    private final CrashlyticsPlugin mCrashlyticsPlugin = new CrashlyticsPlugin();
     private boolean isRefreshing = false;
     private AllBooksRecyclerAdapter mRecyclerAdapter;
     private EndlessRecyclerViewScrollListener mScrollListener;
@@ -54,9 +57,9 @@ public class AllBooksActivity extends CompositeActivity implements AllBooksView,
     public AllBooksActivity() {
         addPlugin(mPresenterPlugin);
         addPlugin(mToolbarPlugin);
+        addPlugin(mCrashlyticsPlugin);
     }
 
-    private final ToolbarActivityPlugin mToolbarPlugin = new ToolbarActivityPlugin();
 
     private final TiActivityPlugin<AllBooksPresenter, AllBooksView> mPresenterPlugin =
             new TiActivityPlugin<>(new TiPresenterProvider<AllBooksPresenter>() {

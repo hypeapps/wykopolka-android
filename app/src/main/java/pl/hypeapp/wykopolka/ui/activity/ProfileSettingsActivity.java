@@ -25,6 +25,7 @@ import butterknife.OnClick;
 import pl.hypeapp.wykopolka.App;
 import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.model.User;
+import pl.hypeapp.wykopolka.plugin.CrashlyticsPlugin;
 import pl.hypeapp.wykopolka.plugin.ToolbarActivityPlugin;
 import pl.hypeapp.wykopolka.presenter.ProfileSettingsPresenter;
 import pl.hypeapp.wykopolka.util.WebViewUtil;
@@ -33,6 +34,7 @@ import pl.hypeapp.wykopolka.view.ProfileSettingsView;
 public class ProfileSettingsActivity extends CompositeActivity implements ProfileSettingsView {
     private ProfileSettingsPresenter mProfileSettingsPresenter;
     private final ToolbarActivityPlugin mToolbarPlugin = new ToolbarActivityPlugin();
+    private final CrashlyticsPlugin mCrashlyticsPlugin = new CrashlyticsPlugin();
     @BindView(R.id.toolbar) Toolbar mToolbar;
     @BindView(R.id.settings_layout) View parentLayout;
     @BindView(R.id.et_settings_fullname) EditText mSettingsFullName;
@@ -60,6 +62,7 @@ public class ProfileSettingsActivity extends CompositeActivity implements Profil
     public ProfileSettingsActivity() {
         addPlugin(mPresenterPlugin);
         addPlugin(mToolbarPlugin);
+        addPlugin(mCrashlyticsPlugin);
     }
 
     @Override

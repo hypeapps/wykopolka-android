@@ -24,6 +24,7 @@ import pl.hypeapp.wykopolka.App;
 import pl.hypeapp.wykopolka.BuildConfig;
 import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.model.WykopUser;
+import pl.hypeapp.wykopolka.plugin.CrashlyticsPlugin;
 import pl.hypeapp.wykopolka.presenter.SignInPresenter;
 import pl.hypeapp.wykopolka.view.SignInView;
 
@@ -37,6 +38,7 @@ public class SignInActivity extends CompositeActivity implements SignInView {
     @BindView(R.id.login_to_wykopolka_info) View mLoginToWykopolkaInfo;
     @BindView(R.id.spin_loading) ProgressBar mSpinLoading;
 
+    private final CrashlyticsPlugin mCrashlyticsPlugin = new CrashlyticsPlugin();
     private final TiActivityPlugin<SignInPresenter, SignInView> mPresenterPlugin =
             new TiActivityPlugin<>(new TiPresenterProvider<SignInPresenter>() {
                 @NonNull
@@ -48,6 +50,7 @@ public class SignInActivity extends CompositeActivity implements SignInView {
 
     public SignInActivity() {
         addPlugin(mPresenterPlugin);
+        addPlugin(mCrashlyticsPlugin);
     }
 
     @Override

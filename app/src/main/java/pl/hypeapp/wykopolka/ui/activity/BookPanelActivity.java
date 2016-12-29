@@ -25,6 +25,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.adapter.BookPanelPagerAdapter;
+import pl.hypeapp.wykopolka.plugin.CrashlyticsPlugin;
 import pl.hypeapp.wykopolka.plugin.ToolbarActivityPlugin;
 import pl.hypeapp.wykopolka.presenter.BookPanelPresenter;
 import pl.hypeapp.wykopolka.view.BookPanelView;
@@ -35,6 +36,7 @@ public class BookPanelActivity extends CompositeActivity implements BookPanelVie
     @BindView(R.id.viewpager_tab) SmartTabLayout mSmartTabLayout;
 
     private final ToolbarActivityPlugin mToolbarPlugin = new ToolbarActivityPlugin();
+    private final CrashlyticsPlugin mCrashlyticsPlugin = new CrashlyticsPlugin();
 
     private final TiActivityPlugin<BookPanelPresenter, BookPanelView> mPresenterPlugin =
             new TiActivityPlugin<>(new TiPresenterProvider<BookPanelPresenter>() {
@@ -49,6 +51,7 @@ public class BookPanelActivity extends CompositeActivity implements BookPanelVie
     public BookPanelActivity() {
         addPlugin(mPresenterPlugin);
         addPlugin(mToolbarPlugin);
+        addPlugin(mCrashlyticsPlugin);
     }
 
     @Override
