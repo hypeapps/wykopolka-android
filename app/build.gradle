@@ -70,7 +70,6 @@ dependencies {
     compile "net.grandcentrix.thirtyinch:thirtyinch-plugin:$thirtyinchVersion"
     // UTIL
     compile "com.pascalwelsch.compositeandroid:activity:$supportLibraryVersion"
-    compile "com.pascalwelsch.compositeandroid:fragment:$supportLibraryVersion" //CHYBA USUNAC
     compile "com.ogaclejapan.smarttablayout:library:$smarttablayoutLibraryVersion"
     compile 'jp.wasabeef:recyclerview-animators:2.2.4'
     compile "org.apache.commons:commons-lang3:3.5"
