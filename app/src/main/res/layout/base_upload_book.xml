@@ -47,18 +47,18 @@
                             android:layout_marginStart="@dimen/def_margin"
                             android:layout_marginTop="@dimen/def_margin"
                             android:scaleType="fitXY"
-                            android:transitionName="@string/transition_book_cover"
-                            android:src="@drawable/default_book_cover"/>
+                            android:src="@drawable/default_book_cover"
+                            android:transitionName="@string/transition_book_cover"/>
 
                         <Button
                             android:id="@+id/btn_take_photo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignEnd="@id/iv_book_cover"
-                            android:textColor="@android:color/white"
                             android:layout_alignStart="@id/iv_book_cover"
                             android:layout_below="@id/iv_book_cover"
-                            android:text="@string/btn_message_take_photo"/>
+                            android:text="@string/btn_message_take_photo"
+                            android:textColor="@android:color/white"/>
 
                     </RelativeLayout>
 
@@ -265,9 +265,9 @@
                     android:id="@+id/btn_commit_book"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
                     android:layout_below="@id/cv_book_seek_bars"
-                    android:layout_marginTop="@dimen/def_margin"/>
+                    android:layout_marginTop="@dimen/def_margin"
+                    android:textColor="@android:color/white"/>
 
             </RelativeLayout>
 

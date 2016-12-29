@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/welcomeBackgroundAbout">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/welcomeBackgroundAbout">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/kv_img"
             android:layout_marginStart="16dp"
-            app:srcCompat="@drawable/ic_action_navigation_arrow_back_inverted" />
+            app:srcCompat="@drawable/ic_action_navigation_arrow_back_inverted"/>
 
         <ImageView
             android:id="@+id/kv_img"
@@ -26,7 +27,7 @@
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
             android:layout_marginTop="32dp"
-            android:src="@drawable/kv_img" />
+            android:src="@drawable/kv_img"/>
 
         <TextView
             android:id="@+id/faq_text"
@@ -39,7 +40,7 @@
             android:textAllCaps="true"
             android:textColor="@android:color/white"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/faq_text_h2"
@@ -51,7 +52,7 @@
             android:gravity="center_horizontal"
             android:text="@string/faq_most_asked_questions"
             android:textColor="@android:color/white"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/content_text"
@@ -62,7 +63,7 @@
             android:text="@string/faq_content"
             android:textAlignment="viewStart"
             android:textColor="@android:color/white"
-            android:textSize="14sp" />
+            android:textSize="14sp"/>
 
         <ImageView
             android:id="@+id/btn_back_bottom"
@@ -71,7 +72,7 @@
             android:layout_alignStart="@+id/content_text"
             android:layout_below="@id/content_text"
             android:layout_marginBottom="16dp"
-            app:srcCompat="@drawable/ic_action_navigation_arrow_back_inverted" />
+            app:srcCompat="@drawable/ic_action_navigation_arrow_back_inverted"/>
 
         <TextView
             android:id="@+id/faq_text_back"
@@ -85,7 +86,7 @@
             android:textAllCaps="true"
             android:textColor="@android:color/white"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
     </RelativeLayout>
 

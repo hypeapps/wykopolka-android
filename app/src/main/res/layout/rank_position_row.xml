@@ -23,8 +23,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/def_margin"
-            android:textStyle="normal|bold"
-            android:fontFamily="sans-serif-black"/>
+            android:fontFamily="sans-serif-black"
+            android:textStyle="normal|bold"/>
 
     </LinearLayout>
 
