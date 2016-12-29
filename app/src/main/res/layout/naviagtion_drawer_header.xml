@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/header"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/colorPrimaryDark" />
+        android:background="@color/colorPrimaryDark"/>
 
     <RelativeLayout
+        android:id="@+id/header_content"
         android:layout_width="match_parent"
+        android:layout_height="170dp"
         android:layout_marginTop="@dimen/nav_drawer_margin_top"
         android:background="@color/colorPrimaryDark"
-        android:paddingBottom="8dp"
-        android:id="@+id/header_content"
-        android:layout_height="170dp">
+        android:paddingBottom="8dp">
 
         <ImageView
             android:id="@+id/iv_avatar"
@@ -23,7 +23,7 @@
             android:layout_height="56dp"
             android:layout_above="@+id/tv_username"
             android:layout_centerHorizontal="true"
-            android:elevation="4dp" />
+            android:elevation="4dp"/>
 
         <TextView
             android:id="@+id/tv_username"
@@ -33,7 +33,7 @@
             android:layout_alignParentBottom="false"
             android:gravity="center_vertical|center_horizontal"
             android:textColor="@color/textColorPrimary"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <RelativeLayout
             android:id="@+id/rl_statistic"
@@ -48,27 +48,28 @@
                 android:id="@+id/ranking"
                 android:layout_width="82dp"
                 android:layout_height="match_parent"
-                android:layout_toLeftOf="@+id/readed_books"
+                android:layout_toStartOf="@+id/read_books"
                 android:gravity="center_vertical"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/statistic_position"
+                    android:id="@+id/user_stat_on_wish_list"
                     style="@style/StatisticTextStyleBold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="#23"
-                    android:textSize="18sp" />
+                    android:text="0"
+                    android:textSize="18sp"/>
 
                 <TextView
-                    android:id="@+id/tv_ranking"
+                    android:id="@+id/tv_on_wish_list"
                     style="@style/defTextStyl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="@string/message_stat_ranking_position"
-                    android:textSize="12sp" />
+                    android:text="@string/message_stat_on_wish_list"
+                    android:textSize="12sp"/>
+
             </LinearLayout>
 
             <View
@@ -76,11 +77,11 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_toLeftOf="@+id/readed_books"
-                android:background="#50FFFFFF" />
+                android:layout_toStartOf="@+id/read_books"
+                android:background="#50FFFFFF"/>
 
             <LinearLayout
-                android:id="@+id/readed_books"
+                android:id="@+id/read_books"
                 android:layout_width="82dp"
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
@@ -90,22 +91,23 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/statistic_readed_books"
+                    android:id="@+id/user_stats_read"
                     style="@style/StatisticTextStyleBold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="5"
-                    android:textSize="18sp" />
+                    android:text="0"
+                    android:textSize="18sp"/>
 
                 <TextView
-                    android:id="@+id/tv_readed_books"
+                    android:id="@+id/tv_read_books"
                     style="@style/defTextStyl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="@string/message_stat_readed_books"
-                    android:textSize="12sp" />
+                    android:text="@string/message_stat_read_books"
+                    android:textSize="12sp"/>
+
             </LinearLayout>
 
             <View
@@ -113,25 +115,25 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_toRightOf="@+id/readed_books"
-                android:background="#50FFFFFF" />
+                android:layout_toEndOf="@+id/read_books"
+                android:background="#50FFFFFF"/>
 
             <LinearLayout
                 android:id="@+id/added_books"
                 android:layout_width="82dp"
                 android:layout_height="match_parent"
-                android:layout_toEndOf="@+id/readed_books"
+                android:layout_toEndOf="@+id/read_books"
                 android:gravity="center_vertical"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/statistic_added_books"
+                    android:id="@+id/user_stats_added_books"
                     style="@style/StatisticTextStyleBold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="3"
-                    android:textSize="18sp" />
+                    android:text="0"
+                    android:textSize="18sp"/>
 
                 <TextView
                     android:id="@+id/tv_added_books"
@@ -140,10 +142,12 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:text="@string/message_stat_added_books"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"/>
+
             </LinearLayout>
 
         </RelativeLayout>
+
     </RelativeLayout>
 
 </RelativeLayout>
