@@ -25,8 +25,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import pl.hypeapp.wykopolka.App;
 import pl.hypeapp.wykopolka.R;
-import pl.hypeapp.wykopolka.adapter.DrawerRecyclerAdapter;
+import pl.hypeapp.wykopolka.adapter.NavigationDrawerRecyclerAdapter;
 import pl.hypeapp.wykopolka.model.NavigationItem;
+import pl.hypeapp.wykopolka.model.UserStats;
 import pl.hypeapp.wykopolka.presenter.NavigationDrawerPresenter;
 import pl.hypeapp.wykopolka.ui.activity.AllBooksActivity;
 import pl.hypeapp.wykopolka.ui.activity.BookPanelActivity;
@@ -49,9 +50,10 @@ public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresent
     private boolean mFromSavedInstanceState;
     private View mContainer;
     private boolean mDrawerOpened = false;
-    private DrawerRecyclerAdapter mRecyclerAdapter;
+    private NavigationDrawerRecyclerAdapter mRecyclerAdapter;
     private String mAvatarUrl;
     private String mUserLogin;
+    private NavigationDrawerPresenter mNavigationDrawerPresenter;
     @BindView(R.id.drawer_list) RecyclerView mRecyclerView;
     FloatingActionButton mFab;
 
@@ -61,7 +63,30 @@ public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresent
     @NonNull
     @Override
     public NavigationDrawerPresenter providePresenter() {
-        return new NavigationDrawerPresenter();
+        String accountKey = App.readFromPreferences(getActivity(), "user_account_key", null);
+        mNavigationDrawerPresenter = new NavigationDrawerPresenter(accountKey);
+        return mNavigationDrawerPresenter;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mUserLearnedDrawer = App.readFromPreferences(getActivity(), KEY_USER_LEARNED_DRAWER, false);
+        mAvatarUrl = App.readFromPreferences(getActivity(), "user_avatar", "");
+        mUserLogin = App.readFromPreferences(getActivity(), "user_login", "unknown");
+        mFromSavedInstanceState = savedInstanceState != null;
+        navigationDrawerIcons = getResources().obtainTypedArray(R.array.navigation_drawer_icons);
+        navigationDrawerTitles = getResources().getStringArray(R.array.navigation_drawer_items);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+        ButterKnife.bind(this, view);
+        mRecyclerAdapter = new NavigationDrawerRecyclerAdapter(getActivity(), getNavigationItems(), getUserData(), new ClickItemHandler());
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setAdapter(mRecyclerAdapter);
+        return view;
     }
 
     public static List<NavigationItem> getNavigationItems() {
@@ -83,28 +108,6 @@ public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresent
         userData.put("user_login", mUserLogin);
         userData.put("user_avatar", mAvatarUrl);
         return userData;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mUserLearnedDrawer = App.readFromPreferences(getActivity(), KEY_USER_LEARNED_DRAWER, false);
-        mAvatarUrl = App.readFromPreferences(getActivity(), "user_avatar", "");
-        mUserLogin = App.readFromPreferences(getActivity(), "user_login", "unknown");
-        mFromSavedInstanceState = savedInstanceState != null;
-        navigationDrawerIcons = getResources().obtainTypedArray(R.array.navigation_drawer_icons);
-        navigationDrawerTitles = getResources().getStringArray(R.array.navigation_drawer_items);
-
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
-        ButterKnife.bind(this, view);
-        mRecyclerAdapter = new DrawerRecyclerAdapter(getActivity(), getNavigationItems(), getUserData(), new ClickItemHandler());
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setAdapter(mRecyclerAdapter);
-        return view;
     }
 
     public void create(DrawerLayout drawerLayout, final Toolbar toolbar, int fragmentId) {
@@ -150,6 +153,27 @@ public class NavigationDrawerFragment extends TiFragment<NavigationDrawerPresent
                 }
             }
         });
+    }
+
+    @Override
+    public void setUserStats(UserStats userStats) {
+        mRecyclerAdapter.setUserStats(userStats);
+    }
+
+    @Override
+    public void saveUserStatsToPreferences(UserStats userStats) {
+        App.saveToPreferences(getActivity(), "user_stats_on_wish_list", userStats.getAddedOnWishList());
+        App.saveToPreferences(getActivity(), "user_stats_added", userStats.getAddedBooks());
+        App.saveToPreferences(getActivity(), "user_stats_read", userStats.getReadBooks());
+    }
+
+    @Override
+    public void setUserStatsFromPreferences() {
+        UserStats userStats = new UserStats();
+        userStats.setAddedOnWishList(App.readIntegerFromPreferences(getActivity(), "user_stats_on_wish_list", 0));
+        userStats.setAddedBooks(App.readIntegerFromPreferences(getActivity(), "user_stats_added", 0));
+        userStats.setReadBooks(App.readIntegerFromPreferences(getActivity(), "user_stats_read", 0));
+        mRecyclerAdapter.setUserStats(userStats);
     }
 
     public class ClickItemHandler {

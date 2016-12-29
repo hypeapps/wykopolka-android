@@ -19,23 +19,26 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.model.NavigationItem;
+import pl.hypeapp.wykopolka.model.UserStats;
 import pl.hypeapp.wykopolka.ui.fragment.NavigationDrawerFragment;
 import pl.hypeapp.wykopolka.util.transformation.CropCircleTransformation;
 
-public class DrawerRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class NavigationDrawerRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_ITEM = 1;
     private LayoutInflater mLayoutInflater;
     private Context mContext;
     private List<NavigationItem> navigationItems = Collections.emptyList();
     private Map<String, String> userData = Collections.emptyMap();
+    private UserStats userStats;
     private NavigationDrawerFragment.ClickItemHandler clickItemHandler;
 
-    public DrawerRecyclerAdapter(Context context, List<NavigationItem> navigationItems,
-                                 Map<String, String> userData, NavigationDrawerFragment.ClickItemHandler clickItemHandler) {
+    public NavigationDrawerRecyclerAdapter(Context context, List<NavigationItem> navigationItems,
+                                           Map<String, String> userData, NavigationDrawerFragment.ClickItemHandler clickItemHandler) {
         mLayoutInflater = LayoutInflater.from(context);
         this.mContext = context;
         this.userData = userData;
+        this.userStats = new UserStats();
         this.navigationItems = navigationItems;
         this.clickItemHandler = clickItemHandler;
     }
@@ -56,6 +59,9 @@ public class DrawerRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         if (holder instanceof HeaderHolder) {
             HeaderHolder headerHolder = (HeaderHolder) holder;
             headerHolder.username.setText("@" + userData.get("user_login"));
+            headerHolder.statOnWishList.setText(String.valueOf(userStats.getAddedOnWishList()));
+            headerHolder.statRead.setText(String.valueOf(userStats.getReadBooks()));
+            headerHolder.statAddedBooks.setText(String.valueOf(userStats.getAddedBooks()));
             Glide.with(mContext)
                     .load(userData.get("user_avatar"))
                     .bitmapTransform(new CropCircleTransformation(mContext))
@@ -82,6 +88,11 @@ public class DrawerRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         }
     }
 
+    public void setUserStats(UserStats userStats) {
+        this.userStats = userStats;
+        notifyDataSetChanged();
+    }
+
     class ItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.nav_list_text) TextView navigationItemText;
         @BindView(R.id.nav_list_icon) ImageView navigationItemIcon;
@@ -100,10 +111,11 @@ public class DrawerRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     class HeaderHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.tv_username)
-        TextView username;
-        @BindView(R.id.iv_avatar)
-        ImageView avatar;
+        @BindView(R.id.tv_username) TextView username;
+        @BindView(R.id.user_stat_on_wish_list) TextView statOnWishList;
+        @BindView(R.id.user_stats_read) TextView statRead;
+        @BindView(R.id.user_stats_added_books) TextView statAddedBooks;
+        @BindView(R.id.iv_avatar) ImageView avatar;
 
         HeaderHolder(View itemView) {
             super(itemView);
