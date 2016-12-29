@@ -136,5 +136,9 @@
 <big><b>10. Czy mogę odzyskać oddaną książkę?\n\n</b></big>Tak - Opcja wypożyczenia czasowego daje możliwość szybkiego odzyskania swojej książki. Ma to zastosowanie szczególnie w przypadku książek technicznych, do których często wracamy. Jeśli opcja ta jest zaznaczona, osoba dodająca książkę na Wykopółkę po dodaniu swojej pozycji na wishlistę pojawi się jako pierwsza w kolejce do otrzymania książki. Nadal będzie musiała poczekać aż aktualny posiadacz ukończy czytanie, ale otrzyma możliwość zwrotu książki poza kolejką.\n\n
 <big><b>11. Skąd pewność, że oddam pożyczoną książkę?\n\n</b></big>Znikąd. System stara się jak najdokładniej odsiewać osoby, które niszczą lub zalegają z książkami, jednak wszystko ciągle opiera się na zaufaniu. Wykopółka powstała w odpowiedzi na książki, które po trafieniu w #rozdajo już nigdy nie wracały w mirkowy obieg. Jeśli uda się puścić dalej choć część z tych książek to obwieścimy sukces. ;)
     </string>
+    <string name="error_message_wrong_address">Adres wysyłki jest niepoprawny</string>
+    <string name="error_message_wrong_email">Adres e-mail jest niepoprawny</string>
+    <string name="success_message_user_update">Zaaktualizowano profil</string>
+    <string name="hint_input_email">e-mail</string>
 
 </resources>
