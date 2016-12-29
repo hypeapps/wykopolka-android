@@ -11,6 +11,7 @@ import pl.hypeapp.wykopolka.presenter.BookPresenter;
 import pl.hypeapp.wykopolka.presenter.DemandQueuePresenter;
 import pl.hypeapp.wykopolka.presenter.EditBookPresenter;
 import pl.hypeapp.wykopolka.presenter.MyBooksPresenter;
+import pl.hypeapp.wykopolka.presenter.NavigationDrawerPresenter;
 import pl.hypeapp.wykopolka.presenter.ProfileSettingsPresenter;
 import pl.hypeapp.wykopolka.presenter.RandomBookPresenter;
 import pl.hypeapp.wykopolka.presenter.SearchBookPresenter;
@@ -28,6 +29,8 @@ public interface RetrofitComponent {
     void inject(SignInPresenter tiPresenter);
 
     void inject(BookPresenter tiPresenter);
+
+    void inject(NavigationDrawerPresenter tiPresenter);
 
     void inject(AddedBooksPresenter tiPresenter);
 

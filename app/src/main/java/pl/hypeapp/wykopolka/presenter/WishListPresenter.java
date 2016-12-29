@@ -4,6 +4,7 @@ import net.grandcentrix.thirtyinch.TiPresenter;
 import net.grandcentrix.thirtyinch.rx.RxTiPresenterSubscriptionHandler;
 import net.grandcentrix.thirtyinch.rx.RxTiPresenterUtils;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -29,7 +30,7 @@ public class WishListPresenter extends TiPresenter<WishListView> {
     private String mAccountKey;
     private WykopolkaApi mWykopolkaApi;
     private RxTiPresenterSubscriptionHandler rxHelper = new RxTiPresenterSubscriptionHandler(this);
-    private List<Book> mBooks;
+    private List<Book> mBooks = Collections.emptyList();
 
     public WishListPresenter(String accountKey) {
         this.mAccountKey = accountKey;

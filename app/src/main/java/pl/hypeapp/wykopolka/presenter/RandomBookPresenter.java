@@ -69,19 +69,27 @@ public class RandomBookPresenter extends TiPresenter<RandomBookView> {
 
                             @Override
                             public void onError(Throwable e) {
-                                getView().showError();
-                                getView().hideRandomizeAnimation();
-                                isAfterError = true;
+                                onErrorHandling();
                             }
 
                             @Override
                             public void onNext(Book book) {
-                                mBook = book;
-                                isAfterError = false;
-                                setRandomBookWithAnimation(book);
+                                onNextHandling(book);
                             }
                         }));
 
+    }
+
+    private void onNextHandling(Book book) {
+        mBook = book;
+        isAfterError = false;
+        setRandomBookWithAnimation(book);
+    }
+
+    private void onErrorHandling() {
+        getView().showError();
+        getView().hideRandomizeAnimation();
+        isAfterError = true;
     }
 
     private void setRandomBook(Book book) {

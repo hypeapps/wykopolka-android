@@ -125,8 +125,8 @@ public class WishListFragment extends TiFragment<WishListPresenter, WishListView
     public void setBookData(List<Book> books) {
         this.mBooks = books;
         initRecyclerAdapter();
-        mRecyclerAdapter.setData(books);
-        if (books.size() == 0) {
+        mRecyclerAdapter.setData(mBooks);
+        if (mBooks.size() == 0) {
             mEmptyBookListMessage.setVisibility(View.VISIBLE);
         } else {
             mEmptyBookListMessage.setVisibility(View.GONE);

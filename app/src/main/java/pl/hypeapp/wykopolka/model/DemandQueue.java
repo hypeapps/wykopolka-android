@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 public class DemandQueue {
+
     @JsonProperty("Data")
     public List<Book> books;
     @JsonProperty("Demand")

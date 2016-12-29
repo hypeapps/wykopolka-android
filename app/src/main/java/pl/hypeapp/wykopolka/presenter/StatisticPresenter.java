@@ -48,7 +48,7 @@ public class StatisticPresenter extends TiPresenter<StatisticView> {
         String sign = HashUtil.generateApiSign(accountKey);
         WykopolkaApi wykopolkaApi = mRetrofit.create(WykopolkaApi.class);
 
-        rxHelper.manageSubscription(
+        rxHelper.manageViewSubscription(
                 wykopolkaApi.getGlobalStats(accountKey, sign)
                         .compose(RxTiPresenterUtils.<Statistics>deliverLatestToView(this))
                         .subscribeOn(Schedulers.newThread())
@@ -60,19 +60,27 @@ public class StatisticPresenter extends TiPresenter<StatisticView> {
 
                             @Override
                             public void onError(Throwable e) {
-                                getView().stopLoadingAnimation();
-                                getView().hideStatistics();
-                                getView().showError();
+                                onErrorHandling();
                             }
 
                             @Override
                             public void onNext(Statistics statistics) {
-                                setStatisticsToView(statistics);
-                                getView().stopLoadingAnimation();
-                                getView().hideError();
+                                onNextHandling(statistics);
                             }
                         })
         );
+    }
+
+    private void onNextHandling(Statistics statistics) {
+        setStatisticsToView(statistics);
+        getView().stopLoadingAnimation();
+        getView().hideError();
+    }
+
+    private void onErrorHandling() {
+        getView().stopLoadingAnimation();
+        getView().hideStatistics();
+        getView().showError();
     }
 
     private void setStatisticsToView(Statistics statistics) {

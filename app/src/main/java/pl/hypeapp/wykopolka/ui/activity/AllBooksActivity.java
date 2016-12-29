@@ -60,7 +60,6 @@ public class AllBooksActivity extends CompositeActivity implements AllBooksView,
         addPlugin(mCrashlyticsPlugin);
     }
 
-
     private final TiActivityPlugin<AllBooksPresenter, AllBooksView> mPresenterPlugin =
             new TiActivityPlugin<>(new TiPresenterProvider<AllBooksPresenter>() {
                 @NonNull
