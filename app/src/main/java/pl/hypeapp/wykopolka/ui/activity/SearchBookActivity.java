@@ -30,6 +30,8 @@ import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.adapter.SearchBookRecyclerAdapter;
 import pl.hypeapp.wykopolka.model.Book;
+import pl.hypeapp.wykopolka.plugin.AnalyticsPlugin;
+import pl.hypeapp.wykopolka.plugin.CrashlyticsPlugin;
 import pl.hypeapp.wykopolka.plugin.ToolbarActivityPlugin;
 import pl.hypeapp.wykopolka.presenter.SearchBookPresenter;
 import pl.hypeapp.wykopolka.util.BuildUtil;
@@ -38,6 +40,8 @@ import rx.functions.Action1;
 
 public class SearchBookActivity extends CompositeActivity implements SearchBookView, MaterialSearchView.OnQueryTextListener {
     private final ToolbarActivityPlugin mToolbarPlugin = new ToolbarActivityPlugin();
+    private final CrashlyticsPlugin mCrashlyticsPlugin = new CrashlyticsPlugin();
+    private final AnalyticsPlugin mAnalyticsPlugin = new AnalyticsPlugin();
     private SearchBookPresenter mSearchBookPresenter;
     private SearchBookRecyclerAdapter mSearchedByTitleRecyclerAdapter;
     private SearchBookRecyclerAdapter mSearchedByAuthorRecyclerAdapter;
@@ -58,6 +62,8 @@ public class SearchBookActivity extends CompositeActivity implements SearchBookV
     public SearchBookActivity() {
         addPlugin(mPresenterPlugin);
         addPlugin(mToolbarPlugin);
+        addPlugin(mCrashlyticsPlugin);
+        addPlugin(mAnalyticsPlugin);
     }
 
     private final TiActivityPlugin<SearchBookPresenter, SearchBookView> mPresenterPlugin =
@@ -94,6 +100,7 @@ public class SearchBookActivity extends CompositeActivity implements SearchBookV
     @Override
     public boolean onQueryTextSubmit(String query) {
         mSearchBookPresenter.searchByQuery(query);
+        mAnalyticsPlugin.onSearchEvent(query);
         return false;
     }
 
@@ -220,9 +227,10 @@ public class SearchBookActivity extends CompositeActivity implements SearchBookV
     }
 
     private void onIntentQuery() {
-        String query = getIntent().getStringExtra("SEARCH_QUERY");
+        String query = getIntent().getStringExtra(getString(R.string.intent_put_search));
         if (query != null) {
             mSearchBookPresenter.searchByQueryOnIntent(query);
+            mAnalyticsPlugin.onSearchEvent(query);
         }
     }
 

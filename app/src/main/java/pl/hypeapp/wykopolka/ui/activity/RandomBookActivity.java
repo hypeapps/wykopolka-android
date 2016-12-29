@@ -27,6 +27,7 @@ import butterknife.OnClick;
 import pl.hypeapp.wykopolka.App;
 import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.model.Book;
+import pl.hypeapp.wykopolka.plugin.CrashlyticsPlugin;
 import pl.hypeapp.wykopolka.plugin.ToolbarActivityPlugin;
 import pl.hypeapp.wykopolka.presenter.RandomBookPresenter;
 import pl.hypeapp.wykopolka.util.BuildUtil;
@@ -43,7 +44,7 @@ public class RandomBookActivity extends CompositeActivity implements RandomBookV
     @BindView(R.id.layout_random_animation) View mRandomizeAnimationLayout;
     @BindView(R.id.layout_random_book) View mRandomBookLayout;
     @BindView(R.id.error_view) View errorView;
-
+    private final CrashlyticsPlugin mCrashlyticsPlugin = new CrashlyticsPlugin();
     private final ToolbarActivityPlugin mToolbarPlugin = new ToolbarActivityPlugin();
 
     private final TiActivityPlugin<RandomBookPresenter, RandomBookView> mPresenterPlugin =
@@ -60,6 +61,7 @@ public class RandomBookActivity extends CompositeActivity implements RandomBookV
     public RandomBookActivity() {
         addPlugin(mToolbarPlugin);
         addPlugin(mPresenterPlugin);
+        addPlugin(mCrashlyticsPlugin);
     }
 
     @Override

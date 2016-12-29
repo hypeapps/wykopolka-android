@@ -25,6 +25,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.adapter.DashboardPagerAdapter;
+import pl.hypeapp.wykopolka.plugin.CrashlyticsPlugin;
 import pl.hypeapp.wykopolka.plugin.ToolbarActivityPlugin;
 import pl.hypeapp.wykopolka.presenter.DashboardPresenter;
 import pl.hypeapp.wykopolka.view.DashboardView;
@@ -37,6 +38,7 @@ public class DashboardActivity extends CompositeActivity implements DashboardVie
     @BindView(R.id.viewpager_tab) SmartTabLayout mSmartTabLayout;
 
     private final ToolbarActivityPlugin mToolbarPlugin = new ToolbarActivityPlugin();
+    private final CrashlyticsPlugin mCrashlyticsPlugin = new CrashlyticsPlugin();
 
     private final TiActivityPlugin<DashboardPresenter, DashboardView> mPresenterPlugin =
             new TiActivityPlugin<>(new TiPresenterProvider<DashboardPresenter>() {
@@ -51,6 +53,7 @@ public class DashboardActivity extends CompositeActivity implements DashboardVie
     public DashboardActivity() {
         addPlugin(mPresenterPlugin);
         addPlugin(mToolbarPlugin);
+        addPlugin(mCrashlyticsPlugin);
     }
 
     @Override
@@ -58,7 +61,6 @@ public class DashboardActivity extends CompositeActivity implements DashboardVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         ButterKnife.bind(this);
-
         Toolbar toolbar = mToolbarPlugin.initToolbar(mToolbar);
         mToolbarPlugin.setNavigationDrawer(toolbar);
         initViewPager(mViewPager, mSmartTabLayout);

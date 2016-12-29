@@ -45,6 +45,8 @@ import butterknife.OnClick;
 import pl.hypeapp.wykopolka.App;
 import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.model.Book;
+import pl.hypeapp.wykopolka.plugin.AnalyticsPlugin;
+import pl.hypeapp.wykopolka.plugin.CrashlyticsPlugin;
 import pl.hypeapp.wykopolka.plugin.ToolbarActivityPlugin;
 import pl.hypeapp.wykopolka.presenter.BookPresenter;
 import pl.hypeapp.wykopolka.ui.CardBookDialog;
@@ -63,6 +65,9 @@ public class BookActivity extends CompositeActivity implements BookView, Materia
     private SmallBang mSmallBang;
     private Book mBook;
     private CardBookDialog mDialog;
+    private final AnalyticsPlugin mAnalyticsPlugin = new AnalyticsPlugin();
+    private final CrashlyticsPlugin mCrashlyticsPlugin = new CrashlyticsPlugin();
+    private final ToolbarActivityPlugin mToolbarPlugin = new ToolbarActivityPlugin();
     @BindView(R.id.collapsing_toolbar) CollapsingToolbarLayout mCollapsingToolbarLayout;
     @BindView(R.id.toolbar) Toolbar mToolbar;
     @BindView(R.id.app_bar_layout) AppBarLayout mAppBarLayout;
@@ -78,9 +83,9 @@ public class BookActivity extends CompositeActivity implements BookView, Materia
     public BookActivity() {
         addPlugin(mPresenterPlugin);
         addPlugin(mToolbarPlugin);
+        addPlugin(mAnalyticsPlugin);
+        addPlugin(mCrashlyticsPlugin);
     }
-
-    private final ToolbarActivityPlugin mToolbarPlugin = new ToolbarActivityPlugin();
 
     private final TiActivityPlugin<BookPresenter, BookView> mPresenterPlugin =
             new TiActivityPlugin<>(new TiPresenterProvider<BookPresenter>() {
@@ -118,6 +123,7 @@ public class BookActivity extends CompositeActivity implements BookView, Materia
         mBook = getBookIntentExtra();
         mCollapsingToolbarLayout.setTitle(mBook.getTitle());
         mDialog = new CardBookDialog(this);
+        mAnalyticsPlugin.onBookEvent(mBook.getTitle(), mBook.getBookId());
     }
 
     @Override

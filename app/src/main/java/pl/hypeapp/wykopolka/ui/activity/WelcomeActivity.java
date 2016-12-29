@@ -22,20 +22,20 @@ import pl.hypeapp.wykopolka.App;
 import pl.hypeapp.wykopolka.R;
 import pl.hypeapp.wykopolka.adapter.WelcomePagerAdapter;
 import pl.hypeapp.wykopolka.extra.pagetransformer.StackTransformer;
+import pl.hypeapp.wykopolka.plugin.AnalyticsPlugin;
+import pl.hypeapp.wykopolka.plugin.CrashlyticsPlugin;
 import pl.hypeapp.wykopolka.presenter.WelcomePresenter;
 import pl.hypeapp.wykopolka.view.WelcomeView;
 
 public class WelcomeActivity extends CompositeActivity implements WelcomeView {
     public static final int LOGIN_PAGE = 2;
+    private final CrashlyticsPlugin mCrashlyticsPlugin = new CrashlyticsPlugin();
+    private final AnalyticsPlugin mAnalyticsPlugin = new AnalyticsPlugin();
     @BindView(R.id.viewpager) ViewPager mViewPager;
     @BindView(R.id.flexibleIndicator) ExtensiblePageIndicator mFlexibleIndicator;
     @BindView(R.id.iv_next) ImageView mNextPageButton;
     @BindView(R.id.welcome_parent_layout) View parentLayout;
     private WelcomePresenter mWelcomePresenter;
-
-    public WelcomeActivity() {
-        addPlugin(mPresenterPlugin);
-    }
 
     private final TiActivityPlugin<WelcomePresenter, WelcomeView> mPresenterPlugin =
             new TiActivityPlugin<>(new TiPresenterProvider<WelcomePresenter>() {
@@ -48,6 +48,12 @@ public class WelcomeActivity extends CompositeActivity implements WelcomeView {
                     return mWelcomePresenter;
                 }
             });
+
+    public WelcomeActivity() {
+        addPlugin(mPresenterPlugin);
+        addPlugin(mCrashlyticsPlugin);
+        addPlugin(mAnalyticsPlugin);
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -110,6 +116,5 @@ public class WelcomeActivity extends CompositeActivity implements WelcomeView {
         mViewPager.setCurrentItem(LOGIN_PAGE);
         Snackbar.make(parentLayout, getString(R.string.error_login_message), Snackbar.LENGTH_LONG).show();
     }
-
 
 }
