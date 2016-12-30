@@ -1,6 +1,5 @@
 package pl.hypeapp.wykopolka.util;
 
-
 import android.content.Context;
 import android.os.Build;
 import android.webkit.CookieManager;

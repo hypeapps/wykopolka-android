@@ -1,6 +1,5 @@
 package pl.hypeapp.wykopolka.util;
 
-
 import android.os.Build;
 
 public class BuildUtil {

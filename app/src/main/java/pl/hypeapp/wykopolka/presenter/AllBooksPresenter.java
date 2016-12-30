@@ -1,7 +1,5 @@
 package pl.hypeapp.wykopolka.presenter;
 
-import android.util.Log;
-
 import net.grandcentrix.thirtyinch.TiPresenter;
 import net.grandcentrix.thirtyinch.rx.RxTiPresenterSubscriptionHandler;
 import net.grandcentrix.thirtyinch.rx.RxTiPresenterUtils;
@@ -68,14 +66,11 @@ public class AllBooksPresenter extends TiPresenter<AllBooksView> {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e("On error pagination", e.getMessage());
                         onLoadErrorHandling();
                     }
 
                     @Override
                     public void onNext(Pagination pagination) {
-                        Log.e("On next pagination", pagination.getPerPage() + " " + pagination.getData().size());
-                        Log.e("page", "1");
                         onLoadFirstPageSuccessful(pagination.getData());
                     }
                 })
@@ -100,14 +95,11 @@ public class AllBooksPresenter extends TiPresenter<AllBooksView> {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e("On error pagination", e.getMessage());
                         onLoadErrorHandling();
                     }
 
                     @Override
                     public void onNext(Pagination pagination) {
-                        Log.e("On next pagination", pagination.getPerPage() + " " + pagination.getData().size());
-                        Log.e("page", "more");
                         onLoadMoreDataSuccessful(pagination.getData(), itemsCount);
                     }
                 })

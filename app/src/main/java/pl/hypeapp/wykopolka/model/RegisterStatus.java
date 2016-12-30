@@ -1,6 +1,5 @@
 package pl.hypeapp.wykopolka.model;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RegisterStatus {

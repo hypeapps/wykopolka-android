@@ -67,11 +67,11 @@ public class BaseBookListFragment<P extends TiPresenter<V>, V extends TiView> ex
         scaleInAnimationAdapter.setFirstOnly(true);
         mRecyclerAdapter.getOnBookClicks()
                 .subscribe(new Action1<BooksRecyclerAdapter.BooksRecyclerHolder>() {
-            @Override
-            public void call(BooksRecyclerAdapter.BooksRecyclerHolder booksRecyclerHolder) {
-                startBookActivity(mBooks, booksRecyclerHolder);
-            }
-        });
+                    @Override
+                    public void call(BooksRecyclerAdapter.BooksRecyclerHolder booksRecyclerHolder) {
+                        startBookActivity(mBooks, booksRecyclerHolder);
+                    }
+                });
         mRecyclerView.addOnScrollListener(onScrollListener);
         mRecyclerView.setAdapter(scaleInAnimationAdapter);
     }

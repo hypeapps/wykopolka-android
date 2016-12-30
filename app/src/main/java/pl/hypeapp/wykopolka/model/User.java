@@ -217,6 +217,7 @@ public class User {
     public void setNotifyType(Integer notifyType) {
         this.notifyType = notifyType;
     }
+
     /**
      * @return The accountKeyToken
      */

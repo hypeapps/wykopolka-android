@@ -4,9 +4,6 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
-
-import com.squareup.leakcanary.LeakCanary;
 
 import pl.hypeapp.wykopolka.network.retrofit.WykopolkaRetrofitModule;
 
@@ -19,21 +16,13 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            // This process is dedicated to LeakCanary for heap analysis.
-            // You should not init your app in this process.
-            return;
-        }
-        LeakCanary.install(this);
-        Log.d("leakd", "onCreate: leakCanary");
-
         appComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .wykopolkaRetrofitModule(new WykopolkaRetrofitModule())
                 .build();
     }
 
-    public AppComponent getAuthComponent(){
+    public AppComponent getAppComponent() {
         return appComponent;
     }
 

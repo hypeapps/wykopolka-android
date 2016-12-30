@@ -1,7 +1,5 @@
 package pl.hypeapp.wykopolka.presenter;
 
-import android.util.Log;
-
 import net.grandcentrix.thirtyinch.TiPresenter;
 import net.grandcentrix.thirtyinch.rx.RxTiPresenterSubscriptionHandler;
 import net.grandcentrix.thirtyinch.rx.RxTiPresenterUtils;
@@ -31,7 +29,7 @@ public class SelectedBooksPresenter extends TiPresenter<BaseBookListView> {
     private RetrofitComponent mRetrofitComponent;
     private String mAccountKey;
     private RxTiPresenterSubscriptionHandler rxHelper = new RxTiPresenterSubscriptionHandler(this);
-    
+
     public SelectedBooksPresenter(String accountKey) {
         this.mAccountKey = accountKey;
     }
@@ -52,7 +50,6 @@ public class SelectedBooksPresenter extends TiPresenter<BaseBookListView> {
     private void loadSelectedBooks(String accountKey, String amount) {
         String sign = HashUtil.generateApiSign(accountKey, amount);
         WykopolkaApi wykopolkaApi = mRetrofit.create(WykopolkaApi.class);
-
         rxHelper.manageSubscription(
                 wykopolkaApi.getSelectedBooks(accountKey, amount, sign)
                         .compose(RxTiPresenterUtils.<List<Book>>deliverLatestToView(this))
@@ -66,18 +63,25 @@ public class SelectedBooksPresenter extends TiPresenter<BaseBookListView> {
 
                             @Override
                             public void onError(Throwable e) {
-                                Log.e("err", "onError: " + e.getMessage());
-                                getView().showError();
-                                getView().setBookData(Collections.<Book>emptyList());
+                                onErrorHandling();
                             }
 
                             @Override
                             public void onNext(List<Book> books) {
-                                getView().setBookData(books);
-                                getView().hideError();
+                                onNextHandling(books);
                             }
                         }));
 
+    }
+
+    private void onNextHandling(List<Book> books) {
+        getView().setBookData(books);
+        getView().hideError();
+    }
+
+    private void onErrorHandling() {
+        getView().setBookData(Collections.<Book>emptyList());
+        getView().showError();
     }
 
     public void initRefreshData() {

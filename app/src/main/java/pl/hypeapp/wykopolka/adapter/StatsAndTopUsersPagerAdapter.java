@@ -9,7 +9,7 @@ import pl.hypeapp.wykopolka.ui.fragment.TopUsersFragment;
 
 public class StatsAndTopUsersPagerAdapter extends FragmentPagerAdapter {
 
-    private static final int NUM_PAGES = 2;
+    private static final int NUM_PAGES = 1;
 
     public StatsAndTopUsersPagerAdapter(FragmentManager fm) {
         super(fm);

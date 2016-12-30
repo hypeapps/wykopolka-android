@@ -67,17 +67,25 @@ public class AddedBooksPresenter extends TiPresenter<BaseBookListView> {
 
                             @Override
                             public void onError(Throwable e) {
-                                Log.e("TAG", "onError: " + e.getMessage());
-                                getView().showError();
-                                getView().setBookData(Collections.<Book>emptyList());
+                                onErrorHandling();
                             }
 
                             @Override
                             public void onNext(List<Book> books) {
-                                getView().setBookData(books);
-                                getView().hideError();
+                                onNextHandling(books);
                             }
                         }));
+    }
+
+    private void onNextHandling(List<Book> books) {
+        Log.e("onNext", "AddedBooks size" + books.size());
+        getView().setBookData(books);
+        getView().hideError();
+    }
+
+    private void onErrorHandling() {
+        getView().setBookData(Collections.<Book>emptyList());
+        getView().showError();
     }
 
     public void initRefreshData() {

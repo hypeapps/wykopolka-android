@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:background="@color/cardViewBackground"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/cardViewBackground">
 
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -29,10 +29,10 @@
             android:visibility="gone"/>
 
         <RelativeLayout
+            android:id="@+id/loading_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/toolbar"
-            android:id="@+id/loading_view">
+            android:layout_below="@id/toolbar">
 
             <com.github.ybq.android.spinkit.SpinKitView
                 android:id="@+id/spin_loading"
@@ -68,8 +68,8 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/all_books_list"
                 android:layout_width="match_parent"
-                android:layout_marginEnd="@dimen/def_margin"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/def_margin"/>
 
         </pl.hypeapp.wykopolka.extra.circlerefreshlayout.CircleRefreshLayout>
 

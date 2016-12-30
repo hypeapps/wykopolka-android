@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -27,7 +28,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
                 android:duplicateParentState="true"
-                app:srcCompat="@mipmap/ic_launcher" />
+                app:srcCompat="@mipmap/ic_launcher"/>
 
             <TextView
                 android:id="@+id/nav_list_text"
@@ -39,7 +40,7 @@
                 android:layout_weight="1"
                 android:duplicateParentState="true"
                 android:text="Dashborad"
-                android:textColor="#fcfcfc" />
+                android:textColor="#fcfcfc"/>
 
         </LinearLayout>
 
@@ -50,6 +51,6 @@
         android:layout_width="match_parent"
         android:layout_height="0.20dp"
         android:layout_below="@+id/ripple"
-        android:background="#50000000" />
+        android:background="#50000000"/>
 
 </RelativeLayout>
