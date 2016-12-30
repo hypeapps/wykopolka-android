@@ -6,7 +6,7 @@ App allows you easy to find books, share books, and read interesting titles for 
 
 ###### How it works?
 
-Wykop community give books to Wykopółka. Another user can add title to your wish list. If book is available current owner send it willing user.
+Wykop community give books to Wykopółka. Another user can add title to your wish list. If book is available, current owner send it to willing user.
 While user read book send it to another user. Simply! 
 
 Umberto Eco:
@@ -44,7 +44,7 @@ Umberto Eco:
 
 ## API
 
-API needs secured key and specified in gradle.properties. If you want to use API contact me (e-mail below).
+API is fully REST architecutre, and needs secured key and specified in gradle.properties. If you want to use API contact me (e-mail below).
 
 ## Contact me
 
