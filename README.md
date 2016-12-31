@@ -12,12 +12,16 @@ While user read book send it to another user. Simply!
 Umberto Eco:
 > "Who reads books, he lives a double"
 
-## Screenshot
+## Screenshots
 
 ![scr1](https://s27.postimg.org/b9celbohv/scr2.png)
 ![scr2](https://s27.postimg.org/b1td2k2wz/scr6.png)
 ![scr3](https://s27.postimg.org/t3ci0cwxv/scr5.png)
 ![scr4](https://s29.postimg.org/44o45ptyv/scr8.png)
+
+## Download
+
+###### [GOOGLE PLAY](https://play.google.com/store/apps/details?id=pl.hypeapp.wykopolka)
 
 ## Used Libraries
 
@@ -50,3 +54,9 @@ API is fully REST architecutre, and needs secured key and specified in gradle.pr
 
 E-mail: [pszem.szym@gmail.com](pszem.szym@gmail.com)
 Twitter: [https://twitter.com/hype_app](https://twitter.com/hype_app)
+
+## License
+
+>Apache License
+>Version 2.0, January 2004
+>http://www.apache.org/licenses/
