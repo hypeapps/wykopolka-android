@@ -81,7 +81,6 @@ public class AllBooksRecyclerAdapter extends RecyclerView.Adapter<AllBooksRecycl
 
     public void setMoreData(List<Book> books) {
         mDataSet.addAll(books);
-//        notifyDataSetChanged();
     }
 
     public class AllBooksRecyclerHolder extends RecyclerView.ViewHolder {

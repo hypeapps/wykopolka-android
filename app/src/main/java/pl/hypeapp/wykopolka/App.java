@@ -8,8 +8,8 @@ import android.preference.PreferenceManager;
 import pl.hypeapp.wykopolka.network.retrofit.WykopolkaRetrofitModule;
 
 public class App extends Application {
-    public static final String WYKOPOLKA_IMG_HOST = "http://77.253.148.2/wykopolka/public/";
-    public static final String WYKOPOLKA_API_URL = "http://77.253.148.2/";
+    public static final String WYKOPOLKA_IMG_HOST = "http://wykopolka.pl/";
+    public static final String WYKOPOLKA_API_URL = "http://wykopolka.pl/";
     public static final String WYKOP_API_URL = "http://a.wykop.pl/";
     private AppComponent appComponent;
 

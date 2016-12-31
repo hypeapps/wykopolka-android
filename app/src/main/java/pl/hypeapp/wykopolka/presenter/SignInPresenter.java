@@ -26,7 +26,6 @@ public class SignInPresenter extends TiPresenter<SignInView> {
     private static final String APP_KEY = BuildConfig.APP_KEY;
     private static final String WAPI_SECRET = BuildConfig.WAPI_SECRET;
     private static final String WYKOP_LOGIN_URL = "http://a.wykop.pl/user/login/appkey/" + APP_KEY + "/format/json/output/clear/";
-    private static final int PATH_APPKEY = 3;
     private static final int PATH_LOGIN = 5;
     private static final int PATH_ACCOUNT_KEY = 7;
     private String mUsername;
@@ -50,7 +49,6 @@ public class SignInPresenter extends TiPresenter<SignInView> {
 
     public void handleWykopLogin(String url) {
         getView().showWykopolkaLoginInfo();
-        final String appkey = Uri.parse(url).getPathSegments().get(PATH_APPKEY);
         mUsername = Uri.parse(url).getPathSegments().get(PATH_LOGIN);
         mAccountKey = Uri.parse(url).getPathSegments().get(PATH_ACCOUNT_KEY);
         String apiSign = HashUtil.md5(WAPI_SECRET + WYKOP_LOGIN_URL + mAccountKey + "," + mUsername);

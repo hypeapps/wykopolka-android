@@ -51,7 +51,8 @@
                 android:layout_height="match_parent"
                 android:layout_toStartOf="@+id/read_books"
                 android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginEnd="4dp">
 
                 <TextView
                     android:id="@+id/user_stat_on_wish_list"
@@ -79,7 +80,8 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_toStartOf="@+id/read_books"
-                android:background="#50FFFFFF"/>
+                android:background="#50FFFFFF"
+                />
 
             <LinearLayout
                 android:id="@+id/read_books"

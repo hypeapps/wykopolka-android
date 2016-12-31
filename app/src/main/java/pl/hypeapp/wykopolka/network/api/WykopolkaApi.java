@@ -22,76 +22,76 @@ import rx.Observable;
 public interface WykopolkaApi {
 
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/user/login")
+    @POST("api/request/user/login")
     Observable<RegisterStatus> handleSignIn(@Field("login") String login, @Field("token") String token, @Header("apisign") String apisign);
 
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/user/get")
+    @POST("api/request/user/get")
     Observable<User> getUser(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
 
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/user/stats/simple")
+    @POST("api/request/user/stats/simple")
     Observable<UserStats> getUserStats(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
 
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/book")
+    @POST("api/request/book")
     Observable<List<Book>> getBook(@Field("id") String bookId, @Header("apisign") String apisign);
 
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/book/all")
+    @POST("api/request/book/all")
     Observable<Pagination> getAllBooks(@Field("currentpage") int currentPage, @Field("perpage") String perPage,
                                        @Header("apisign") String apisign);
 
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/wishlist/get/all")
+    @POST("api/request/wishlist/get/all")
     Observable<List<Book>> getWishList(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
 
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/demand/queue")
+    @POST("api/request/demand/queue")
     Observable<DemandQueue> getDemandQueue(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
 
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/wishlist/book/status")
+    @POST("api/request/wishlist/book/status")
     Observable<WishBookStatus> getWishBookStatus(@Field("accountkey") String accountkey, @Field("id") String bookId,
                                                  @Header("apisign") String apisign);
 
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/user/books/added")
+    @POST("api/request/user/books/added")
     Observable<List<Book>> getUserAddedBooks(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
 
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/user/books/owned")
+    @POST("api/request/user/books/owned")
     Observable<List<Book>> getMyBooks(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
 
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/book/selected")
+    @POST("api/request/book/selected")
     Observable<List<Book>> getSelectedBooks(@Field("accountkey") String accountKey, @Field("amount") String amount,
                                             @Header("apisign") String apisign);
 
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/book/random")
+    @POST("api/request/book/random")
     Observable<Book> getRandomBook(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
 
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/stats/global")
+    @POST("api/request/stats/global")
     Observable<Statistics> getGlobalStats(@Field("accountkey") String accountKey, @Header("apisign") String apisign);
 
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/book/search")
+    @POST("api/request/book/search")
     Observable<SearchResult> searchByQuery(@Field("booksearch") String query, @Header("apisign") String apisign);
 
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/user/settings/update")
+    @POST("api/request/user/settings/update")
     Observable<User> updateUser(@Field("accountkey") String accountKey, @Field("data") String userJson,
                                 @Header("apisign") String apisign);
 
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/book/add")
+    @POST("api/request/book/add")
     Observable<List<Book>> uploadBook(@Field("accountkey") String accountKey, @Field("book") String book,
                                       @Header("apisign") String apisign);
 
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/book/edit")
+    @POST("api/request/book/edit")
     Observable<List<Book>> editBook(@Field("accountkey") String accountKey, @Field("book") String book,
                                     @Header("apisign") String apisign);
 
@@ -99,38 +99,38 @@ public interface WykopolkaApi {
      * @param state (0 - remove from wish list 1 - add to wish list)
      */
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/wishlist/manage")
+    @POST("api/request/wishlist/manage")
     Observable<ResponseBody> manageWishList(@Field("accountkey") String accountKey, @Field("id") String bookId, @Field("state") int state,
                                             @Header("apisign") String apisign);
 
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/transfer/confirm")
+    @POST("api/request/transfer/confirm")
     Observable<ResponseBody> confirmClaimedBook(@Field("accountkey") String accountKey, @Field("id") String bookId,
                                                 @Field("transferid") int transferId, @Field("bookquality") int bookQuality,
                                                 @Header("apisign") String apisign);
 
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/transfer/register")
+    @POST("api/request/transfer/register")
     Observable<ResponseBody> transferBook(@Field("accountkey") String accountKey, @Field("id") String bookId,
                                           @Field("receiverid") int receiverId, @Header("apisign") String apisign);
 
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/book/find/by/author")
+    @POST("api/request/book/find/by/author")
     Call<ResponseBody> searchByAuthor(@Field("booksearch") String author, @Header("apisign") String apisign);
 
     @Deprecated
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/user/getloginbyid")
+    @POST("api/request/user/getloginbyid")
     Call<ResponseBody> getLoginById(@Field("id") String userId, @Header("apisign") String apisign);
 
     @Deprecated
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/book/iswishlisted")
+    @POST("api/request/book/iswishlisted")
     Call<ResponseBody> isWishlisted(@Field("accountkey") String accountKey, @Field("id") String bookId, @Header("apisign") String apisign);
 
     @Deprecated
     @FormUrlEncoded
-    @POST("wykopolka/public/api/request/book/iswishlistingallowed")
+    @POST("api/request/book/iswishlistingallowed")
     Call<ResponseBody> isWishlistingAllowed(@Field("accountkey") String accountKey, @Field("id") String bookId,
                                             @Header("apisign") String apisign);
 
