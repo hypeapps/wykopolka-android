@@ -23,7 +23,8 @@ public interface WykopolkaApi {
 
     @FormUrlEncoded
     @POST("api/request/user/login")
-    Observable<RegisterStatus> handleSignIn(@Field("login") String login, @Field("token") String token, @Header("apisign") String apisign);
+    Observable<RegisterStatus> handleSignIn(@Field("login") String login, @Field("token") String token,
+                                            @Header("apisign") String apisign);
 
     @FormUrlEncoded
     @POST("api/request/user/get")
@@ -115,6 +116,11 @@ public interface WykopolkaApi {
                                           @Field("receiverid") int receiverId, @Header("apisign") String apisign);
 
     @FormUrlEncoded
+    @POST("api/request/user/notify/call")
+    Observable<ResponseBody> callUserOnMikroblog(@Field("accountkey") String accountKey, @Field("wishid") String wishId,
+                                                 @Header("apisign") String apisign);
+
+    @FormUrlEncoded
     @POST("api/request/book/find/by/author")
     Call<ResponseBody> searchByAuthor(@Field("booksearch") String author, @Header("apisign") String apisign);
 
@@ -126,7 +132,8 @@ public interface WykopolkaApi {
     @Deprecated
     @FormUrlEncoded
     @POST("api/request/book/iswishlisted")
-    Call<ResponseBody> isWishlisted(@Field("accountkey") String accountKey, @Field("id") String bookId, @Header("apisign") String apisign);
+    Call<ResponseBody> isWishlisted(@Field("accountkey") String accountKey, @Field("id") String bookId,
+                                    @Header("apisign") String apisign);
 
     @Deprecated
     @FormUrlEncoded
