@@ -24,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:layout_marginStart="@dimen/def_margin"
             android:textSize="16sp"
             android:textStyle="bold"/>
@@ -42,12 +43,33 @@
         android:id="@+id/dialog_user_pw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/def_margin"
         android:layout_marginEnd="@dimen/def_margin"
         android:layout_marginStart="@dimen/def_margin"
-        android:layout_marginTop="@dimen/def_margin"
         android:text="@string/dialog_priv_message"
         android:textColor="@color/linkColor"/>
+
+    <TextView
+        android:id="@+id/dialog_notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/def_margin"
+        android:layout_marginStart="@dimen/def_margin"/>
+
+    <TextView
+        android:id="@+id/dialog_notification_action"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/def_margin"
+        android:layout_marginStart="@dimen/def_margin"
+        android:textColor="@color/linkColor"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.25dp"
+        android:layout_marginTop="@dimen/def_margin"
+        android:layout_marginEnd="@dimen/def_margin"
+        android:layout_marginStart="@dimen/def_margin"
+        android:background="#50000000"/>
 
     <LinearLayout
         android:id="@+id/dialog_address_layout"
