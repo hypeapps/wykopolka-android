@@ -14,7 +14,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "Address",
         "City",
         "Postal",
-        "isRegistered"
+        "isRegistered",
+        "wishId",
+        "wasCalled",
+        "callId"
 })
 public class PendingUser {
     @JsonProperty("ReceiverId")
@@ -35,6 +38,12 @@ public class PendingUser {
     private String postal;
     @JsonProperty("isRegistered")
     private boolean isRegistered;
+    @JsonProperty("wishId")
+    private String wishId;
+    @JsonProperty("wasCalled")
+    private boolean wasCalled;
+    @JsonProperty("callId")
+    private String callId;
 
     @JsonProperty("ReceiverId")
     public Integer getReceiverId() {
@@ -128,6 +137,36 @@ public class PendingUser {
     @JsonProperty("isRegistered")
     public void setIsRegistered(boolean isRegistered) {
         this.isRegistered = isRegistered;
+    }
+
+    @JsonProperty("wishId")
+    public String getWishId() {
+        return wishId;
+    }
+
+    @JsonProperty("wishId")
+    public void setWishId(String wishId) {
+        this.wishId = wishId;
+    }
+
+    @JsonProperty("wasCalled")
+    public boolean getWasCalled() {
+        return wasCalled;
+    }
+
+    @JsonProperty("wasCalled")
+    public void setWasCalled(boolean wasCalled) {
+        this.wasCalled = wasCalled;
+    }
+
+    @JsonProperty("callId")
+    public String getCallId() {
+        return callId;
+    }
+
+    @JsonProperty("callId")
+    public void setCallId(String callId) {
+        this.callId = callId;
     }
 
 }

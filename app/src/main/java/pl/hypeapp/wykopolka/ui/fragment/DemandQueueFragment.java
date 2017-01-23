@@ -1,6 +1,7 @@
 package pl.hypeapp.wykopolka.ui.fragment;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -143,7 +144,21 @@ public class DemandQueueFragment extends TiFragment<DemandQueuePresenter, Demand
                 mDemandQueuePresenter.onTransferConfirmed(bookPendingUserPair);
             }
         });
+        mDialog.getNotificationAction().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDemandQueuePresenter.onNotificationAction(bookPendingUserPair);
+            }
+        });
         mDialog.show();
+    }
+
+    @Override
+    public void showMikroblogEntry(String entryId) {
+        Uri mikroblogUrl = Uri.parse("http://www.wykop.pl/wpis/" + entryId);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(mikroblogUrl);
+        startActivity(intent);
     }
 
     @Override
@@ -179,7 +194,7 @@ public class DemandQueueFragment extends TiFragment<DemandQueuePresenter, Demand
     }
 
     @Override
-    public void showTransferError() {
+    public void showDialogError() {
         Snackbar.make(parentLayout, R.string.error_message_default, Snackbar.LENGTH_LONG).show();
     }
 

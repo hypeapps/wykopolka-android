@@ -25,6 +25,7 @@ public class TransferBookDialog extends Dialog {
     private ProgressBar spinLoading;
     private Context context;
     private Button confirmTransferButton;
+    private TextView notificationAction;
 
     public TransferBookDialog(Context context) {
         super(context);
@@ -41,7 +42,11 @@ public class TransferBookDialog extends Dialog {
     }
 
     public Button getConfirmTransferButton() {
-        return confirmTransferButton;
+        return this.confirmTransferButton;
+    }
+
+    public TextView getNotificationAction() {
+        return this.notificationAction;
     }
 
     public void startLoading() {
@@ -90,6 +95,11 @@ public class TransferBookDialog extends Dialog {
         } else {
             aboutUserAddress.setText(context.getString(R.string.dialog_no_address_content));
         }
+        manageTransferButtonVisibility();
+        manageNotificationAction();
+    }
+
+    private void manageTransferButtonVisibility() {
         confirmTransferButton = (Button) this.findViewById(R.id.btn_confirm);
         if (pendingUser.getIsRegistered()) {
             confirmTransferButton.setVisibility(View.GONE);
@@ -101,4 +111,17 @@ public class TransferBookDialog extends Dialog {
     private boolean isAddressFilled() {
         return pendingUser.getAddress().length() > 0;
     }
+
+    private void manageNotificationAction() {
+        TextView notificationInfo = (TextView) this.findViewById(R.id.dialog_notification);
+        this.notificationAction = (TextView) this.findViewById(R.id.dialog_notification_action);
+        if (pendingUser.getWasCalled()) {
+            notificationInfo.setText(context.getString(R.string.dialog_notification_information_not_possible));
+            notificationAction.setText(context.getString(R.string.dialog_notification_action_entry_mikroblog));
+        } else {
+            notificationInfo.setText(context.getString(R.string.dialog_notification_information_possible));
+            notificationAction.setText(context.getString(R.string.dialog_notification_action_possible));
+        }
+    }
+
 }

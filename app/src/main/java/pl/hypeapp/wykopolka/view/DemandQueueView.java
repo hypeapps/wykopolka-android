@@ -43,5 +43,8 @@ public interface DemandQueueView extends TiView {
     void dismissDialogLoading();
 
     @CallOnMainThread
-    void showTransferError();
+    void showDialogError();
+
+    @CallOnMainThread
+    void showMikroblogEntry(String entryId);
 }

@@ -140,5 +140,9 @@
     <string name="error_message_wrong_email">Adres e-mail jest niepoprawny</string>
     <string name="success_message_user_update">Zaaktualizowano profil</string>
     <string name="hint_input_email">e-mail</string>
+    <string name="dialog_notification_information_possible">lub jeśli ma zablokowane pw:</string>
+    <string name="dialog_notification_action_possible">zawołaj go w wpisie na Mikroblogu</string>
+    <string name="dialog_notification_information_not_possible">Użytkownik został zawołany:</string>
+    <string name="dialog_notification_action_entry_mikroblog">w tym wpisie</string>
 
 </resources>

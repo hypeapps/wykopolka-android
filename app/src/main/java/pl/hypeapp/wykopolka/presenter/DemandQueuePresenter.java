@@ -72,6 +72,56 @@ public class DemandQueuePresenter extends TiPresenter<DemandQueueView> {
         getView().showTransferDialog(bookPendingUserPair);
     }
 
+    public void onNotificationAction(Pair<Book, PendingUser> bookPendingUserPair) {
+        if (bookPendingUserPair.second.getWasCalled()) {
+            showMikroblogEntry(bookPendingUserPair.second.getCallId());
+        } else {
+            notifyUserOnMikroblog(bookPendingUserPair.second.getWishId());
+        }
+    }
+
+    private void showMikroblogEntry(String callId) {
+        getView().showMikroblogEntry(callId);
+    }
+
+    private void notifyUserOnMikroblog(String wishId) {
+        getView().setDialogInLoading();
+        String sign = HashUtil.generateApiSign(mAccountKey, wishId);
+        rxHelper.manageSubscription(mWykopolkaApi.callUserOnMikroblog(mAccountKey, wishId, sign)
+                .compose(RxTiPresenterUtils.<ResponseBody>deliverToView(this))
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<ResponseBody>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        onNotificationError();
+                    }
+
+                    @Override
+                    public void onNext(ResponseBody responseBody) {
+                        onNotificationSuccessful();
+                    }
+                })
+        );
+    }
+
+    private void onNotificationError() {
+        getView().dismissTransferDialog();
+        getView().dismissDialogLoading();
+        getView().showDialogError();
+    }
+
+    private void onNotificationSuccessful() {
+        getView().dismissDialogLoading();
+        getView().dismissTransferDialog();
+        loadDemandQueue(mAccountKey);
+    }
+
     public void onTransferConfirmed(Pair<Book, PendingUser> bookPendingUserPair) {
         getView().setDialogInLoading();
         String bookId = bookPendingUserPair.first.getBookId();
@@ -84,7 +134,6 @@ public class DemandQueuePresenter extends TiPresenter<DemandQueueView> {
                 .subscribe(new Subscriber<ResponseBody>() {
                     @Override
                     public void onCompleted() {
-
                     }
 
                     @Override
@@ -103,7 +152,7 @@ public class DemandQueuePresenter extends TiPresenter<DemandQueueView> {
     private void onTransferError() {
         getView().dismissTransferDialog();
         getView().dismissDialogLoading();
-        getView().showTransferError();
+        getView().showDialogError();
     }
 
     private void onTransferSuccessful() {
@@ -153,5 +202,4 @@ public class DemandQueuePresenter extends TiPresenter<DemandQueueView> {
         getView().stopLoadingAnimation();
         getView().stopRefreshing();
     }
-
 }
