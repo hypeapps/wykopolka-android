@@ -1,7 +1,5 @@
 package pl.hypeapp.wykopolka.presenter;
 
-import android.util.Log;
-
 import net.grandcentrix.thirtyinch.TiPresenter;
 import net.grandcentrix.thirtyinch.rx.RxTiPresenterSubscriptionHandler;
 import net.grandcentrix.thirtyinch.rx.RxTiPresenterUtils;
@@ -40,7 +38,6 @@ public class AddedBooksPresenter extends TiPresenter<BaseBookListView> {
         super.onCreate();
         mRetrofitComponent = DaggerRetrofitComponent.builder().build();
         mRetrofitComponent.inject(this);
-        Log.e("base_URL", mRetrofit.baseUrl().toString());
     }
 
     @Override
@@ -50,7 +47,6 @@ public class AddedBooksPresenter extends TiPresenter<BaseBookListView> {
     }
 
     private void loadAddedBooks(String accountKey) {
-        Log.e("acc_load_data", accountKey);
         String sign = HashUtil.generateApiSign(accountKey);
         WykopolkaApi wykopolkaApi = mRetrofit.create(WykopolkaApi.class);
 
@@ -78,7 +74,6 @@ public class AddedBooksPresenter extends TiPresenter<BaseBookListView> {
     }
 
     private void onNextHandling(List<Book> books) {
-        Log.e("onNext", "AddedBooks size" + books.size());
         getView().setBookData(books);
         getView().hideError();
     }
