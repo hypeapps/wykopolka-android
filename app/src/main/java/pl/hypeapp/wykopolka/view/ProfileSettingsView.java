@@ -78,6 +78,9 @@ public interface ProfileSettingsView extends TiView {
     void retry();
 
     @CallOnMainThread
+    void intentToPrivacyPolicy();
+
+    @CallOnMainThread
     void logout();
 
 }
