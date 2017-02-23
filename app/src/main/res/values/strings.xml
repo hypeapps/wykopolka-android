@@ -144,5 +144,7 @@
     <string name="dialog_notification_action_possible">zawołaj go w wpisie na Mikroblogu</string>
     <string name="dialog_notification_information_not_possible">Użytkownik został zawołany:</string>
     <string name="dialog_notification_action_entry_mikroblog">w tym wpisie</string>
+    <string name="settings_tv_privacy_policy">Polityka prywatności</string>
+    <string name="url_privacy_policy">http://www.wykopolka.pl/privacy-policy</string>
 
 </resources>
