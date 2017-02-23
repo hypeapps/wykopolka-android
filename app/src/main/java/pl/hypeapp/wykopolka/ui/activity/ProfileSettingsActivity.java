@@ -1,6 +1,7 @@
 package pl.hypeapp.wykopolka.ui.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -215,6 +216,14 @@ public class ProfileSettingsActivity extends CompositeActivity implements Profil
     @OnClick(R.id.btn_error_retry)
     public void retry() {
         mProfileSettingsPresenter.retryLoadProfileSettings();
+    }
+
+    @Override
+    @OnClick(R.id.tv_intent_to_privacy_policy)
+    public void intentToPrivacyPolicy() {
+        Uri uri = Uri.parse(getString(R.string.url_privacy_policy));
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
     }
 
     @Override
