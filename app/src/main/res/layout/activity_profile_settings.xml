@@ -244,7 +244,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
                     android:orientation="vertical">
@@ -262,18 +262,37 @@
                         android:textSize="18sp"
                         android:textStyle="bold"/>
 
-                    <Button
-                        android:id="@+id/btn_logout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="24dp"
-                        android:layout_marginLeft="@dimen/activity_vertical_margin"
-                        android:layout_marginRight="@dimen/activity_vertical_margin"
-                        android:layout_marginTop="@dimen/def_margin"
-                        android:drawablePadding="4dp"
-                        android:drawableStart="@drawable/ic_exit_to_app_white_24dp"
-                        android:text="@string/settings_btn_action_logout"
-                        android:textColor="@android:color/white"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_logout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="24dp"
+                            android:layout_marginLeft="@dimen/activity_vertical_margin"
+                            android:layout_marginRight="@dimen/activity_vertical_margin"
+                            android:layout_marginTop="@dimen/def_margin"
+                            android:drawablePadding="4dp"
+                            android:drawableStart="@drawable/ic_exit_to_app_white_24dp"
+                            android:text="@string/settings_btn_action_logout"
+                            android:textColor="@android:color/white"/>
+
+                        <TextView
+                            android:id="@+id/tv_intent_to_privacy_policy"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/activity_vertical_margin"
+                            android:layout_marginTop="@dimen/def_margin"
+                            android:gravity="end"
+                            android:text="@string/settings_tv_privacy_policy"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
