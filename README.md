@@ -33,7 +33,7 @@ Umberto Eco:
 - [RxJava](https://github.com/ReactiveX/RxJava)
 - [RxAndroid](https://github.com/ReactiveX/RxAndroid)
 - [okHttp](https://github.com/square/okhttp)
-- [Composite Activity](https://github.com/passsy/CompositeAndroid)
+- [CompositeAndroid](https://github.com/passsy/CompositeAndroid)
 
 
 ###### Frontend:
