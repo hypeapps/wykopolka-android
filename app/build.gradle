@@ -8,13 +8,13 @@ repositories {
 }
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "pl.hypeapp.wykopolka"
         minSdkVersion 17
         targetSdkVersion 25
-        versionCode 6
-        versionName "1.1.1"
+        versionCode 7
+        versionName "1.1.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     packagingOptions {
@@ -76,7 +76,6 @@ dependencies {
     compile 'com.jpardogo.googleprogressbar:library:1.2.0'
     // IMAGES & ANIMATIONS
     compile "com.github.bumptech.glide:glide:$bumptechGlideVersion"
-    compile 'hanks.xyz:smallbang-library:0.1.2'
     compile 'com.balysv:material-ripple:1.0.2'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.daimajia.easing:library:1.0.1@aar'

@@ -44,6 +44,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.hypeapp.wykopolka.App;
 import pl.hypeapp.wykopolka.R;
+import pl.hypeapp.wykopolka.extra.smallbang.SmallBang;
 import pl.hypeapp.wykopolka.model.Book;
 import pl.hypeapp.wykopolka.plugin.AnalyticsPlugin;
 import pl.hypeapp.wykopolka.plugin.CrashlyticsPlugin;
@@ -53,7 +54,6 @@ import pl.hypeapp.wykopolka.ui.CardBookDialog;
 import pl.hypeapp.wykopolka.ui.listener.AppBarStateChangeListener;
 import pl.hypeapp.wykopolka.util.BuildUtil;
 import pl.hypeapp.wykopolka.view.BookView;
-import xyz.hanks.library.SmallBang;
 
 public class BookActivity extends CompositeActivity implements BookView, MaterialSearchView.OnQueryTextListener {
     private static final String WYKOPOLKA_IMG_HOST = App.WYKOPOLKA_IMG_HOST;
