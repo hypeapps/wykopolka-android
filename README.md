@@ -1,7 +1,7 @@
 # Wykopółka - Bookcrossing Android App ![TRAVIS-CI](https://travis-ci.org/hypeapps/wykopolka-android.svg?branch=master)
 ![header](https://s27.postimg.org/lx3xhbvnn/header.png)
 
-Thanks to Wykopółka you have access to thousand books shared by Wykop.pl community. It's polish bookcrossing application. 
+Thanks to Wykopółka you have access to thousand books shared by Wykop.pl community. It's a polish bookcrossing application. 
 App allows you easy to find books, share books, and read interesting titles for free!
 
 ###### How it works?
@@ -33,22 +33,22 @@ Umberto Eco:
 - [RxJava](https://github.com/ReactiveX/RxJava)
 - [RxAndroid](https://github.com/ReactiveX/RxAndroid)
 - [okHttp](https://github.com/square/okhttp)
-- [Composite Activity](https://github.com/passsy/CompositeAndroid)
+- [CompositeAndroid](https://github.com/passsy/CompositeAndroid)
 
 
 ###### Frontend:
 - [Multiline CollapsingToolbar](https://github.com/opacapp/multiline-collapsingtoolbar)
 - [RecyclerView Animations](https://github.com/wasabeef/recyclerview-animators)
-- [Glide] (https://github.com/bumptech/glide)
-- [ButterKnife] (http://jakewharton.github.io/butterknife)
-- [SpinKit] (https://github.com/ybq/Android-SpinKit)
+- [Glide](https://github.com/bumptech/glide)
+- [ButterKnife](http://jakewharton.github.io/butterknife)
+- [SpinKit](https://github.com/ybq/Android-SpinKit)
 - [AndroidViewAnimations](https://github.com/daimajia/AndroidViewAnimations)
-- [Extendsible Page Indicator] (https://github.com/merhold/extensible-page-indicator)
+- [Extendsible Page Indicator](https://github.com/merhold/extensible-page-indicator)
 - [Small bang](https://github.com/hanks-zyh/SmallBang)
 
 ## API
 
-API is fully REST architecutre, and needs secured key and specified in gradle.properties. If you want to use API contact me (e-mail below).
+API is fully REST architecture and needs secured key and specified in gradle.properties. If you want to use API contact me (e-mail below).
 
 ## Contact me
 
