@@ -1,5 +1,5 @@
 # Wykopółka - Bookcrossing Android App ![TRAVIS-CI](https://travis-ci.org/hypeapps/wykopolka-android.svg?branch=master)
-![header](https://s27.postimg.org/lx3xhbvnn/header.png)
+![header](https://raw.githubusercontent.com/hypeapps/wykopolka-android/master/img/header.png)
 
 Thanks to Wykopółka you have access to thousand books shared by Wykop.pl community. It's a polish bookcrossing application. 
 App allows you easy to find books, share books, and read interesting titles for free!
@@ -14,10 +14,8 @@ Umberto Eco:
 
 ## Screenshots
 
-![scr1](https://s27.postimg.org/b9celbohv/scr2.png)
-![scr2](https://s27.postimg.org/b1td2k2wz/scr6.png)
-![scr3](https://s27.postimg.org/t3ci0cwxv/scr5.png)
-![scr4](https://s29.postimg.org/44o45ptyv/scr8.png)
+<img src="https://raw.githubusercontent.com/hypeapps/wykopolka-android/master/img/scr1.png" alt="Screen 1" height="400"/> <img src="https://raw.githubusercontent.com/hypeapps/wykopolka-android/master/img/scr2.png" alt="Screen 2" height="400"/> <img src="https://raw.githubusercontent.com/hypeapps/wykopolka-android/master/img/scr3.png" alt="Screen 3" height="400"/> <img src="https://raw.githubusercontent.com/hypeapps/wykopolka-android/master/img/scr4.png" alt="Screen 4" height="400"/> <img src="https://raw.githubusercontent.com/hypeapps/wykopolka-android/master/img/scr5.png" alt="Screen 5" height="400"/> <img src="https://raw.githubusercontent.com/hypeapps/wykopolka-android/master/img/scr6.png" alt="Screen 6" height="400"/>
+
 
 ## Download
 
